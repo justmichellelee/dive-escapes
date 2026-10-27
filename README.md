@@ -1,35 +1,42 @@
-# Dive escapes from Singapore
+# Diving Possibilities near Singapore
 
-A free, static website (map + month filter + spot guides) hosted on GitHub Pages.
+A free website (hosted on GitHub Pages) to plan dive trips from Singapore: a map, a one-sentence search, swipe-able spot rows, season calendar, public-holiday leave hacks, a trip-builder quiz, and guides to getting certified.
 
-## Files
-- `index.html` — the page (layout, map, filters). You rarely need to touch this.
-- `spots.js` — **all the content**. Edit this to add, remove or update spots.
+Live site: `https://<your-username>.github.io/dive-escapes/`
 
-## Put it online (one-time, ~5 minutes, free)
-1. Create a free account at https://github.com.
-2. Click **+ → New repository**. Name it e.g. `dive-escapes`. Set it to **Public**. Click **Create repository**.
-3. On the new repo page click **uploading an existing file**, drag in `index.html`, `spots.js` and `README.md`, then **Commit changes**.
-4. Go to **Settings → Pages**. Under *Build and deployment*, set Source = **Deploy from a branch**, Branch = **main**, folder = **/ (root)**. Save.
-5. Wait ~1 minute. Your site is live at `https://<your-username>.github.io/dive-escapes/`.
+## What's in this folder
+| File / folder | What it does | Edit it when… |
+|---|---|---|
+| `spots.js` | **All dive spot info** (seasons, routes, fees, shops, trip links, photos) | you want to add/change a spot |
+| `index.html` | Home page: layout, map, search, rows, holiday list, quiz | you change public holidays (search `HOLIDAYS`) or the header text |
+| `open-water.html` | Open Water licence guide | prices/courses change |
+| `advanced-open-water.html` | Advanced Open Water guide | prices/courses change |
+| `events.html` | Dive events in Singapore | new events (search `EVENTS`) |
+| `pages.css`, `pages.js` | Shared look + doodles for the 3 guide pages | rarely |
+| `doodles/` | 20 white line-art PNGs used in the headers | you want different doodles (keep the same file names) |
+| `photos/` | Cover photos for spots | you add a photo |
 
-## Update a spot (works from your phone too)
-1. Open your repo on github.com → click `spots.js` → click the **pencil** (Edit).
-2. Change the text you want (e.g. a ferry price, months, a new dive shop).
-3. Click **Commit changes**. The live site refreshes in about a minute.
+## Everyday edits (works from your phone)
+1. Open the file on github.com, then tap the **pencil** (Edit).
+2. Change the text inside the quotes.
+3. Tap **Commit changes**. The site updates in about a minute; hard-refresh to see it (Ctrl+Shift+R).
 
-### Add a new spot
-Copy any existing `{ ... },` block in `spots.js`, paste it below, and change:
-- `id` (unique, no spaces), `name`, `country`, `type` (`"weekend"` or `"liveaboard"`)
-- `lat` / `lng` — in Google Maps, long-press or right-click the spot to copy coordinates
-- `open` and `best` — month numbers, 1 = Jan … 12 = Dec
-- everything else is free text
+**Add a cover photo**
+1. Upload the image into the `photos` folder (on a computer: *Add file → Upload files* while inside `photos`).
+2. In `spots.js`, under that spot's `id:` line, add:
+   `photo: "photos/yourfile.jpg", photoCredit: "© Name",`
 
-The field guide at the top of `spots.js` explains every field.
+**Add a spot:** copy any `{ … },` block in `spots.js`, paste it below, and change the `id` (unique, no spaces), name, `lat`/`lng`, months, and text. The field guide is at the top of `spots.js`.
 
-### If the page goes blank after an edit
-It's almost always a missing comma or quote. Open the repo → **History** on `spots.js` → compare with the previous version, or paste `spots.js` into https://jshint.com to find the line.
+**Update public holidays:** in `index.html`, search `HOLIDAYS` and add next year's dates as `"YYYY-MM-DD"`.
+
+**Add an event:** in `events.html`, search `EVENTS` and copy a `{ … },` block. Past events hide themselves.
+
+## If something breaks
+It's almost always a missing comma or quote. Open the file and tap **History**, then compare with the last working version, or paste the file into jshint.com to find the line.
 
 ## Notes
-- Map tiles: OpenStreetMap / CARTO (free, no key).
-- Info changes often — each spot has a `verify` list and a `checked` date. Update `checked` when you re-confirm details.
+- Map: © OpenStreetMap contributors.
+- Wishlist and notes are saved in each visitor's own browser, not shared.
+- Info changes often. Each spot has a `verify` list and a `checked` date.
+- Only use photos you own or have permission to use.

@@ -7,7 +7,7 @@
 <meta name="description" content="Cute guide to dive getaways and liveaboards from Singapore: seasons, routes, dive shops and what you'll see.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
@@ -223,7 +223,7 @@ table.cal tr.spot td.c i{height:11px;opacity:.9}
 .ph h3 .sub{font:700 13px Nunito;color:var(--muted)}
 .trip-search{align-self:center;font:800 12.5px Nunito;margin-left:4px}
 /* ───── TRIP-BUILDER QUIZ ───── */
-.quiz-cta{position:relative;z-index:2;margin-top:16px;border:0;border-radius:999px;padding:11px 20px;font:800 15px Nunito;color:#fff;background:linear-gradient(135deg,#0b4f7c,#1592b8 55%,#2fc6c9);box-shadow:0 6px 18px rgba(11,79,124,.35);cursor:pointer;transition:transform .2s}
+.quiz-cta{position:relative;z-index:2;margin-top:16px;border:0;border-radius:999px;padding:11px 20px;font:800 15px Nunito;color:#fff;background:linear-gradient(135deg,#071f3a,#0b3d6b 60%,#11558f);box-shadow:0 6px 18px rgba(7,31,58,.4);cursor:pointer;transition:transform .2s}
 .quiz-cta:hover{transform:translateY(-2px) scale(1.03)}
 .quiz-bg{position:fixed;inset:0;z-index:3000;background:rgba(8,30,52,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:16px}
 .quiz-bg.open{display:flex}
@@ -264,11 +264,12 @@ body{transition:background-color .2s linear}
 /* ───── SENTENCE SEARCH ───── */
 .controls{margin-top:-58px;padding:0 0 6px;background:transparent !important}
 .search-card{position:relative;z-index:4;background:#fff;border-radius:26px;box-shadow:0 10px 34px rgba(23,58,94,.16);padding:16px 18px 10px}
-.sentence{margin:0;font:600 clamp(17px,2.4vw,22px)/1.9 Fredoka,Nunito,sans-serif;color:var(--ink)}
-.sentence select{appearance:none;-webkit-appearance:none;border:0;border-bottom:3px dashed #8cc6ef;border-radius:10px;background:var(--pink-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232f86de' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 10px center;padding:2px 28px 2px 10px;margin:2px 2px;font:600 inherit;font-family:Fredoka,Nunito,sans-serif;font-size:inherit;color:var(--pink);cursor:pointer;max-width:100%;transition:background-color .2s}
-.sentence select:hover{background-color:#d3e8ff}
-.sentence select:focus{outline:3px solid #9fd3f7;outline-offset:1px}
-.extras{margin-top:8px;flex-wrap:nowrap}
+.sentence{margin:0;font:500 clamp(16px,2vw,19px)/2 Inter,system-ui,sans-serif;color:#33506b;letter-spacing:-.01em}
+.sentence select{appearance:none;-webkit-appearance:none;border:1.5px solid #cfe2f3;border-radius:10px;background:#f4f9ff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%230b3d6b' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 11px center;padding:3px 26px 3px 11px;margin:2px 3px;font-family:Inter,system-ui,sans-serif;font-size:inherit;font-weight:600;letter-spacing:-.01em;color:#0b3d6b;cursor:pointer;max-width:100%;transition:border-color .2s, background-color .2s}
+.sentence select:hover{border-color:#8cc6ef;background-color:#eaf4ff}
+.sentence select:focus{outline:none;border-color:#2f86de;box-shadow:0 0 0 3px rgba(47,134,222,.18)}
+.search-card .row + .row{margin-top:9px}
+.extras{margin-top:9px;flex-wrap:nowrap}
 .extras .scroller{flex:1;min-width:0}
 @media (min-width:760px){.controls{position:sticky;top:8px}}
 @media (max-width:600px){.extras{flex-wrap:wrap}.extras .scroller{flex:1 1 100%}.extras select{margin-left:0}}
@@ -417,7 +418,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
       <p class="sentence">
         I can take <select id="sLeave" aria-label="Leave">
           <option value="all">any amount of leave</option>
-          <option value="weekend">no leave (just weekends)</option>
+          <option value="weekend">no leave (weekends only)</option>
           <option value="short">1–2 days of leave</option>
           <option value="liveaboard">3+ days of leave</option>
         </select>
@@ -686,10 +687,9 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   /* ═════════ HERO ═════════ */
   // Swimming procession: [creature, y, scale, seconds, delay, direction (1 = left→right, -1 = right→left), opacity]
   const SWIM = [
-    ["whaleshark", 236, .6,  90, -30,  1, .55],
-    ["manta",       60, .36, 75, -55, -1, .5 ],
-    ["turtle",     150, .34, 80, -10,  1, .55],
-    ["greyreef",   268, .32, 70, -45, -1, .45]
+    ["whaleshark", 262, .55, 90, -30,  1, .5 ],
+    ["manta",      232, .3,  75, -55, -1, .45],
+    ["turtle",     278, .28, 80, -10,  1, .5 ]
   ];
   document.getElementById("heroScene").innerHTML = `<svg viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid slice">
     ${SWIM.map(([k,y,sc,dur,del,dir,op]) => `<g class="${dir>0?"glide":"glideR"}" style="animation-duration:${dur}s;animation-delay:${del}s;opacity:${op}"><g transform="translate(0 ${y}) scale(${dir*sc} ${sc})"><g class="swim">${R[k]()}</g></g></g>`).join("")}
@@ -713,12 +713,12 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   const sLeave = document.getElementById("sLeave"), sMonth = document.getElementById("sMonth"), sAnimal = document.getElementById("sAnimal");
   sMonth.innerHTML = `<option value="0">any month</option>` + ["January","February","March","April","May","June","July","August","September","October","November","December"].map((n,i)=>`<option value="${i+1}">${n}</option>`).join("");
   const used = new Set(SPOTS.flatMap(s=>s.tags||[]));
-  sAnimal.innerHTML = `<option value="">anything ✨</option>` + Object.keys(TAGS).filter(t=>used.has(t)).map(t=>`<option value="${t}">${TAGS[t][1].toLowerCase()} ${TAGS[t][0]}</option>`).join("");
+  sAnimal.innerHTML = `<option value="">anything</option>` + Object.keys(TAGS).filter(t=>used.has(t)).map(t=>`<option value="${t}">${TAGS[t][1].toLowerCase()}</option>`).join("");
   sLeave.onchange = () => { state.type = sLeave.value; render(true); };
   sMonth.onchange = () => { state.month = +sMonth.value; render(); };
   sAnimal.onchange = () => { state.tags = new Set(sAnimal.value ? [sAnimal.value] : []); render(); };
   const measurer = document.createElement("span"); measurer.style.cssText = "position:absolute;visibility:hidden;white-space:nowrap"; document.body.appendChild(measurer);
-  const fitSel = el => { const cs = getComputedStyle(el); measurer.style.font = cs.font; measurer.style.fontFamily = cs.fontFamily; measurer.style.fontSize = cs.fontSize; measurer.style.fontWeight = cs.fontWeight; measurer.textContent = el.options[el.selectedIndex].text; el.style.width = (measurer.offsetWidth + 46) + "px"; };
+  const fitSel = el => { const cs = getComputedStyle(el); measurer.style.fontFamily = cs.fontFamily; measurer.style.fontSize = cs.fontSize; measurer.style.fontWeight = cs.fontWeight; measurer.style.letterSpacing = cs.letterSpacing; measurer.textContent = el.options[el.selectedIndex].text; el.style.width = (measurer.offsetWidth + 50) + "px"; };
   if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>[sLeave,sMonth,sAnimal].forEach(fitSel));
   ["inSeason","owOnly","easyOnly","wishOnly"].forEach(k => document.getElementById(k).addEventListener("click", () => { state[k]=!state[k]; render(); }));
   document.getElementById("sort").addEventListener("change", e => { state.sort=e.target.value; render(); });
@@ -859,9 +859,9 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     const nBest = state.month ? list.filter(s=>statusOf(s,state.month)==="best").length : 0;
     document.getElementById("count").textContent = `${list.length} spot${list.length===1?"":"s"}` + (state.month?` · ${nBest} at their best in ${M[state.month-1]}`:"");
     const rowsEl = document.getElementById("rows");
-    if(!list.length) rowsEl.innerHTML = `<div class="empty">🐡 No spots match. Try "any month" or "anything" in the sentence above.</div>`;
+    if(!list.length) rowsEl.innerHTML = `<div class="empty">🐡 No spots match. Try "any month" or "anything" above.</div>`;
     else if(list.length <= 5 || state.wishOnly) rowsEl.innerHTML = rowHTML("Your matches", list);
-    else rowsEl.innerHTML = ROWS.map(r=>({t:r.t(), l:list.filter(r.f)})).filter(r=>r.l.length).map(r=>rowHTML(r.t, r.l)).join("") + rowHTML("All matching spots", list);
+    else rowsEl.innerHTML = ROWS.map(r=>({t:r.t(), l:list.filter(r.f)})).filter(r=>r.l.length).map(r=>rowHTML(r.t, r.l)).join("");
     if(sheetId) openSheet(sheetId, true);
 
     layer.clearLayers();
