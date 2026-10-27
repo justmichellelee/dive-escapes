@@ -420,7 +420,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
 
   /* ═════════ MAP ═════════ */
   const map = L.map("map", { scrollWheelZoom:false }).setView([6,112],4);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", { attribution:"&copy; OpenStreetMap &copy; CARTO", subdomains:"abcd", maxZoom:18 }).addTo(map);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution:"&copy; OpenStreetMap contributors", maxZoom:18 }).addTo(map);
   L.marker([1.35,103.82],{icon:L.divIcon({className:"",html:'<div class="sg-pin">🏠</div>',iconSize:[26,26],iconAnchor:[13,13]})}).addTo(map).bindTooltip("Home sweet Singapore");
   const layer = L.layerGroup().addTo(map);
 
