@@ -84,6 +84,6 @@ footer{color:var(--muted);font-size:13px;font-weight:600;padding:20px 0 50px;tex
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-10px) rotate(calc(var(--r,0deg) + 6deg))}}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none !important;transition:none !important}section.block{opacity:1;transform:none}}
 
-body{animation:pageIn .9s ease both}
-@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+body{animation:pageIn .9s ease}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
 .hero h1{font-weight:800;text-transform:uppercase;letter-spacing:.01em}
