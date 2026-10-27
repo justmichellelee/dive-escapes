@@ -693,13 +693,13 @@ window.DIVE_SPOTS = [
     ease: 2,
     easeNote: "Long route: fly to Taipei, then a train or flight to Taitung, then a ferry. Ferries are often cancelled in rough winter seas and typhoons.",
     searchName: "Green Island Taiwan",
-    tags: ["turtles","coral","sharks","whalesharks"],
+    tags: ["turtles","coral","sharks","whalesharks","hammerheads"],
     see: [
       { what: "Sea turtles & reef fish (summer viz up to 40m)", where: "Dabaisha", tag: "turtles" },
       { what: "Giant 'Big Mushroom' coral & drop-offs", where: "Guningtou (east), Shilang canyons", tag: "coral" },
       { what: "Underwater post box (~11m)", where: "Shilang Diving Area" },
       { what: "Whale sharks & rays passing (spring, lucky)", where: "Offshore", months: [3,4,5], tag: "whalesharks" },
-      { what: "Hammerheads (winter, rare)", where: "Deep offshore sites", months: [1,2,12], tag: "sharks" }
+      { what: "Hammerheads (winter, rare)", where: "Deep offshore sites", months: [1,2,12], tag: "hammerheads" }
     ],
     getThere: [
       "Fly SIN → Taipei (TPE), direct ~4.5h.",
