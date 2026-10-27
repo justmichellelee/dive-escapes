@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dive Escapes from SG</title>
+<title>Diving near Singapore</title>
 <meta name="description" content="Cute guide to dive getaways and liveaboards from Singapore: seasons, routes, dive shops and what you'll see.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,10 @@ h1,h2,h3{font-family:Fredoka,Nunito,sans-serif}
 /* ───── HERO ───── */
 .hero{position:relative;overflow:hidden;background:linear-gradient(175deg,#d4efff 0%,#9fd3f7 40%,#5fb0ec 75%,#3b8fd9 100%);padding:34px 0 90px;color:var(--ink)}
 .hero h1{font-size:clamp(32px,7vw,54px);line-height:1.05;margin:0 0 10px;position:relative;z-index:2}
-.hero h1 .sparkle{display:inline-block;animation:twinkle 2.4s ease-in-out infinite}
+.hero h1 .diver{display:inline-block;width:clamp(90px,14vw,150px);height:auto;vertical-align:middle;margin-left:6px;animation:diveBob 4s ease-in-out infinite;overflow:visible}
+.diver-bubbles circle{fill:none;stroke:#fff;stroke-width:1.8;animation:bubUp 3s ease-in infinite}
+.diver-bubbles circle:nth-child(2){animation-delay:-1s}.diver-bubbles circle:nth-child(3){animation-delay:-2s}
+@keyframes diveBob{0%,100%{transform:translate(0,0) rotate(-3deg)}50%{transform:translate(6px,-6px) rotate(2deg)}}
 .hero p{margin:0;max-width:560px;font-weight:700;position:relative;z-index:2;color:#123a63}
 .hero h1{color:#0f3157;text-shadow:0 2px 0 rgba(255,255,255,.5)}
 .doodles{position:absolute;inset:0;z-index:1;pointer-events:none}
@@ -97,7 +100,13 @@ select{border:2px solid var(--line);background:#fff;color:var(--ink);border-radi
 .card.flash{animation:wiggle .6s ease 2}
 .art{position:relative;height:150px;overflow:hidden}
 .art svg{display:block;width:100%;height:100%}
-.art img{width:100%;height:100%;object-fit:cover;display:block}
+.art img.cover{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.card.in:hover .art img.cover{transform:scale(1.06)}
+.art .fallback{display:none;position:absolute;inset:0}
+.art.nophoto img.cover,.art.nophoto .credit{display:none}
+.art.nophoto .fallback{display:block}
+.art .credit{position:absolute;right:8px;bottom:6px;font:700 10px Nunito;color:#fff;background:rgba(10,30,50,.45);padding:2px 7px;border-radius:999px;max-width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.art{height:170px !important}
 .art .sticker{position:absolute;right:10px;bottom:-8px;width:90px;height:70px;filter:drop-shadow(0 3px 4px rgba(23,58,94,.2))}
 .art .status-tag{position:absolute;top:10px;left:10px;font:800 12px Nunito;padding:4px 10px;border-radius:999px;background:#fff;box-shadow:0 2px 6px rgba(23,58,94,.12)}
 .status-tag.best{color:#1e9c7e}.status-tag.ok{color:#d1861a}.status-tag.closed{color:var(--muted)}
@@ -174,6 +183,28 @@ table.cal tr:hover td.c i{transform:scaleY(1.25)}
 .how .key{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--muted)}
 .how.closed ol,.how.closed .key{display:none}
 .how.closed h2{margin:0;font-size:16px}
+/* ───── HOLIDAY PLANNER ───── */
+.ph-intro{color:var(--muted);font-weight:600;margin:-4px 0 12px}
+.ph{background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:14px 16px;margin-bottom:14px}
+.ph-top{display:flex;align-items:center;gap:12px}
+.ph-date{flex:0 0 58px;text-align:center;border-radius:16px;background:linear-gradient(160deg,#4fc3f0,#2f86de);color:#fff;padding:6px 0}
+.ph-date b{display:block;font:700 22px Fredoka;line-height:1.05}
+.ph-date span{font:800 11px Nunito;text-transform:uppercase;letter-spacing:.06em}
+.ph h3{margin:0;font-size:18px}
+.ph .sub{color:var(--muted);font-size:13px;font-weight:700}
+.ph-opts{display:grid;gap:8px;margin-top:12px}
+.opt{background:var(--bg);border-radius:16px;padding:10px 12px}
+.opt-h{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.opt-h b{font:600 15.5px Fredoka}
+.opt-h .al{font:800 12px Nunito;padding:2px 9px;border-radius:999px;background:var(--aqua-soft);color:#1f8f86}
+.opt-h .al.free{background:#e3f8ee;color:#1e9c7e}
+.opt-h small{color:var(--muted);font-weight:700}
+.opt-spots{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.opt-spots button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:4px 10px;font:700 12.5px Nunito;color:var(--ink);cursor:pointer;transition:transform .2s,border-color .2s}
+.opt-spots button:hover{transform:translateY(-2px);border-color:var(--pink)}
+.opt-links{margin-top:6px;font-size:12.5px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.ph-note{font-size:12.5px;color:#a26b00;background:#fff4dc;border-radius:12px;padding:6px 10px;margin-top:8px;font-weight:600}
+.ph-more{display:block;margin:0 auto 26px;border:0;background:#fff;box-shadow:var(--shadow);border-radius:999px;padding:9px 18px;font:800 13.5px Nunito;color:var(--pink);cursor:pointer}
 /* ───── FYI CAROUSEL ───── */
 .fyi-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 10px;gap:10px}
 .fyi-head h2{font-size:24px;margin:0}
@@ -207,6 +238,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
 .sway{animation:sway 3.5s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}
 .bub{animation:bubUp 4s ease-in infinite}
 .glide{animation:glide 26s linear infinite}
+.glideR{animation:glideR 26s linear infinite}
 .glide2{animation:glide 34s linear infinite;animation-delay:-14s}
 
 @keyframes swim{0%,100%{transform:translate(0,0)}25%{transform:translate(6px,-5px)}50%{transform:translate(12px,2px)}75%{transform:translate(4px,5px)}}
@@ -214,6 +246,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
 @keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
 @keyframes bubUp{0%{transform:translateY(0);opacity:0}15%{opacity:.9}100%{transform:translateY(-120px);opacity:0}}
 @keyframes glide{from{transform:translateX(-25%)}to{transform:translateX(125%)}}
+@keyframes glideR{from{transform:translateX(125%)}to{transform:translateX(-25%)}}
 @keyframes rise{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:1}100%{transform:translateY(-110vh) translateX(30px);opacity:0}}
 @keyframes wave{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes bob{0%,100%{transform:rotate(-45deg) translate(0,0)}50%{transform:rotate(-45deg) translate(3px,-3px)}}
@@ -236,7 +269,29 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   <div class="hero-scene" id="heroScene"></div>
   <div class="wrap">
     <span class="badge">🫧 from Singapore, into the blue</span>
-    <h1>Dive Escapes <span class="sparkle">✨</span></h1>
+    <h1>Diving Possibilities near Singapore <svg class="diver" viewBox="0 0 230 110" aria-hidden="true">
+      <g class="diver-bubbles"><circle cx="196" cy="34" r="3.5"/><circle cx="204" cy="22" r="2.5"/><circle cx="198" cy="12" r="2"/></g>
+      <g class="diver-body">
+        <path d="M44,56 L6,32 C2,30 0,34 2,38 L20,62 Z" fill="#f2c230"/>
+        <path d="M44,64 L10,80 C6,82 6,86 10,88 L40,82 Z" fill="#e0b020"/>
+        <path d="M104,60 C88,56 70,52 46,58" stroke="#1f2b38" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M104,66 C88,70 70,72 46,70" stroke="#26384a" stroke-width="12" fill="none" stroke-linecap="round"/>
+        <rect x="96" y="44" width="72" height="34" rx="16" fill="#26384a"/>
+        <path d="M104,72 C124,76 146,76 162,70" stroke="#2f86de" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <rect x="102" y="26" width="62" height="20" rx="10" fill="#cfd6dc"/>
+        <rect x="102" y="26" width="16" height="20" rx="8" fill="#3a3f44"/>
+        <rect x="160" y="30" width="8" height="12" rx="2" fill="#555c63"/>
+        <rect x="128" y="24" width="8" height="24" fill="#1c232a"/>
+        <path d="M150,62 C146,74 138,82 128,86" stroke="#26384a" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <circle cx="126" cy="87" r="5" fill="#f2c230"/>
+        <circle cx="180" cy="54" r="13" fill="#f1c9a5"/>
+        <path d="M168,50 C168,38 180,34 190,40 C186,44 176,46 168,50Z" fill="#1c232a"/>
+        <rect x="178" y="44" width="16" height="12" rx="4" fill="#9fd3f7" stroke="#f2c230" stroke-width="2.5"/>
+        <path d="M168,48 L178,48" stroke="#1c232a" stroke-width="3"/>
+        <circle cx="186" cy="64" r="4" fill="#1c232a"/>
+        <path d="M184,66 C176,72 168,58 166,44" stroke="#1c232a" stroke-width="2" fill="none"/>
+      </g>
+    </svg></h1>
     <p>Weekend trips that need 0–2 days of leave, plus dreamy liveaboards worth saving leave for. Pick a month and see who's around 🐢</p>
   </div>
   <div class="waves">
@@ -308,6 +363,11 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   <div class="summary"><h2>Season calendar 📅</h2><small>Tap a row to jump to it</small></div>
   <div class="cal-wrap"><table class="cal" id="cal"></table></div>
 
+  <div class="summary"><h2>Public holidays & leave hacks 🇸🇬</h2><small>Stack your AL for more dive days</small></div>
+  <p class="ph-intro">For each upcoming Singapore public holiday: the free long weekend, the smartest days to take leave, and dive spots in season that fit. Tap a spot to see it, or jump straight to trip links.</p>
+  <div id="phList"></div>
+  <button class="ph-more" id="phMore" type="button">Show all holidays</button>
+
   <div class="fyi-head"><h2>FYI 💡</h2>
     <div class="fyi-nav"><button type="button" id="fyiPrev" aria-label="Previous">‹</button><button type="button" id="fyiNext" aria-label="Next">›</button></div>
   </div>
@@ -345,10 +405,10 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     mola:["🐡","Mola mola"], sharks:["🦈","Sharks"], macro:["🐌","Macro & nudis"], wrecks:["⚓","Wrecks"],
     schools:["🐟","Big schools"], sardines:["✨","Sardine run"], whales:["🐳","Humpback whales"], coral:["🪸","Coral"]
   };
-  const FLAG = {Malaysia:"🇲🇾",Indonesia:"🇮🇩",Philippines:"🇵🇭",Thailand:"🇹🇭",Japan:"🇯🇵",Singapore:"🇸🇬"};
+  const FLAG = {Malaysia:"🇲🇾",Indonesia:"🇮🇩",Philippines:"🇵🇭",Thailand:"🇹🇭",Japan:"🇯🇵",Singapore:"🇸🇬",Taiwan:"🇹🇼"};
   const SKY = {
     Malaysia:["#c8f3f0","#5fcad6"], Indonesia:["#d8edff","#6eaeec"], Philippines:["#d2e6ff","#5f98e4"],
-    Thailand:["#d3f6ff","#4fbcdc"], Japan:["#e2edff","#7f9ff0"], Singapore:["#daf7ef","#5fc0da"]
+    Thailand:["#d3f6ff","#4fbcdc"], Japan:["#e2edff","#7f9ff0"], Singapore:["#daf7ef","#5fc0da"], Taiwan:["#dff2ff","#5aa6e0"]
   };
   const state = { type:"weekend", month:new Date().getMonth()+1, tags:new Set(), inSeason:false, owOnly:false, easyOnly:false, sort:"season" };
   const YEAR = new Date().getFullYear();
@@ -361,71 +421,131 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const hereNow = (x,m) => m && x.months && x.months.includes(m);
 
-  /* ═════════ CUTE CREATURE DRAWINGS (original SVG) ═════════ */
-  const INK="#173a5e", BLUSH="#ff9cc2";
-  const face = (x,y,r=2.6) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${INK}"/><circle cx="${x+.9}" cy="${y-1}" r="${r*.35}" fill="#fff"/><circle cx="${x-1}" cy="${y+6}" r="3.2" fill="${BLUSH}" opacity=".75"/><path d="M${x+2},${y+4} q3,3 6,0" stroke="${INK}" stroke-width="1.5" fill="none" stroke-linecap="round"/>`;
-  const fish = (x,y,s=1,c="#ffd76a") => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-10,0 C-4,-8 8,-8 12,0 C8,8 -4,8 -10,0Z" fill="${c}"/><path d="M-9,0 L-17,-6 L-16,0 L-17,6Z" fill="${c}"/><circle cx="6" cy="-1.5" r="1.5" fill="${INK}"/></g>`;
-  const C = {
-    turtle: () => `
-      <ellipse cx="20" cy="-24" rx="17" ry="6.5" transform="rotate(-28 20 -24)" fill="#a8e6c9"/>
-      <ellipse cx="20" cy="24" rx="15" ry="6" transform="rotate(28 20 24)" fill="#a8e6c9"/>
-      <ellipse cx="-28" cy="-18" rx="10" ry="5" transform="rotate(30 -28 -18)" fill="#a8e6c9"/>
-      <ellipse cx="-28" cy="18" rx="10" ry="5" transform="rotate(-30 -28 18)" fill="#a8e6c9"/>
-      <ellipse cx="0" cy="0" rx="38" ry="26" fill="#6fcf9f"/>
-      <path d="M-20,-13 L0,-21 L20,-13 L21,8 L0,17 L-21,8Z" fill="#4fb487" opacity=".55"/>
-      <circle cx="0" cy="-3" r="6" fill="#ffd6e6" opacity=".7"/>
-      <circle cx="46" cy="-2" r="13" fill="#a8e6c9"/>${face(50,-5)}`,
+  /* ═════════ SEA CREATURES (semi-realistic, coloured, original SVG) ═════════ */
+  const INK="#173a5e";
+  const eye = (x,y,r=2.4) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#0d1b26"/><circle cx="${x+r*.35}" cy="${y-r*.35}" r="${r*.3}" fill="#fff" opacity=".7"/>`;
+  const fish = (x,y,s=1,c="#6aa3e0",t="#f2c94c") => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-10,0 C-4,-7 8,-7 13,0 C8,6 -4,6 -10,0Z" fill="${c}"/><path d="M-10,1 C-4,5 8,5 13,0" fill="#e9eef3" opacity=".6"/><path d="M-9,0 L-17,-6 L-15,0 L-17,6Z" fill="${t}"/><circle cx="8" cy="-1.2" r="1.1" fill="#0d1b26"/></g>`;
+
+  // shark body generator: side view facing right, ~200 long. opts: body, belly, tips, slim, thresher
+  const shark = ({body="#7f8fa0", belly="#e3e9ee", tip=null, dorsalTip=null, slim=1, thresher=false, eyeR=2.4}={}) => `
+    <g transform="scale(1 ${slim})">
+    ${thresher
+      ? `<path d="M-98,-1 C-130,-10 -170,-30 -214,-42 C-172,-20 -136,-4 -118,2 C-122,9 -126,15 -130,20 C-118,15 -108,9 -98,4Z" fill="${body}"/>`
+      : `<path d="M-98,0 C-110,-10 -122,-30 -134,-46 C-128,-25 -124,-8 -118,2 C-124,10 -130,19 -136,28 C-123,21 -110,12 -98,4Z" fill="${body}"/>`}
+    ${tip && !thresher ? `<path d="M-134,-46 C-131,-38 -129,-32 -127,-26 L-121,-30 Z" fill="${tip}"/><path d="M-136,28 L-129,18 L-124,24Z" fill="${tip}"/>` : ""}
+    ${!tip && !thresher ? `<path d="M-134,-46 C-128,-25 -124,-8 -118,2 C-124,10 -130,19 -136,28" stroke="#2b3138" stroke-width="2.2" fill="none" opacity=".55"/>` : ""}
+    <path d="M-62,-11 L-57,-19 L-51,-11Z" fill="${body}"/>
+    <path d="M-60,7 L-64,15 L-54,8Z" fill="${body}"/>
+    <path d="M-40,10 L-47,21 L-31,12Z" fill="${body}"/>
+    <path d="M-100,0 C-70,-14 -20,-22 30,-20 C60,-19 85,-12 100,-2 C102,0 100,3 96,4 C80,10 50,14 20,14 C-20,14 -70,8 -100,0Z" fill="${body}"/>
+    <path d="M-92,3 C-50,10 0,14 40,13 C70,11 90,6 98,2 C80,10 50,15 20,15 C-20,15 -62,10 -92,3Z" fill="${belly}"/>
+    <path d="M-80,-4 C-40,-14 20,-18 60,-14" stroke="#ffffff" stroke-width="1.2" fill="none" opacity=".18"/>
+    <path d="M-5,-21 C0,-34 6,-46 12,-51 C14,-40 18,-28 28,-20Z" fill="${body}"/>
+    ${dorsalTip ? `<path d="M7,-45 C9,-48 11,-50 12,-51 C13,-47 14,-43 15,-40Z" fill="${dorsalTip}"/>` : ""}
+    <path d="M40,8 C34,20 24,32 13,39 C21,27 26,18 28,10Z" fill="${body}"/>
+    ${tip ? `<path d="M20,31 C17,34 15,37 13,39 C16,34 18,31 19,28Z" fill="${tip}"/>` : ""}
+    <path d="M56,-6 q-2,7 0,12 M61,-6 q-2,7 0,12 M66,-7 q-2,7 0,12" stroke="#2b3138" stroke-width="1.1" fill="none" opacity=".45"/>
+    <path d="M88,6 q-7,3 -14,2" stroke="#2b3138" stroke-width="1.2" fill="none" opacity=".5"/>
+    ${eye(80,-7,eyeR)}
+    </g>`;
+
+  const R = {
+    greyreef: () => shark({body:"#7d8c9b", belly:"#e2e8ed"}),
+    blacktip: () => shark({body:"#a59f93", belly:"#efece6", tip:"#1d1f22", dorsalTip:"#1d1f22"}),
+    whitetip: () => shark({body:"#868c93", belly:"#e6e9ec", tip:"#f4f6f8", dorsalTip:"#f4f6f8", slim:.82}),
+    thresher: () => shark({body:"#7f7fa6", belly:"#e6e6f0", thresher:true, eyeR:3.6}),
+    whaleshark: () => {
+      const spots = []; for(let x=-96;x<=96;x+=12){ for(let y=-26;y<=8;y+=10){ const yy=y+((x/12)%2?5:0); if(Math.abs(yy)<26 - Math.abs(x)/14) spots.push(`<circle cx="${x}" cy="${yy}" r="${x>60?1.6:2.1}" fill="#eef4f8" opacity=".85"/>`);} }
+      return `
+      <path d="M-118,0 C-130,-20 -142,-44 -152,-62 C-142,-36 -139,-14 -134,0 C-138,14 -143,28 -150,40 C-137,27 -126,14 -118,4Z" fill="#33506a"/>
+      <path d="M-10,-30 C-4,-46 6,-56 14,-59 C14,-46 18,-36 26,-30Z" fill="#33506a"/>
+      <path d="M-74,-14 L-68,-24 L-62,-15Z" fill="#33506a"/>
+      <path d="M-120,0 C-90,-25 -20,-35 50,-31 C90,-28 112,-19 121,-6 C123,0 121,6 115,8 C80,20 30,24 -20,20 C-70,16 -100,8 -120,0Z" fill="#3e5f7b"/>
+      <path d="M-110,4 C-70,14 -20,20 30,21 C70,20 100,14 116,8 C90,20 40,26 -20,22 C-66,18 -96,10 -110,4Z" fill="#c9d6de"/>
+      <path d="M-110,-4 C-60,-12 20,-16 100,-12 M-100,-12 C-40,-22 30,-24 90,-20" stroke="#cfe0ea" stroke-width="1.4" fill="none" opacity=".45"/>
+      ${spots.join("")}
+      <path d="M50,12 C44,27 32,39 18,47 C30,33 36,22 38,14Z" fill="#33506a"/>
+      <path d="M121,0 L100,1" stroke="#1d2f3d" stroke-width="1.6"/>
+      <path d="M72,-10 q-2,8 0,14 M78,-11 q-2,8 0,14 M84,-12 q-2,8 0,14" stroke="#1d2f3d" stroke-width="1.2" fill="none" opacity=".5"/>
+      ${eye(104,-9,1.8)}`;
+    },
     manta: () => `
-      <g class="flap"><path d="M0,-8 C25,-34 58,-32 74,-10 C52,-4 30,8 0,20 C-30,8 -52,-4 -74,-10 C-58,-32 -25,-34 0,-8Z" fill="#a99af0"/></g>
-      <ellipse cx="0" cy="4" rx="20" ry="10" fill="#f1ecff"/>
-      <path d="M0,18 q5,20 -6,36" stroke="#a99af0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-      <path d="M-14,-12 q-6,-8 0,-12 M14,-12 q6,-8 0,-12" stroke="#8f7fe0" stroke-width="5" fill="none" stroke-linecap="round"/>
-      <circle cx="-11" cy="-2" r="2.6" fill="${INK}"/><circle cx="11" cy="-2" r="2.6" fill="${INK}"/>
-      <circle cx="-15" cy="5" r="3" fill="${BLUSH}" opacity=".8"/><circle cx="15" cy="5" r="3" fill="${BLUSH}" opacity=".8"/>
-      <path d="M-4,5 q4,4 8,0" stroke="${INK}" stroke-width="1.5" fill="none" stroke-linecap="round"/>`,
-    whaleshark: () => `
-      <path d="M-66,0 L-94,-24 L-85,0 L-94,22Z" fill="#7aa6e0"/>
-      <path d="M-8,-20 L4,-35 L14,-19Z" fill="#6a94d0"/>
-      <path d="M-70,0 C-40,-27 40,-27 62,-6 C67,0 63,9 56,11 C30,23 -40,21 -70,0Z" fill="#8fb6ea"/>
-      <path d="M-48,6 C-10,19 30,17 58,8 C40,18 -10,24 -48,6Z" fill="#e4efff"/>
-      ${[[-40,-8],[-25,-14],[-10,-6],[5,-14],[20,-8],[-30,2],[0,2],[30,-2],[-52,-2]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.6" fill="#fff" opacity=".85"/>`).join("")}
-      <path d="M8,10 L0,26 L18,12Z" fill="#6a94d0"/>${face(44,-6)}`,
-    shark: (thresher) => `
-      ${thresher ? `<path d="M-52,-2 C-82,-10 -112,-30 -132,-38 C-106,-22 -86,-6 -66,2 L-72,14Z" fill="#9fb0c8"/>` : `<path d="M-52,0 L-74,-20 L-68,0 L-74,16Z" fill="#9fb0c8"/>`}
-      <path d="M-6,-14 L6,-32 L14,-13Z" fill="#8fa1bc"/>
-      <path d="M-55,0 C-30,-19 30,-19 55,-2 C59,2 53,9 45,9 C20,17 -30,15 -55,0Z" fill="#b5c3d8"/>
-      <path d="M-40,5 C-10,14 25,13 47,7 C25,16 -10,17 -40,5Z" fill="#eef3fb"/>
-      <path d="M5,9 L-3,25 L16,11Z" fill="#8fa1bc"/>${face(38,-5)}`,
+      <g class="flap">
+        <path d="M0,-30 C14,-30 22,-22 26,-12 C60,-14 100,-4 132,12 C100,15 70,22 46,34 C32,44 16,50 0,52 C-16,50 -32,44 -46,34 C-70,22 -100,15 -132,12 C-100,-4 -60,-14 -26,-12 C-22,-22 -14,-30 0,-30Z" fill="#1e2a33"/>
+        <path d="M24,-10 C46,-10 70,-4 92,4 C70,2 48,0 30,4Z M-24,-10 C-46,-10 -70,-4 -92,4 C-70,2 -48,0 -30,4Z" fill="#e8eef2" opacity=".85"/>
+        <path d="M0,-24 C10,-24 16,-14 14,0 C12,16 6,30 0,40 C-6,30 -12,16 -14,0 C-16,-14 -10,-24 0,-24Z" fill="#2c3b46"/>
+      </g>
+      <path d="M-14,-28 C-22,-40 -18,-52 -9,-52 C-9,-43 -9,-35 -7,-30Z M14,-28 C22,-40 18,-52 9,-52 C9,-43 9,-35 7,-30Z" fill="#1e2a33"/>
+      <path d="M0,50 C2,70 -4,92 -2,116" stroke="#1e2a33" stroke-width="2.4" fill="none" stroke-linecap="round"/>`,
+    cuttlefish: () => `
+      <path d="M-62,0 C-62,-27 -20,-35 22,-29 C40,-25 48,-13 48,0 C48,13 40,25 22,29 C-20,35 -62,27 -62,0Z" fill="#e7d3b3" opacity=".75"/>
+      <path d="M-58,0 C-58,-22 -20,-29 20,-24 C37,-20 44,-10 44,0 C44,10 37,20 20,24 C-20,29 -58,22 -58,0Z" fill="#8a6a4f"/>
+      ${[[-40,-8,7],[-22,-14,6],[-4,-8,7],[12,-14,5],[-30,8,6],[-8,10,6],[14,6,5],[28,-4,5]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#b78f68" opacity=".55"/>`).join("")}
+      <path d="M-50,-10 C-30,-18 0,-20 30,-14 M-50,10 C-30,16 0,18 30,12" stroke="#f2e2c6" stroke-width="2" fill="none" opacity=".5"/>
+      <ellipse cx="52" cy="0" rx="14" ry="12" fill="#9a7656"/>
+      <ellipse cx="52" cy="-4" rx="5.5" ry="5" fill="#f2e3c4"/>
+      <path d="M48,-4 q2,3 4,0 q2,3 4,0" stroke="#1d1a17" stroke-width="1.6" fill="none"/>
+      <path d="M64,-6 C78,-12 90,-12 100,-8 M65,-2 C80,-4 92,-2 104,0 M65,2 C80,4 92,6 102,10 M64,6 C76,12 86,16 96,16" stroke="#9a7656" stroke-width="4.5" fill="none" stroke-linecap="round"/>`,
+    tuna: () => `
+      <path d="M-78,0 C-86,-8 -94,-24 -101,-36 L-92,-32 C-88,-18 -86,-6 -83,0 C-86,6 -88,18 -92,32 L-101,36 C-94,24 -86,8 -78,0Z" fill="#1d3a66"/>
+      <path d="M-80,0 C-50,-20 20,-28 60,-16 C80,-10 92,-4 97,0 C92,4 80,10 60,16 C20,28 -50,20 -80,0Z" fill="#d6dde6"/>
+      <path d="M-80,0 C-50,-20 20,-28 60,-16 C80,-10 92,-4 97,0 C70,-4 30,-8 -10,-6 C-40,-4 -62,-2 -80,0Z" fill="#1d3a66"/>
+      <path d="M-70,1 C-30,-2 30,-3 80,0" stroke="#e9c95b" stroke-width="2.5" fill="none" opacity=".55"/>
+      ${[-56,-62,-68,-74].map(x=>`<path d="M${x},${-9+(x+56)/6} l3,-4 l3,4Z M${x},${9-(x+56)/6} l3,4 l3,-4Z" fill="#f2c94c"/>`).join("")}
+      <path d="M10,-23 L20,-38 L32,-22Z" fill="#1d3a66"/><path d="M-22,-19 L-14,-33 L-6,-19Z" fill="#f2c94c"/><path d="M-22,19 L-14,31 L-6,19Z" fill="#f2c94c"/>
+      <path d="M44,2 C30,4 16,8 4,8 C18,4 30,1 44,-1Z" fill="#1d3a66"/>
+      ${eye(80,-3,2.6)}`,
+    turtle: () => `
+      <path d="M28,-22 C50,-48 78,-62 100,-64 C84,-50 62,-34 40,-18Z" fill="#8f7d55"/>
+      <path d="M30,22 C46,42 64,54 84,58 C70,44 54,32 38,18Z" fill="#8f7d55"/>
+      <path d="M-44,-14 C-58,-26 -70,-28 -76,-24 C-68,-17 -58,-11 -46,-7Z M-44,14 C-58,26 -70,28 -76,24 C-68,17 -58,11 -46,7Z" fill="#8f7d55"/>
+      <path d="M40,-40 L52,-46 M58,-50 L70,-55 M44,36 L54,42" stroke="#6a5a3c" stroke-width="2" opacity=".6"/>
+      <ellipse cx="0" cy="0" rx="52" ry="35" fill="#5e4b2e"/>
+      <ellipse cx="0" cy="0" rx="46" ry="30" fill="#7a6136"/>
+      <path d="M-14,-12 L0,-18 L14,-12 L14,6 L0,12 L-14,6Z" fill="#9a7b44" stroke="#4d3d22" stroke-width="1.5"/>
+      <path d="M-14,-12 L-30,-20 M14,-12 L30,-20 M14,6 L32,16 M-14,6 L-32,16 M0,-18 L0,-30 M0,12 L0,30 M-14,-3 L-44,-3 M14,-3 L44,-3" stroke="#4d3d22" stroke-width="1.5" fill="none"/>
+      <path d="M-30,-20 C-38,-14 -42,-6 -44,-3 M30,-20 C38,-14 42,-6 44,-3" stroke="#4d3d22" stroke-width="1.2" fill="none" opacity=".7"/>
+      <ellipse cx="50" cy="0" rx="12" ry="9" fill="#8f7d55"/>
+      <ellipse cx="64" cy="-2" rx="15" ry="11" fill="#9a8860"/>
+      <path d="M56,-8 l6,2 l-2,6 M66,-10 l5,3" stroke="#6a5a3c" stroke-width="1.3" fill="none" opacity=".7"/>
+      ${eye(72,-5,2)}`
+  };
+
+  // Card illustrations: realistic where available, gentle stylised for the rest (no cartoon faces)
+  const C = {
+    turtle: () => R.turtle(),
+    manta: () => `<g transform="scale(.75)">${R.manta()}</g>`,
+    whaleshark: () => `<g transform="scale(.8)">${R.whaleshark()}</g>`,
+    shark: (thresher) => `<g transform="scale(${thresher ? .62 : .78})">${thresher ? R.thresher() : R.greyreef()}</g>`,
     mola: () => `
-      <path d="M-24,-26 L-34,-64 L-10,-32Z" fill="#b8b0e4"/><path d="M-24,26 L-34,64 L-10,32Z" fill="#b8b0e4"/>
-      <ellipse cx="0" cy="0" rx="40" ry="35" fill="#d4cef2"/>
-      <path d="M-38,-18 Q-50,0 -38,18" stroke="#b8b0e4" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <circle cx="21" cy="-8" r="4" fill="${INK}"/><circle cx="22.5" cy="-9.5" r="1.4" fill="#fff"/>
-      <circle cx="22" cy="5" r="4" fill="${BLUSH}" opacity=".8"/><circle cx="37" cy="3" r="3.2" fill="#ff7fb0"/>`,
+      <path d="M-24,-26 L-34,-64 L-10,-32Z" fill="#9aa3b5"/><path d="M-24,26 L-34,64 L-10,32Z" fill="#9aa3b5"/>
+      <ellipse cx="0" cy="0" rx="40" ry="35" fill="#b9c2cf"/>
+      <path d="M-30,10 C-10,24 14,24 32,12 C20,28 -10,30 -30,10Z" fill="#e3e8ee"/>
+      <path d="M-38,-18 Q-50,0 -38,18" stroke="#9aa3b5" stroke-width="7" fill="none" stroke-linecap="round"/>
+      ${eye(22,-8,3)}<path d="M38,2 q-3,2 0,4" stroke="#6b7484" stroke-width="2" fill="none"/>`,
     nudi: () => `
-      <path d="M-46,8 C-40,-13 30,-15 46,4 C30,15 -30,17 -46,8Z" fill="#c78cf5"/>
-      ${[-32,-20,-8,4,16].map(x=>`<ellipse cx="${x}" cy="-8" rx="5" ry="7" fill="#ffb15e"/>`).join("")}
-      ${[-28,-10,8,24].map(x=>`<circle cx="${x}" cy="6" r="2.2" fill="#fff6a8"/>`).join("")}
-      <path d="M30,-6 l7,-16 M24,-8 l2,-17" stroke="#ff8f3d" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="35" cy="1" r="2.2" fill="${INK}"/><circle cx="36" cy="7" r="2.6" fill="${BLUSH}"/>`,
+      <path d="M-46,8 C-40,-13 30,-15 46,4 C30,15 -30,17 -46,8Z" fill="#6b3fa0"/>
+      <path d="M-44,9 C-30,14 20,14 44,5" stroke="#f2c94c" stroke-width="3" fill="none"/>
+      ${[-28,-14,0,14].map(x=>`<circle cx="${x}" cy="-2" r="2.2" fill="#f2c94c"/>`).join("")}
+      <path d="M-40,-4 l-6,-12 M-36,-6 l-2,-13 M-32,-6 l3,-12" stroke="#f08a3c" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M32,-4 l6,-14 M26,-6 l2,-15" stroke="#f08a3c" stroke-width="3.5" stroke-linecap="round"/>`,
     school: () => [[-40,-18],[-20,-24],[0,-18],[20,-24],[-30,0],[-10,-4],[10,0],[30,-6],[-20,18],[0,14],[20,18],[40,10]]
-      .map(([x,y],i)=>fish(x,y,1.05,["#ffd76a","#ffb38a","#ff9cc2"][i%3])).join(""),
-    sardines: () => Array.from({length:26},(_,i)=>{const a=i/26*Math.PI*2, r=24+ (i%3)*9; return fish(Math.cos(a)*r*1.4, Math.sin(a)*r*.8, .6, i%2?"#cfe3f2":"#e9f3fb");}).join(""),
+      .map(([x,y])=>fish(x,y,1.05)).join(""),
+    sardines: () => Array.from({length:30},(_,i)=>{const a=i/30*Math.PI*2, r=24+(i%3)*9; return fish(Math.cos(a)*r*1.4, Math.sin(a)*r*.8, .6, "#b8c8d8", "#9fb3c7");}).join(""),
     wreck: () => `
       <g transform="rotate(-8)">
-        <rect x="-3" y="-38" width="5" height="30" fill="#b48f74"/>
-        <path d="M-62,10 L62,10 L48,32 L-48,32Z" fill="#d9b394"/>
-        <rect x="-22" y="-10" width="44" height="22" rx="6" fill="#f3dcc8"/>
-        ${[-12,0,12].map(x=>`<circle cx="${x}" cy="1" r="4" fill="#a7d8f0" stroke="#fff" stroke-width="1.5"/>`).join("")}
-        <path d="M-40,22 q8,-6 16,0" stroke="#c99a7a" stroke-width="2" fill="none"/>
-      </g>${fish(48,-20,.9,"#ff9cc2")}${fish(-50,-26,.8,"#ffd76a")}`,
+        <rect x="-3" y="-38" width="5" height="30" fill="#6f5a4a"/>
+        <path d="M-62,10 L62,10 L48,32 L-48,32Z" fill="#7d6655"/>
+        <rect x="-22" y="-10" width="44" height="22" rx="4" fill="#9b8574"/>
+        ${[-12,0,12].map(x=>`<circle cx="${x}" cy="1" r="4" fill="#2c4a5e"/>`).join("")}
+        <path d="M-50,30 q6,-14 2,-24 M40,30 q-4,-12 4,-22" stroke="#4f8f6f" stroke-width="3" fill="none"/>
+      </g>${fish(48,-20,.9)}${fish(-50,-26,.8)}`,
     whale: () => `
-      <path d="M-76,0 L-102,-20 Q-92,0 -102,20Z" fill="#7fa9e6"/>
-      <path d="M-80,0 C-50,-31 50,-29 76,-5 C82,4 72,17 56,17 C10,25 -50,19 -80,0Z" fill="#95bcf0"/>
-      <path d="M-40,8 C0,20 40,18 64,12" stroke="#e4efff" stroke-width="10" fill="none" stroke-linecap="round"/>
-      <path d="M12,10 C2,30 -18,42 -36,44 C-20,31 -6,21 0,10Z" fill="#7fa9e6"/>${face(52,-4)}
-      <path d="M40,-26 q-4,-14 2,-20 M44,-26 q4,-12 12,-14" stroke="#bfe2ff" stroke-width="3" fill="none" stroke-linecap="round"/>`,
-    coral: () => fish(-30,-10,1.2,"#ff9cc2") + fish(10,-20,1,"#ffd76a") + fish(36,4,1.1,"#b79cff")
+      <path d="M-76,0 L-102,-20 Q-92,0 -102,20Z" fill="#3c4f63"/>
+      <path d="M-80,0 C-50,-31 50,-29 76,-5 C82,4 72,17 56,17 C10,25 -50,19 -80,0Z" fill="#4a5f75"/>
+      <path d="M-40,8 C0,20 40,18 64,12" stroke="#d6dee6" stroke-width="9" fill="none" stroke-linecap="round" opacity=".85"/>
+      <path d="M12,10 C2,32 -22,46 -44,50 C-26,34 -8,22 0,10Z" fill="#d6dee6"/>${eye(52,-4,2)}`,
+    coral: () => fish(-30,-10,1.2) + fish(10,-20,1,"#f2c94c","#f08a3c") + fish(36,4,1.1,"#6aa3e0")
   };
   const CREATURE = { turtles:"turtle", mantas:"manta", whalesharks:"whaleshark", threshers:"thresher", mola:"mola", sharks:"shark",
     macro:"nudi", wrecks:"wreck", schools:"school", sardines:"sardines", whales:"whale", coral:"coral" };
@@ -455,10 +575,20 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   }
 
   /* ═════════ HERO ═════════ */
+  // Swimming procession: [creature, y, scale, seconds, delay, direction (1 = left→right, -1 = right→left), opacity]
+  const SWIM = [
+    ["whaleshark", 228, .62, 46,  -8,  1, .92],
+    ["manta",       70, .38, 34, -20,  1, .9 ],
+    ["greyreef",   150, .42, 24,  -3, -1, .85],
+    ["blacktip",   262, .34, 20, -12,  1, .9 ],
+    ["whitetip",   108, .32, 28, -17, -1, .8 ],
+    ["tuna",        40, .26, 15,  -5, -1, .85],
+    ["tuna",        58, .22, 15,  -6.2,-1, .75],
+    ["cuttlefish", 190, .3,  38, -25, -1, .85],
+    ["turtle",     128, .36, 30, -11,  1, .9 ]
+  ];
   document.getElementById("heroScene").innerHTML = `<svg viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid slice">
-    <g class="glide"><g transform="translate(0 205) scale(.9)"><g class="swim">${C.whaleshark()}</g></g></g>
-    <g class="glide2"><g transform="translate(0 110) scale(.55)"><g class="swim2">${C.turtle()}</g></g></g>
-    ${fish(760,210,1.4,"#ffd76a")}${fish(790,228,1.2,"#ff9cc2")}${fish(812,206,1.1,"#fff")}
+    ${SWIM.map(([k,y,sc,dur,del,dir,op]) => `<g class="${dir>0?"glide":"glideR"}" style="animation-duration:${dur}s;animation-delay:${del}s;opacity:${op}"><g transform="translate(0 ${y}) scale(${dir*sc} ${sc})"><g class="swim">${R[k]()}</g></g></g>`).join("")}
   </svg>`;
 
   /* ═════════ HEADER DOODLES (PNG line art in /doodles) ═════════ */
@@ -525,7 +655,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
       : nowItems.length ? `<div class="now"><b>In ${M[state.month-1]}:</b> ${nowItems.map(x=>esc(x.what)).join(" · ")}</div>` : "";
     const cal = M.map((n,i)=>{ const c=statusOf(s,i+1); return `<span class="${c==="closed"?"":c}${state.month===i+1?" sel":""}" title="${n}"></span>`; }).join("");
     const art = s.photo
-      ? `<img src="${esc(s.photo)}" alt="${esc(s.name)}" loading="lazy"><svg class="sticker" viewBox="-80 -50 160 100">${draw((s.tags||[])[0])}</svg>`
+      ? `<img class="cover" src="${esc(s.photo)}" alt="${esc(s.photoAlt||s.name)}" loading="lazy" onerror="this.closest('.art').classList.add('nophoto')"><div class="fallback">${scene(s, st)}</div>${s.photoCredit?`<span class="credit">📷 ${esc(s.photoCredit)}</span>`:""}`
       : scene(s, st);
     const see = (s.see||[]).map(x=>`<li class="${hereNow(x,state.month)?"on":""}">${x.tag&&TAGS[x.tag]?TAGS[x.tag][0]+" ":""}${esc(x.what)} <span>· ${esc(x.where)}${x.months?` · ${x.months.map(m=>M[m-1]).join(", ")}`:""}</span></li>`).join("");
     const ops = (s.operators||[]).map(o=>`<li><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>${o.note?` <span style="color:var(--muted)">· ${esc(o.note)}</span>`:""}</li>`).join("");
@@ -598,7 +728,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     if(refit && list.length) map.fitBounds(L.latLngBounds(list.map(s=>[s.lat,s.lng]).concat([[1.35,103.82]])).pad(.15));
 
     const calList = SPOTS.filter(inTab);
-    const ORDER = ["Singapore","Malaysia","Indonesia","Philippines","Thailand","Japan", ...new Set(SPOTS.map(s=>s.country))].filter((c,i,a)=>a.indexOf(c)===i);
+    const ORDER = ["Singapore","Malaysia","Indonesia","Philippines","Thailand","Japan","Taiwan", ...new Set(SPOTS.map(s=>s.country))].filter((c,i,a)=>a.indexOf(c)===i);
     document.getElementById("cal").innerHTML =
       `<thead><tr><th>Spot</th>${M.map((n,i)=>`<th class="${state.month===i+1?"sel":""}">${n}</th>`).join("")}</tr></thead><tbody>` +
       ORDER.filter(c=>calList.some(s=>s.country===c)).map(c=>
@@ -614,6 +744,99 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   try { setHow(localStorage.getItem("howClosed")==="1"); } catch(e){}
   hideBtn.addEventListener("click", () => { const c = !how.classList.contains("closed"); setHow(c); try{ localStorage.setItem("howClosed", c?"1":"0"); }catch(e){} });
 
+
+  /* ═════════ PUBLIC HOLIDAY PLANNER ═════════
+     EDIT HERE: Singapore public holidays (YYYY-MM-DD). Add "observed" days as separate entries.
+     Source: MOM (mom.gov.sg). Check yearly for changes. */
+  const HOLIDAYS = [
+    { date:"2026-11-08", name:"Deepavali" }, { date:"2026-11-09", name:"Deepavali (observed)" },
+    { date:"2026-12-25", name:"Christmas Day" },
+    { date:"2027-01-01", name:"New Year's Day" },
+    { date:"2027-02-06", name:"Chinese New Year" }, { date:"2027-02-07", name:"Chinese New Year" }, { date:"2027-02-08", name:"Chinese New Year (observed)" },
+    { date:"2027-03-10", name:"Hari Raya Puasa" },
+    { date:"2027-03-26", name:"Good Friday" },
+    { date:"2027-05-01", name:"Labour Day" },
+    { date:"2027-05-17", name:"Hari Raya Haji" },
+    { date:"2027-05-20", name:"Vesak Day" },
+    { date:"2027-08-09", name:"National Day" },
+    { date:"2027-10-28", name:"Deepavali" },
+    { date:"2027-12-25", name:"Christmas Day" }
+  ];
+  const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const pd = s => { const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); };
+  const key = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+  const add = (d,n) => { const x=new Date(d); x.setDate(x.getDate()+n); return x; };
+  const fmt = d => `${DOW[d.getDay()]} ${d.getDate()} ${M[d.getMonth()]}`;
+  const phSet = new Set(HOLIDAYS.map(h=>h.date));
+  const isOff = d => d.getDay()===0 || d.getDay()===6 || phSet.has(key(d));
+  const needDays = s => Math.max(2, leaveNum(s) + 2);
+
+  function blockAround(d){ let a=d,b=d; while(isOff(add(a,-1))) a=add(a,-1); while(isOff(add(b,1))) b=add(b,1); return [a,b]; }
+  function options(anchor){
+    const best = {};               // AL count -> {a,b,len}
+    for(let k=0;k<=9;k++) for(let j=0;j<=9;j++){
+      let a=add(anchor[0],-k), b=add(anchor[1],j);
+      while(isOff(add(a,-1))) a=add(a,-1); while(isOff(add(b,1))) b=add(b,1);   // always swallow free days
+      const len = Math.round((b-a)/864e5)+1; if(len>16) continue;
+      let al=0, alDays=[]; for(let d=new Date(a); d<=b; d=add(d,1)) if(!isOff(d)){ al++; alDays.push(new Date(d)); }
+      if(al>5) continue;
+      if(!best[al] || best[al].len < len) best[al] = {a,b,len,al,alDays};
+    }
+    const list = Object.values(best).sort((x,y)=>x.al-y.al);
+    const out = [];
+    if(best[0] && best[0].len>=2) out.push({...best[0], kind:"free"});
+    const smart = list.filter(o=>o.al>=1 && o.al<=2).sort((x,y)=> (y.len/(y.al+.5)) - (x.len/(x.al+.5)) || y.len-x.len)[0];
+    if(smart && (!best[0] || smart.len>best[0].len)) out.push({...smart, kind:"smart"});
+    const big = list.filter(o=>o.al>=3 && o.len>=8).sort((x,y)=> (y.len/y.al) - (x.len/x.al) || y.len-x.len)[0];
+    if(big && (!smart || big.len>smart.len+1)) out.push({...big, kind:"big"});
+    return out;
+  }
+  function spotsFor(o){
+    const mid = add(o.a, Math.floor(o.len/2)), m = mid.getMonth()+1;
+    const rank = {best:0, ok:1};
+    return SPOTS.filter(s => needDays(s) <= o.len && statusOf(s,m)!=="closed")
+      .sort((x,y)=> rank[statusOf(x,m)]-rank[statusOf(y,m)] || needDays(y)-needDays(x) || (y.ease||0)-(x.ease||0))
+      .slice(0,4).map(s=>({s, m, st:statusOf(s,m)}));
+  }
+  const dayRange = (a,b) => a.getTime()===b.getTime() ? fmt(a) : `${fmt(a)} – ${fmt(b)}`;
+  const KIND = { free:["No leave needed","free"], smart:["Best value",""], big:["Big trip",""] };
+
+  function holidayGroups(){
+    const today = new Date(); today.setHours(0,0,0,0);
+    const groups=[], seen=new Set();
+    HOLIDAYS.map(h=>({...h,d:pd(h.date)})).filter(h=>h.d>=today).sort((x,y)=>x.d-y.d).forEach(h=>{
+      const blk = blockAround(h.d); const k = key(blk[0]);
+      if(seen.has(k)) { groups.find(g=>g.k===k).names.add(h.name.replace(" (observed)","")); return; }
+      seen.add(k); groups.push({k, d:h.d, blk, names:new Set([h.name.replace(" (observed)","")]), sat: h.d.getDay()===6 && !phSet.has(key(add(h.d,2)))});
+    });
+    return groups;
+  }
+
+  let phAll = false;
+  function renderHolidays(){
+    const groups = holidayGroups(), show = phAll ? groups : groups.slice(0,4);
+    document.getElementById("phList").innerHTML = show.map(g=>{
+      const opts = options(g.blk);
+      return `<div class="ph">
+        <div class="ph-top"><div class="ph-date"><span>${M[g.d.getMonth()]}</span><b>${g.d.getDate()}</b><span>${DOW[g.d.getDay()]}</span></div>
+          <div><h3>${[...g.names].join(" + ")}</h3><div class="sub">${g.d.getFullYear()} · natural break ${dayRange(g.blk[0],g.blk[1])}</div></div></div>
+        ${g.sat?`<div class="ph-note">Falls on a Saturday, so there's no public holiday in lieu (some employers give off-in-lieu, so check your HR).</div>`:""}
+        <div class="ph-opts">${opts.map(o=>{
+          const sp = spotsFor(o), mon = M[add(o.a,Math.floor(o.len/2)).getMonth()] + " " + o.a.getFullYear();
+          const q = encodeURIComponent(`dive trip from Singapore ${mon}`);
+          return `<div class="opt">
+            <div class="opt-h"><b>${o.len} day${o.len===1?"":"s"} off</b><span class="al ${o.kind==="free"?"free":""}">${o.al===0?"0 AL":o.al+" AL"}</span><small>${KIND[o.kind][0]} · ${dayRange(o.a,o.b)}${o.al?` · leave on ${o.alDays.map(d=>`${DOW[d.getDay()]} ${d.getDate()}`).join(", ")}`:""}</small></div>
+            <div class="opt-spots">${sp.length? sp.map(x=>`<button type="button" onclick="__jump('${x.s.id}')">${x.st==="best"?"🌟":"👍"} ${esc(x.s.name)}</button>`).join("") : `<small style="color:var(--muted);font-weight:700">Nothing in season fits. Try Pulau Hantu locally.</small>`}</div>
+            <div class="opt-links">${sp.slice(0,3).map(x=>{ const t=(x.s.trips||[])[0]; const u = t ? t.url : `https://www.google.com/search?q=${encodeURIComponent(`Singapore dive trip ${x.s.name.replace(/\s*\(.*?\)/g,"")} ${mon}`)}`; return `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(x.s.name.replace(/\s*\(.*?\)/g,""))} trips →</a>`; }).join("")}<a href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener">🔎 Any SG trips in ${mon}</a></div>
+          </div>`; }).join("")}</div>
+      </div>`;
+    }).join("") || `<div class="empty">No upcoming holidays listed. Add next year's in HOLIDAYS.</div>`;
+    const btn = document.getElementById("phMore");
+    btn.style.display = groups.length>4 ? "block" : "none";
+    btn.textContent = phAll ? "Show fewer" : `Show all ${groups.length} holidays`;
+  }
+  document.getElementById("phMore").onclick = () => { phAll=!phAll; renderHolidays(); };
+
   /* FYI carousel */
   const fyi = document.getElementById("fyi"), dotsEl = document.getElementById("fyiDots");
   const slides = [...fyi.children];
@@ -625,6 +848,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   document.getElementById("fyiNext").onclick = () => fyi.scrollBy({left:step(), behavior:"smooth"});
   syncDots();
   render(true);
+  renderHolidays();
   setTimeout(()=>map.invalidateSize(),250);
 })();
 </script>

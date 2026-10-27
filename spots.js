@@ -35,9 +35,13 @@
    tips        anything else worth knowing
    verify      things that change often — re-check before booking
    checked     date you last checked the info
-   photo       OPTIONAL — your own photo instead of the drawing, e.g.
-               photo: "photos/tioman.jpg"  (upload the image into a
-               "photos" folder in your GitHub repo first)
+   photo       OPTIONAL cover photo instead of the drawing, e.g.
+               photo: "photos/tioman.jpg"  (upload into a "photos" folder)
+               or a full link: photo: "https://...jpg"
+   photoCredit OPTIONAL credit shown on the photo, e.g. "© Jane Tan" or
+               "John Doe / CC BY-SA 4.0 (Wikimedia)". Required for most
+               free-licence photos.
+   If a photo fails to load, the drawing shows instead.
    The first word in "tags" decides which cute creature is drawn.
    ===================================================================== */
 
@@ -223,7 +227,7 @@ window.DIVE_SPOTS = [
     type: "weekend",
     lat: 4.115, lng: 118.63,
     leave: "2+",
-    open: [1,2,3,4,5,6,7,8,9,10,11,12],
+    open: [1,2,3,4,5,6,7,8,9,10,12],
     best: [4,5,6,7,8,9],
     cert: "AOW",
     certNote: "Advanced Open Water is REQUIRED to dive Sipadan (since Sept 2022). Mabul & Kapalai are fine with OW.",
@@ -244,7 +248,8 @@ window.DIVE_SPOTS = [
       "Boat Semporna → Mabul/Kapalai ~45 min. Nobody can stay on Sipadan itself."
     ],
     fees: [
-      "Sipadan entry permit: ~RM140/person/day (on top of dive fees).",
+      "Sipadan permit: RM350/day for foreigners (on top of dive fees), max 2 dives per permit day (some resorts report 3).",
+      "⚠️ Sipadan itself is CLOSED 1–30 November every year. Mabul & Kapalai stay open.",
       "Some resorts sell 'outsourced' permits when their quota is full — very expensive.",
       "Tourism Tax RM10/room/night."
     ],
@@ -260,7 +265,7 @@ window.DIVE_SPOTS = [
     tips: [
       "Book 4–5 nights; ask the resort how many Sipadan days are guaranteed in writing.",
       "Fly-in day and no-fly day eat into a short trip — this is really a 2-day-leave long weekend at minimum.",
-      "Since mid-2026 Sabah Parks again allows 3 Sipadan dives per diver per day."
+      "Rules change often: confirm how many Sipadan dives your permit gives."
     ],
     verify: ["Daily permit cap & fee", "Flight connections to Tawau"],
     checked: "2026-10"
@@ -507,6 +512,44 @@ window.DIVE_SPOTS = [
 
   /* ───────────────────────── JAPAN ───────────────────────── */
   {
+    id: "richelieu",
+    name: "Richelieu Rock (Surin)",
+    country: "Thailand",
+    type: "weekend",
+    lat: 9.363, lng: 98.022,
+    leave: "2",
+    open: [11,12,1,2,3,4],
+    best: [2,3,4],
+    cert: "AOW",
+    certNote: "AOW recommended: a 5–35m pinnacle with strong currents at times. Day trips are for certified divers only.",
+    ease: 3,
+    easeNote: "Day trips from Khao Lak run only on set days (e.g. Tuesdays) in season. Otherwise it's on 4+ night Similan liveaboards.",
+    searchName: "Richelieu Rock",
+    tags: ["whalesharks","mantas","macro","coral"],
+    see: [
+      { what: "Whale sharks feeding on plankton (~1 in 10 trips)", where: "Around the pinnacle", months: [2,3,4], tag: "whalesharks" },
+      { what: "Manta rays", where: "Passing over the top of the rock", tag: "mantas" },
+      { what: "Seahorses, mantis shrimp, ghost pipefish", where: "Purple soft-coral walls", tag: "macro" },
+      { what: "Purple soft corals & huge fish schools", where: "Whole pinnacle", tag: "coral" }
+    ],
+    getThere: [
+      "Fly SIN → Phuket (HKT) direct, then transfer ~2h to Khao Lak.",
+      "Day trip: speedboat from Thap Lamu pier, ~2–2.5h each way. Check in ~8:30am, back ~4–5pm, 2 dives.",
+      "Or book a 4+ night Similan liveaboard that includes Richelieu (best odds: more dives on the rock)."
+    ],
+    fees: ["Mu Ko Surin National Park fee: ~฿700 per diver per day, paid on the day."],
+    operators: [
+      { name: "Sea Bees Khao Lak: Richelieu day trip", url: "https://sea-bees.com/shop/khao-lak-daytrips/richelieu-rock-daytrip/", note: "From ฿6,000, AOW recommended" },
+      { name: "PADI Travel: Richelieu day trips", url: "https://travel.padi.com/dive-trip/khao-lak/day-trip-to-richelieu-rock-59598", note: "Compare operators" }
+    ],
+    trips: [],
+    cost: "Day trip from ~฿6,000 + ฿700 park fee + gear (~฿750).",
+    tips: ["Feb–Apr = best whale shark odds, and the flattest seas in Feb–Mar.", "Book 2 days in Khao Lak to double your chances.", "Park open roughly mid-Oct to mid-May."],
+    verify: ["Day-trip schedule", "Park fee"],
+    checked: "2026-10"
+  },
+
+  {
     id: "kerama",
     name: "Kerama Islands (Okinawa)",
     country: "Japan",
@@ -573,6 +616,185 @@ window.DIVE_SPOTS = [
     checked: "2026-10"
   },
 
+
+  /* ───────────────────────── MORE: PULAU WEH, TAIWAN ───────────────────────── */
+  {
+    id: "pulauweh",
+    name: "Pulau Weh (Sabang, Aceh)",
+    country: "Indonesia",
+    type: "weekend",
+    lat: 5.88, lng: 95.27,
+    leave: "2",
+    open: [1,2,3,4,5,6,7,8,9,10,11,12],
+    best: [5,6,7,8,9],
+    cert: "OW",
+    certNote: "Sites for all levels, but many are deep with mild-to-strong current (Batee Tokong, Arus Balee). AOW recommended for the best ones; the Sophie Rickmers wreck (37m+) is technical only.",
+    ease: 2,
+    easeNote: "Off the beaten path: fly to Banda Aceh (usually via Kuala Lumpur), then a ferry. Cheap and uncrowded, but expect basic logistics.",
+    searchName: "Pulau Weh",
+    tags: ["schools","sharks","coral","macro"],
+    see: [
+      { what: "Giant trevally, barracuda & horse-eye jack schools", where: "Batee Tokong, Arus Balee", tag: "schools" },
+      { what: "Blacktip reef sharks", where: "Batee Tokong", tag: "sharks" },
+      { what: "Huge gorgonian fans & thousands of triggerfish", where: "The Canyon", tag: "coral" },
+      { what: "Leafy scorpionfish, mantis & boxer shrimp, morays", where: "Batee Tokong, The Canyon", tag: "macro" },
+      { what: "Underwater volcanic vents (warm bubbles)", where: "Shallow vent site near Gapang" }
+    ],
+    getThere: [
+      "Fly SIN → Banda Aceh (BTJ), usually via Kuala Lumpur (AirAsia) or Jakarta/Medan.",
+      "Taxi to the ferry terminal (Ulee Lheue) ~IDR 50–100k.",
+      "Fast boat to Balohan ~30 min (~IDR 85k), roughly hourly, last one ~4pm. The slow ferry (~2h) is cheaper.",
+      "Minibus or taxi from Balohan to Iboih or Gapang beach (where the dive shops are), ~40 min."
+    ],
+    fees: [
+      "Bring enough rupiah cash: ATMs in Aceh may not accept foreign cards.",
+      "Aceh follows Islamic law: swimwear only at the beach or in the water, cover up elsewhere. Little alcohol, and leisure activities pause on Friday until ~2pm."
+    ],
+    operators: [
+      { name: "Lumba Lumba Diving (Gapang)", url: "https://www.google.com/search?q=Lumba+Lumba+Diving+Centre+Pulau+Weh", note: "Long-established" },
+      { name: "Rubiah Tirta Divers (Iboih)", url: "https://www.google.com/search?q=Rubiah+Tirta+Divers+Pulau+Weh", note: "Iboih beach" },
+      { name: "Iboih Dive Center", url: "https://www.google.com/search?q=Iboih+Dive+Center+Pulau+Weh", note: "Budget friendly" }
+    ],
+    trips: [],
+    cost: "Very cheap: dives ~US$25 each incl. gear.",
+    tips: ["Dry season May–Sep has the best visibility.", "Ferries stop in the late afternoon. Book a morning flight into Banda Aceh."],
+    verify: ["Flight routings to Banda Aceh", "Ferry times"],
+    checked: "2026-10"
+  },
+
+  {
+    id: "greenisland",
+    name: "Green Island (Lüdao)",
+    country: "Taiwan",
+    type: "weekend",
+    lat: 22.66, lng: 121.49,
+    leave: "2",
+    open: [3,4,5,6,7,8,9,10,11],
+    best: [5,6,7,8,9],
+    cert: "OW",
+    certNote: "Shore and boat sites for all levels. Some boat sites have current.",
+    ease: 2,
+    easeNote: "Long route: fly to Taipei, then a train or flight to Taitung, then a ferry. Ferries are often cancelled in rough winter seas and typhoons.",
+    searchName: "Green Island Taiwan",
+    tags: ["turtles","coral","sharks","whalesharks"],
+    see: [
+      { what: "Sea turtles & reef fish (summer viz up to 40m)", where: "Dabaisha", tag: "turtles" },
+      { what: "Giant 'Big Mushroom' coral & drop-offs", where: "Guningtou (east), Shilang canyons", tag: "coral" },
+      { what: "Underwater post box (~11m)", where: "Shilang Diving Area" },
+      { what: "Whale sharks & rays passing (spring, lucky)", where: "Offshore", months: [3,4,5], tag: "whalesharks" },
+      { what: "Hammerheads (winter, rare)", where: "Deep offshore sites", months: [1,2,12], tag: "sharks" }
+    ],
+    getThere: [
+      "Fly SIN → Taipei (TPE), direct ~4.5h.",
+      "Taipei → Taitung: flight from Songshan ~1h, or train 3.5–4.5h.",
+      "Ferry from Fugang Harbour ~50 min, 2–3 sailings a day from 7:30am. Book ahead in peak season. Small planes from Taitung take ~15 min (weather-dependent).",
+      "Rent a scooter on the island."
+    ],
+    fees: [],
+    operators: [
+      { name: "Green Island dive shops", url: "https://taiwanoutdoors.com/diving/dive-sites/green-island", note: "Site guide & season info" }
+    ],
+    trips: [],
+    cost: "Taiwan prices: mid-range, with domestic transport adding up.",
+    tips: ["Avoid Jul–Sep typhoon dates without buffer days.", "Combine with Orchid Island (also from Taitung) for a longer trip."],
+    verify: ["Ferry schedule", "Typhoon forecasts"],
+    checked: "2026-10"
+  },
+
+  {
+    id: "orchidisland",
+    name: "Orchid Island (Lanyu)",
+    country: "Taiwan",
+    type: "weekend",
+    lat: 22.05, lng: 121.55,
+    leave: "2–3",
+    open: [4,5,6,7,8,9,10],
+    best: [5,6,7,8],
+    cert: "AOW",
+    certNote: "Volcanic walls, caverns and swim-throughs with current. Often described as best for advanced divers.",
+    ease: 1,
+    easeNote: "Remote: via Taitung, then a longer ferry or a small plane. Few dive shops, so book early.",
+    searchName: "Orchid Island Lanyu",
+    tags: ["coral","turtles","wrecks","whales"],
+    see: [
+      { what: "Volcanic rock, caverns & swim-throughs", where: "Around the island", tag: "coral" },
+      { what: "Sea turtles, sea snakes & stingrays", where: "Reef sites", tag: "turtles" },
+      { what: "Shipwreck", where: "Off the coast", tag: "wrecks" },
+      { what: "Humpback whales or whale sharks (rare)", where: "Offshore", tag: "whales" }
+    ],
+    getThere: ["Fly SIN → Taipei, then to Taitung.", "Ferry from Taitung (Fugang) or Kenting (Houbihu), or a small plane from Taitung."],
+    fees: [],
+    operators: [{ name: "Taiwan dive guide", url: "https://taiwan-scene.com/go-deeper-a-guide-to-diving-in-taiwan/", note: "Overview of Taiwan sites" }],
+    trips: [],
+    cost: "Mid-range, plus domestic transport.",
+    tips: ["Unique Tao indigenous culture: be respectful.", "Weather often cancels boats and planes. Keep a buffer day."],
+    verify: ["Ferry & flight schedules"],
+    checked: "2026-10"
+  },
+
+  {
+    id: "xiaoliuqiu",
+    name: "Xiaoliuqiu (Lambai Island)",
+    country: "Taiwan",
+    type: "weekend",
+    lat: 22.34, lng: 120.37,
+    leave: "1–2",
+    open: [1,2,3,4,5,6,7,8,9,10,11,12],
+    best: [3,4,5,6,7,8],
+    cert: "OW",
+    certNote: "Easy shore dives from the beach. Great for OW.",
+    ease: 4,
+    easeNote: "Easiest Taiwan island: Kaohsiung → Donggang → 30-min ferry every 30–60 min.",
+    searchName: "Xiaoliuqiu Liuqiu",
+    tags: ["turtles","coral","macro"],
+    see: [
+      { what: "Green turtles almost guaranteed", where: "Beauty Cave (shore), all around the island", tag: "turtles" },
+      { what: "Corals & reef fish", where: "Secret Garden (boat), Vase Rock", tag: "coral" },
+      { what: "Nudibranchs (spring)", where: "Shallow reefs", months: [3,4,5], tag: "macro" }
+    ],
+    getThere: [
+      "Fly SIN → Taipei (direct) then high-speed rail to Zuoying, Kaohsiung (~1.5h). Or fly to Kaohsiung (KHH) if there's a direct flight.",
+      "Bus or taxi to Donggang (~45 min from Zuoying).",
+      "Ferry Donggang → Xiaoliuqiu ~30 min, roughly every 30–60 min, 7am–5:30pm."
+    ],
+    fees: [],
+    operators: [{ name: "Xiaoliuqiu dive guide", url: "https://taiwanoutdoors.com/diving/dive-sites/xiaoliuqiu", note: "Sites & season" }],
+    trips: [],
+    cost: "Affordable. Rent a scooter to get around.",
+    tips: ["Don't touch the turtles: there are fines.", "Weekends get busy with Taiwanese tourists."],
+    verify: ["Direct flights to Kaohsiung"],
+    checked: "2026-10"
+  },
+
+  {
+    id: "kenting",
+    name: "Kenting (Houbihu)",
+    country: "Taiwan",
+    type: "weekend",
+    lat: 21.95, lng: 120.74,
+    leave: "1–2",
+    open: [3,4,5,6,7,8,9,10,11],
+    best: [4,5,6,7,8,9],
+    cert: "OW",
+    certNote: "Beginner-friendly coral reefs in Kenting National Park.",
+    ease: 4,
+    easeNote: "Kaohsiung → Kenting by bus or car ~2h. Lots of dive shops at Houbihu harbour.",
+    searchName: "Kenting",
+    tags: ["coral","macro","turtles"],
+    see: [
+      { what: "80+ coral varieties, clownfish & 1,000+ fish species", where: "Houbihu, Kenting National Park", tag: "coral" },
+      { what: "Nudibranchs & small critters", where: "Shore sites", tag: "macro" }
+    ],
+    getThere: ["Fly to Taipei → high-speed rail to Kaohsiung (Zuoying), or fly to Kaohsiung.", "Kenting Express bus ~2h to Houbihu."],
+    fees: [],
+    operators: [{ name: "Taiwan Dive Center (Houbihu)", url: "https://www.google.com/search?q=Taiwan+Dive+Center+Houbihu+Kenting", note: "Suggested by Taiwan Scene" }],
+    trips: [],
+    cost: "Mid-range.",
+    tips: ["Easy to pair with Xiaoliuqiu on one Kaohsiung trip."],
+    verify: [],
+    checked: "2026-10"
+  },
+
   /* ───────────────────────── LIVEABOARDS ───────────────────────── */
   {
     id: "sg-lob",
@@ -615,7 +837,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "similan",
-    name: "Similan & Richelieu Rock",
+    name: "Similan Islands (liveaboard)",
     country: "Thailand",
     type: "liveaboard",
     lat: 8.65, lng: 97.64,
