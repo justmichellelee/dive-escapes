@@ -163,11 +163,17 @@ table.cal td.c.ok i{background:var(--ok)}
 table.cal td.c.best i{background:var(--best)}
 table.cal th.sel{color:var(--pink)}
 table.cal tr{cursor:pointer}
-table.cal tr.grp{cursor:default}
-table.cal tr.grp td{position:static;background:var(--pink-soft);color:var(--pink);font:800 12.5px Nunito;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:10px;text-align:left}
-table.cal tr.grp:not(:first-child) td{}
+table.cal tr.grp{cursor:pointer}
 table.cal tbody tr.grp + tr td{padding-top:4px}
 table.cal tr:hover td.c i{transform:scaleY(1.25)}
+table.cal tr.grp td:first-child{font:800 14px Nunito;color:var(--ink);padding:8px 10px}
+table.cal tr.grp:hover td:first-child,table.cal tr.grp.open td:first-child{color:var(--pink)}
+table.cal tr.grp .cnt{display:inline-block;font:800 11px Nunito;background:var(--pink-soft);color:var(--pink);border-radius:999px;padding:1px 7px;margin-left:4px}
+table.cal tr.grp .chev{color:var(--muted);margin-left:2px}
+table.cal tr.grp td.c i{height:18px}
+table.cal tr.spot td:first-child{padding-left:28px;font-weight:600;font-size:12.5px}
+table.cal tr.spot td.c i{height:11px;opacity:.9}
+
 
 /* ───── HOW IT WORKS ───── */
 .how{margin:6px auto 4px;background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:16px 16px 14px;position:relative}
@@ -205,6 +211,57 @@ table.cal tr:hover td.c i{transform:scaleY(1.25)}
 .opt-links{margin-top:6px;font-size:12.5px;display:flex;flex-wrap:wrap;gap:4px 12px}
 .ph-note{font-size:12.5px;color:#a26b00;background:#fff4dc;border-radius:12px;padding:6px 10px;margin-top:8px;font-weight:600}
 .ph-more{display:block;margin:0 auto 26px;border:0;background:#fff;box-shadow:var(--shadow);border-radius:999px;padding:9px 18px;font:800 13.5px Nunito;color:var(--pink);cursor:pointer}
+.ph-strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 12px;-webkit-overflow-scrolling:touch}
+.ph-strip::-webkit-scrollbar{display:none}
+.ph-chip{flex:0 0 108px;scroll-snap-align:start;border:2px solid var(--line);background:#fff;border-radius:20px;padding:10px 6px;cursor:pointer;text-align:center;color:var(--ink);transition:transform .2s,border-color .2s,box-shadow .2s}
+.ph-chip:hover{transform:translateY(-3px)}
+.ph-chip.on{border-color:var(--pink);box-shadow:0 6px 16px rgba(47,134,222,.22);background:var(--pink-soft)}
+.ph-chip .m{display:block;font:800 11px Nunito;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.ph-chip b{display:block;font:700 28px Fredoka;line-height:1.05;color:var(--pink)}
+.ph-chip .n{display:block;font:800 12px Nunito;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ph-chip .free{display:block;font:700 10.5px Nunito;color:#1e9c7e;margin-top:2px}
+.ph h3 .sub{font:700 13px Nunito;color:var(--muted)}
+.trip-search{align-self:center;font:800 12.5px Nunito;margin-left:4px}
+/* ───── TRIP-BUILDER QUIZ ───── */
+.quiz-cta{position:relative;z-index:2;margin-top:16px;border:0;border-radius:999px;padding:11px 20px;font:800 15px Nunito;color:#fff;background:linear-gradient(135deg,#ff8a5c,#ff5f8f);box-shadow:0 6px 18px rgba(255,95,143,.35);cursor:pointer;transition:transform .2s}
+.quiz-cta:hover{transform:translateY(-2px) scale(1.03)}
+.quiz-bg{position:fixed;inset:0;z-index:3000;background:rgba(8,30,52,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:16px}
+.quiz-bg.open{display:flex}
+.quiz{background:#fff;border-radius:28px;max-width:520px;width:100%;max-height:90vh;overflow:auto;padding:22px 20px;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:pop .3s ease}
+.quiz h2{margin:0 0 4px;font-size:22px}
+.quiz .step{color:var(--muted);font:800 12px Nunito;text-transform:uppercase;letter-spacing:.08em}
+.quiz .bar{height:6px;border-radius:99px;background:var(--line);margin:8px 0 16px;overflow:hidden}
+.quiz .bar i{display:block;height:100%;background:linear-gradient(90deg,#4fc3f0,#2f86de);transition:width .3s}
+.quiz .choices{display:grid;gap:8px;grid-template-columns:1fr 1fr}
+.quiz .choices button{border:2px solid var(--line);background:#fff;border-radius:18px;padding:12px 10px;font:700 14px Nunito;color:var(--ink);cursor:pointer;text-align:left;transition:all .2s}
+.quiz .choices button:hover{border-color:var(--pink);transform:translateY(-2px)}
+.quiz .choices button span{display:block;font-size:22px}
+.quiz .choices button small{display:block;color:var(--muted);font-weight:600;font-size:12px}
+.quiz .close{float:right;border:0;background:var(--pink-soft);color:var(--pink);border-radius:999px;width:32px;height:32px;font:800 16px Nunito;cursor:pointer}
+.quiz .res{display:grid;gap:10px;margin-top:6px}
+.quiz .res button{display:flex;gap:12px;align-items:center;border:2px solid var(--line);background:#fff;border-radius:18px;padding:10px 12px;text-align:left;cursor:pointer;font:600 13px Nunito;color:var(--ink)}
+.quiz .res button:hover{border-color:var(--pink)}
+.quiz .res .medal{font-size:26px}
+.quiz .res b{display:block;font:600 16px Fredoka}
+.quiz .again{margin-top:12px;border:0;background:none;color:var(--pink);font:800 13px Nunito;cursor:pointer}
+
+/* ───── WISHLIST / DIVE LOG ───── */
+.mine{position:absolute;bottom:10px;right:10px;display:flex;gap:6px;z-index:2}
+.mine button{border:0;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 2px 8px rgba(23,58,94,.18);font-size:16px;cursor:pointer;transition:transform .2s}
+.mine button:hover{transform:scale(1.12)}
+.mine button.on{background:#fff;box-shadow:0 0 0 3px var(--pink)}
+.card.dived .art::after{content:"✅ Dived";position:absolute;left:10px;bottom:10px;background:#1e9c7e;color:#fff;font:800 11.5px Nunito;padding:3px 9px;border-radius:999px}
+.note{width:100%;min-height:60px;border:2px solid var(--line);border-radius:14px;padding:8px 10px;font:600 13.5px Nunito;color:var(--ink);resize:vertical}
+.note:focus{outline:none;border-color:var(--pink)}
+.mycount{font:800 12px Nunito;color:var(--pink);margin-left:6px}
+
+/* ───── DEPTH SCROLL ───── */
+body{transition:background-color .2s linear}
+.depth{position:fixed;right:12px;top:50%;transform:translateY(-50%);z-index:900;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+.depth .tube{width:6px;height:160px;border-radius:99px;background:rgba(255,255,255,.6);box-shadow:inset 0 0 0 1.5px rgba(47,134,222,.3);position:relative;overflow:hidden}
+.depth .tube i{position:absolute;left:0;right:0;top:0;background:linear-gradient(#9fd3f7,#1f5f9e);border-radius:99px}
+.depth b{font:800 11px Nunito;color:#fff;background:rgba(23,58,94,.7);padding:3px 7px;border-radius:999px;white-space:nowrap}
+@media (max-width:760px){.depth{display:none}}
 /* ───── FYI CAROUSEL ───── */
 .fyi-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 10px;gap:10px}
 .fyi-head h2{font-size:24px;margin:0}
@@ -293,6 +350,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
       </g>
     </svg></h1>
     <p>Weekend trips that need 0–2 days of leave, plus dreamy liveaboards worth saving leave for. Pick a month and see who's around 🐢</p>
+    <button class="quiz-cta" id="quizOpen" type="button">🎯 Find my perfect trip</button>
   </div>
   <div class="waves">
     <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path fill="#f2f8ff" d="M0,40 C120,10 240,10 360,40 C480,70 600,70 720,40 C840,10 960,10 1080,40 C1200,70 1320,70 1440,40 L1440,70 L0,70Z"/></svg>
@@ -305,7 +363,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     <button class="hide-how" id="hideHow" type="button">Hide</button>
     <h2>How it works 🐚</h2>
     <ol>
-      <li><span class="n">1</span><span class="ico">🏝️</span><b>Pick your trip type</b><small>Weekend (no leave), 1–2 days AL, or Liveaboard (3+ days AL)</small></li>
+      <li><span class="n">1</span><span class="ico">🏝️</span><b>Pick your trip type</b><small>All, Weekend (no leave), 1–2 days AL, or Liveaboard (3+ days AL)</small></li>
       <li><span class="n">2</span><span class="ico">📅</span><b>Pick a month</b><small>Starts on this month. Spots re-sort so the best ones for that month come first</small></li>
       <li><span class="n">3</span><span class="ico">🐢</span><b>Pick animals (optional)</b><small>Tap turtles, mantas, whale sharks… to see only spots that have them</small></li>
       <li><span class="n">4</span><span class="ico">📍</span><b>Tap a pin or card</b><small>Open "Details" for how to get there, cash fees, dive shops & upcoming trips from SG</small></li>
@@ -324,10 +382,10 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   <div class="wrap">
     <div class="row">
       <div class="tabs" role="group" aria-label="Trip type">
-        <button data-type="weekend" aria-pressed="true">🏝️ Weekend</button>
+        <button data-type="all" aria-pressed="true">🐬 All</button>
+        <button data-type="weekend" aria-pressed="false">🏝️ Weekend</button>
         <button data-type="short" aria-pressed="false">✈️ 1–2 AL</button>
         <button data-type="liveaboard" aria-pressed="false">⛵ Liveaboard</button>
-        <button data-type="all" aria-pressed="false">🐬 All</button>
       </div>
       <select id="sort" aria-label="Sort" style="margin-left:auto">
         <option value="season">In season first</option>
@@ -343,6 +401,8 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
         <button class="chip" id="inSeason" aria-pressed="false">🌊 In season only</button>
         <button class="chip" id="owOnly" aria-pressed="false">🐠 OW-friendly</button>
         <button class="chip" id="easyOnly" aria-pressed="false">⭐ Easy to book</button>
+        <button class="chip" id="wishOnly" aria-pressed="false">💙 Wishlist</button>
+        <button class="chip" id="divedOnly" aria-pressed="false">✅ Dived</button>
       </div>
     </div>
   </div>
@@ -360,13 +420,13 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   <div class="summary"><h2 id="heading">Spots</h2><small id="count"></small></div>
   <div class="cards" id="cards"></div>
 
-  <div class="summary"><h2>Season calendar 📅</h2><small>Tap a row to jump to it</small></div>
+  <div class="summary"><h2>Season calendar 📅</h2><small>Tap a country to see its spots</small></div>
   <div class="cal-wrap"><table class="cal" id="cal"></table></div>
 
-  <div class="summary"><h2>Public holidays & leave hacks 🇸🇬</h2><small>Stack your AL for more dive days</small></div>
-  <p class="ph-intro">For each upcoming Singapore public holiday: the free long weekend, the smartest days to take leave, and dive spots in season that fit. Tap a spot to see it, or jump straight to trip links.</p>
-  <div id="phList"></div>
-  <button class="ph-more" id="phMore" type="button">Show all holidays</button>
+  <div class="summary"><h2>Public holiday hacks 🇸🇬</h2><small>Tap a date</small></div>
+  <p class="ph-intro" hidden>For each upcoming Singapore public holiday: the free long weekend, the smartest days to take leave, and dive spots in season that fit. Tap a spot to see it, or jump straight to trip links.</p>
+  <div class="ph-strip" id="phStrip"></div>
+  <div id="phPanel"></div>
 
   <div class="fyi-head"><h2>FYI 💡</h2>
     <div class="fyi-nav"><button type="button" id="fyiPrev" aria-label="Previous">‹</button><button type="button" id="fyiNext" aria-label="Next">›</button></div>
@@ -387,6 +447,12 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   </div>
   <div class="dots" id="fyiDots"></div>
 </main>
+
+<div class="depth" aria-hidden="true"><div class="tube"><i id="depthFill"></i></div><b id="depthTxt">0m</b></div>
+
+<div class="quiz-bg" id="quizBg" role="dialog" aria-modal="true" aria-label="Trip builder">
+  <div class="quiz" id="quiz"></div>
+</div>
 
 <footer>
   <div class="fish">🐠</div><br>
@@ -410,7 +476,14 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     Malaysia:["#c8f3f0","#5fcad6"], Indonesia:["#d8edff","#6eaeec"], Philippines:["#d2e6ff","#5f98e4"],
     Thailand:["#d3f6ff","#4fbcdc"], Japan:["#e2edff","#7f9ff0"], Singapore:["#daf7ef","#5fc0da"], Taiwan:["#dff2ff","#5aa6e0"]
   };
-  const state = { type:"weekend", month:new Date().getMonth()+1, tags:new Set(), inSeason:false, owOnly:false, easyOnly:false, sort:"season" };
+  /* My wishlist & dive log: saved in this browser only */
+  let LOG = {};
+  try { LOG = JSON.parse(localStorage.getItem("diveLog")||"{}") || {}; } catch(e){ LOG = {}; }
+  const saveLog = () => { try { localStorage.setItem("diveLog", JSON.stringify(LOG)); } catch(e){} };
+  window.__mine = (id, k) => { LOG[id] = LOG[id] || {}; LOG[id][k] = !LOG[id][k]; saveLog(); render(); };
+  window.__note = (id, v) => { LOG[id] = LOG[id] || {}; LOG[id].n = v; saveLog(); };
+  const calOpen = new Set();
+  const state = { type:"all", month:new Date().getMonth()+1, tags:new Set(), inSeason:false, owOnly:false, easyOnly:false, wishOnly:false, divedOnly:false, sort:"season" };
   const YEAR = new Date().getFullYear();
   const catOf = s => { const n = parseFloat(String(s.leave).match(/\d+(\.\d+)?/)?.[0] ?? "0"); return n>=3 ? "liveaboard" : n>=1 ? "short" : "weekend"; };
   const inTab = s => state.type==="all" || catOf(s)===state.type;
@@ -614,7 +687,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   tagsEl.innerHTML = Object.keys(TAGS).filter(t=>used.has(t)).map(t=>`<button class="chip" data-t="${t}" aria-pressed="false">${TAGS[t][0]} ${TAGS[t][1]}</button>`).join("");
   tagsEl.addEventListener("click", e => { const b=e.target.closest("[data-t]"); if(!b) return; const t=b.dataset.t; state.tags.has(t)?state.tags.delete(t):state.tags.add(t); render(); });
   document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => { state.type=b.dataset.type; render(true); }));
-  ["inSeason","owOnly","easyOnly"].forEach(k => document.getElementById(k).addEventListener("click", () => { state[k]=!state[k]; render(); }));
+  ["inSeason","owOnly","easyOnly","wishOnly","divedOnly"].forEach(k => document.getElementById(k).addEventListener("click", () => { state[k]=!state[k]; render(); }));
   document.getElementById("sort").addEventListener("change", e => { state.sort=e.target.value; render(); });
 
   /* ═════════ MAP ═════════ */
@@ -637,6 +710,8 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     if(state.inSeason && state.month) list = list.filter(s => statusOf(s,state.month)!=="closed");
     if(state.owOnly) list = list.filter(s => s.cert==="OW");
     if(state.easyOnly) list = list.filter(s => (s.ease||0)>=4);
+    if(state.wishOnly) list = list.filter(s => (LOG[s.id]||{}).w);
+    if(state.divedOnly) list = list.filter(s => (LOG[s.id]||{}).d);
     const rank = {best:0, ok:1, closed:2, any:0};
     return list.sort({
       season:(a,b)=> rank[statusOf(a,state.month)]-rank[statusOf(b,state.month)] || (b.ease||0)-(a.ease||0),
@@ -664,8 +739,9 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
       + `<li><a class="search-btn" href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener">🔎 Search for upcoming trips from SG</a></li>`;
     const ul = (a,c="") => a&&a.length?`<ul class="${c}">${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"";
     return `
-    <article class="card ${st}" id="spot-${esc(s.id)}">
+    <article class="card ${st}${(LOG[s.id]||{}).d?" dived":""}" id="spot-${esc(s.id)}">
       <div class="art">${art}
+        <div class="mine"><button type="button" class="${(LOG[s.id]||{}).w?"on":""}" title="Wishlist" aria-label="Add to wishlist" onclick="event.stopPropagation();__mine('${s.id}','w')">${(LOG[s.id]||{}).w?"💙":"🤍"}</button><button type="button" class="${(LOG[s.id]||{}).d?"on":""}" title="I've dived here" aria-label="Mark as dived" onclick="event.stopPropagation();__mine('${s.id}','d')">✅</button></div>
         ${state.month?`<span class="status-tag ${st}">${STATUS[st]}</span>`:""}
         <span class="flag">${FLAG[s.country]||""} ${esc(s.country)}</span>
       </div>
@@ -694,7 +770,8 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
           ${s.cost?`<h4>Rough cost</h4><p style="margin:0">${esc(s.cost)}</p>`:""}
           ${s.tips&&s.tips.length?`<h4>Tips</h4>${ul(s.tips)}`:""}
           ${s.verify&&s.verify.length?`<p class="verify">⚠️ Re-check before booking: ${s.verify.map(esc).join(", ")}.</p>`:""}
-          <p class="verify">Last checked: ${esc(s.checked||"—")}</p>
+          <h4>My notes 📝</h4><textarea class="note" placeholder="e.g. Went Apr 2025 with Gill Divers, saw 3 turtles…" oninput="__note('${s.id}', this.value)">${esc((LOG[s.id]||{}).n||"")}</textarea>
+          <p class="verify">Last checked: ${esc(s.checked||"—")} · Notes, 💙 and ✅ are saved on this device only.</p>
         </div>
       </details>
     </article>`;
@@ -706,7 +783,10 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.type===state.type));
     monthsEl.querySelectorAll("[data-m]").forEach(b=>b.setAttribute("aria-pressed", +b.dataset.m===state.month));
     tagsEl.querySelectorAll("[data-t]").forEach(b=>b.setAttribute("aria-pressed", state.tags.has(b.dataset.t)));
-    ["inSeason","owOnly","easyOnly"].forEach(k=>document.getElementById(k).setAttribute("aria-pressed", state[k]));
+    ["inSeason","owOnly","easyOnly","wishOnly","divedOnly"].forEach(k=>document.getElementById(k).setAttribute("aria-pressed", state[k]));
+    const nW = Object.values(LOG).filter(x=>x.w).length, nD = Object.values(LOG).filter(x=>x.d).length;
+    document.getElementById("wishOnly").innerHTML = `💙 Wishlist${nW?` <span class="mycount">${nW}</span>`:""}`;
+    document.getElementById("divedOnly").innerHTML = `✅ Dived${nD?` <span class="mycount">${nD}</span>`:""}`;
 
     const list = filtered();
     const label = {weekend:"Weekend getaways · no leave 🏝️", short:"Short getaways · 1–2 days AL ✈️", liveaboard:"Liveaboards · 3+ days AL ⛵", all:"All spots 🐬"}[state.type];
@@ -729,12 +809,15 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
 
     const calList = SPOTS.filter(inTab);
     const ORDER = ["Singapore","Malaysia","Indonesia","Philippines","Thailand","Japan","Taiwan", ...new Set(SPOTS.map(s=>s.country))].filter((c,i,a)=>a.indexOf(c)===i);
+    const rankS = {closed:0, ok:1, best:2};
+    const countryStatus = (list,m) => ["closed","ok","best"][Math.max(...list.map(s=>rankS[statusOf(s,m)]))];
     document.getElementById("cal").innerHTML =
-      `<thead><tr><th>Spot</th>${M.map((n,i)=>`<th class="${state.month===i+1?"sel":""}">${n}</th>`).join("")}</tr></thead><tbody>` +
-      ORDER.filter(c=>calList.some(s=>s.country===c)).map(c=>
-        `<tr class="grp"><td colspan="13">${FLAG[c]||""} ${c}</td></tr>` +
-        calList.filter(s=>s.country===c).map(s=>`<tr onclick="__jump('${s.id}')"><td>${(TAGS[(s.tags||[])[0]]||["🐠"])[0]} ${esc(s.name)}</td>${M.map((n,i)=>`<td class="c ${statusOf(s,i+1)}" title="${n}"><i></i></td>`).join("")}</tr>`).join("")
-      ).join("") + `</tbody>`;
+      `<thead><tr><th>Country <small style="font-weight:700">· tap to open</small></th>${M.map((n,i)=>`<th class="${state.month===i+1?"sel":""}">${n}</th>`).join("")}</tr></thead><tbody>` +
+      ORDER.filter(c=>calList.some(s=>s.country===c)).map(c=>{
+        const list = calList.filter(s=>s.country===c), open = calOpen.has(c);
+        return `<tr class="grp ${open?"open":""}" data-c="${c}"><td>${FLAG[c]||""} ${c} <span class="cnt">${list.length}</span> <span class="chev">${open?"▾":"▸"}</span></td>${M.map((n,i)=>`<td class="c ${countryStatus(list,i+1)}" title="${n}: best spot in ${c}"><i></i></td>`).join("")}</tr>` +
+          (open ? list.map(s=>`<tr class="spot" onclick="__jump('${s.id}')"><td>${(TAGS[(s.tags||[])[0]]||["🐠"])[0]} ${esc(s.name)}</td>${M.map((n,i)=>`<td class="c ${statusOf(s,i+1)}" title="${n}"><i></i></td>`).join("")}</tr>`).join("") : "");
+      }).join("") + `</tbody>`;
   }
 
 
@@ -812,30 +895,111 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     return groups;
   }
 
-  let phAll = false;
+  let phSel = null;
   function renderHolidays(){
-    const groups = holidayGroups(), show = phAll ? groups : groups.slice(0,4);
-    document.getElementById("phList").innerHTML = show.map(g=>{
-      const opts = options(g.blk);
-      return `<div class="ph">
-        <div class="ph-top"><div class="ph-date"><span>${M[g.d.getMonth()]}</span><b>${g.d.getDate()}</b><span>${DOW[g.d.getDay()]}</span></div>
-          <div><h3>${[...g.names].join(" + ")}</h3><div class="sub">${g.d.getFullYear()} · natural break ${dayRange(g.blk[0],g.blk[1])}</div></div></div>
-        ${g.sat?`<div class="ph-note">Falls on a Saturday, so there's no public holiday in lieu (some employers give off-in-lieu, so check your HR).</div>`:""}
-        <div class="ph-opts">${opts.map(o=>{
-          const sp = spotsFor(o), mon = M[add(o.a,Math.floor(o.len/2)).getMonth()] + " " + o.a.getFullYear();
-          const q = encodeURIComponent(`dive trip from Singapore ${mon}`);
-          return `<div class="opt">
-            <div class="opt-h"><b>${o.len} day${o.len===1?"":"s"} off</b><span class="al ${o.kind==="free"?"free":""}">${o.al===0?"0 AL":o.al+" AL"}</span><small>${KIND[o.kind][0]} · ${dayRange(o.a,o.b)}${o.al?` · leave on ${o.alDays.map(d=>`${DOW[d.getDay()]} ${d.getDate()}`).join(", ")}`:""}</small></div>
-            <div class="opt-spots">${sp.length? sp.map(x=>`<button type="button" onclick="__jump('${x.s.id}')">${x.st==="best"?"🌟":"👍"} ${esc(x.s.name)}</button>`).join("") : `<small style="color:var(--muted);font-weight:700">Nothing in season fits. Try Pulau Hantu locally.</small>`}</div>
-            <div class="opt-links">${sp.slice(0,3).map(x=>{ const t=(x.s.trips||[])[0]; const u = t ? t.url : `https://www.google.com/search?q=${encodeURIComponent(`Singapore dive trip ${x.s.name.replace(/\s*\(.*?\)/g,"")} ${mon}`)}`; return `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(x.s.name.replace(/\s*\(.*?\)/g,""))} trips →</a>`; }).join("")}<a href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener">🔎 Any SG trips in ${mon}</a></div>
-          </div>`; }).join("")}</div>
-      </div>`;
-    }).join("") || `<div class="empty">No upcoming holidays listed. Add next year's in HOLIDAYS.</div>`;
-    const btn = document.getElementById("phMore");
-    btn.style.display = groups.length>4 ? "block" : "none";
-    btn.textContent = phAll ? "Show fewer" : `Show all ${groups.length} holidays`;
+    const groups = holidayGroups();
+    if(phSel===null && groups.length) phSel = groups[0].k;
+    document.getElementById("phStrip").innerHTML = groups.map(g=>`
+      <button type="button" class="ph-chip ${g.k===phSel?"on":""}" data-k="${g.k}">
+        <span class="m">${M[g.d.getMonth()]} ${g.d.getFullYear()!==new Date().getFullYear()?"'"+String(g.d.getFullYear()).slice(2):""}</span>
+        <b>${g.d.getDate()}</b>
+        <span class="n">${esc([...g.names][0])}</span>
+        <span class="free">${Math.round((g.blk[1]-g.blk[0])/864e5)+1} days free</span>
+      </button>`).join("") || `<div class="empty">No upcoming holidays listed.</div>`;
+    const g = groups.find(x=>x.k===phSel);
+    const panel = document.getElementById("phPanel");
+    if(!g){ panel.innerHTML=""; return; }
+    const opts = options(g.blk);
+    panel.innerHTML = `<div class="ph">
+      <h3>${[...g.names].join(" + ")} <span class="sub">· ${fmt(g.d)}</span></h3>
+      ${g.sat?`<div class="ph-note">On a Saturday: no extra day off.</div>`:""}
+      <div class="ph-opts">${opts.map(o=>{
+        const sp = spotsFor(o), mon = M[add(o.a,Math.floor(o.len/2)).getMonth()] + " " + o.a.getFullYear();
+        return `<div class="opt">
+          <div class="opt-h"><b>${o.len} days</b><span class="al ${o.al===0?"free":""}">${o.al===0?"no leave":o.al+" AL"}</span><small>${dayRange(o.a,o.b)}${o.al?` · take ${o.alDays.map(d=>`${DOW[d.getDay()]} ${d.getDate()}`).join(", ")}`:""}</small></div>
+          <div class="opt-spots">${sp.length? sp.map(x=>`<button type="button" onclick="__jump('${x.s.id}')">${x.st==="best"?"🌟":"👍"} ${esc(x.s.name.replace(/\s*\(.*?\)/g,""))}</button>`).join("") + `<a class="trip-search" href="https://www.google.com/search?q=${encodeURIComponent("dive trip from Singapore "+mon)}" target="_blank" rel="noopener">🔎 trips</a>` : `<small style="color:var(--muted);font-weight:700">Try Pulau Hantu locally 🤿</small>`}</div>
+        </div>`; }).join("")}</div>
+    </div>`;
   }
-  document.getElementById("phMore").onclick = () => { phAll=!phAll; renderHolidays(); };
+  document.getElementById("phStrip").addEventListener("click", e => {
+    const b = e.target.closest(".ph-chip"); if(!b) return;
+    phSel = b.dataset.k; renderHolidays();
+    document.getElementById("phPanel").animate([{opacity:0,transform:"translateY(-6px)"},{opacity:1,transform:"none"}],{duration:250});
+  });
+
+
+  /* ═════════ TRIP-BUILDER QUIZ ═════════ */
+  const QUIZ = [
+    { k:"leave", q:"How much leave can you take?", a:[
+      {v:0, i:"🏝️", t:"None", s:"Weekend only"}, {v:2, i:"✈️", t:"1–2 days", s:"Long weekend"},
+      {v:5, i:"⛵", t:"3–5 days", s:"Proper trip"}, {v:9, i:"🌏", t:"A week+", s:"Bucket list"} ]},
+    { k:"cert", q:"Your certification?", a:[
+      {v:"none", i:"🐣", t:"Not yet", s:"Want to learn"}, {v:"OW", i:"🐠", t:"Open Water", s:"Up to 18m"},
+      {v:"AOW", i:"🦈", t:"Advanced+", s:"30m, currents OK"} ]},
+    { k:"animal", q:"Your dream encounter?", a:[
+      {v:"turtles", i:"🐢", t:"Turtles"}, {v:"mantas", i:"🩵", t:"Mantas"}, {v:"whalesharks", i:"🐋", t:"Whale sharks"},
+      {v:"sharks", i:"🦈", t:"Sharks"}, {v:"macro", i:"🐌", t:"Macro & nudis"}, {v:"any", i:"✨", t:"Surprise me"} ]},
+    { k:"month", q:"When are you going?", a: [{v:0,i:"📅",t:"Not sure",s:"Any time"}].concat(M.map((n,i)=>({v:i+1, i:"", t:n}))) }
+  ];
+  let QA = {}, QI = 0;
+  const qbg = document.getElementById("quizBg"), qel = document.getElementById("quiz");
+  function quizStep(){
+    if(QI >= QUIZ.length) return quizResult();
+    const Q = QUIZ[QI];
+    qel.innerHTML = `<button class="close" type="button" onclick="__quizClose()">✕</button>
+      <div class="step">Question ${QI+1} of ${QUIZ.length}</div><h2>${Q.q}</h2>
+      <div class="bar"><i style="width:${QI/QUIZ.length*100}%"></i></div>
+      <div class="choices" style="${Q.k==="month"?"grid-template-columns:repeat(4,1fr)":""}">${Q.a.map((o,j)=>`<button type="button" data-j="${j}">${o.i?`<span>${o.i}</span>`:""}${o.t}${o.s?`<small>${o.s}</small>`:""}</button>`).join("")}</div>`;
+    qel.querySelectorAll("[data-j]").forEach(b=>b.onclick=()=>{ QA[Q.k]=Q.a[+b.dataset.j].v; QI++; quizStep(); });
+  }
+  function quizResult(){
+    const m = QA.month || state.month || (new Date().getMonth()+1);
+    const scored = SPOTS.map(s=>{
+      let sc = 0; const why = [];
+      const need = leaveNum(s);
+      if(need > QA.leave) return null;
+      sc += 3 - Math.min(3, QA.leave - need);                        // uses your leave well
+      const st = statusOf(s,m); if(st==="closed") return null;
+      sc += st==="best" ? 6 : 2; why.push(st==="best"?`🌟 best in ${M[m-1]}`:`👍 diveable in ${M[m-1]}`);
+      if(QA.cert!=="AOW" && s.cert==="AOW"){ sc -= 4; why.push("🔶 needs AOW"); }
+      if(QA.cert==="none"){ sc += s.cert==="OW" ? 2 : -3; }
+      if(QA.animal && QA.animal!=="any"){
+        const hit = (s.see||[]).find(x=>x.tag===QA.animal && (!x.months || x.months.includes(m)));
+        if(hit){ sc += 7; why.push(`${TAGS[QA.animal][0]} ${hit.what.split("(")[0].trim()}`); }
+        else if((s.tags||[]).includes(QA.animal)){ sc += 3; why.push(`${TAGS[QA.animal][0]} possible`); }
+      }
+      sc += (s.ease||0)*.4;
+      return {s, sc, why};
+    }).filter(Boolean).sort((a,b)=>b.sc-a.sc).slice(0,3);
+    const medals = ["🥇","🥈","🥉"];
+    qel.innerHTML = `<button class="close" type="button" onclick="__quizClose()">✕</button>
+      <div class="step">Your matches</div><h2>Top picks for ${M[m-1]} ✨</h2>
+      <div class="bar"><i style="width:100%"></i></div>
+      ${QA.cert==="none"?`<p style="margin:0 0 10px;font-weight:700">🐣 Start with your <a href="open-water.html">Open Water licence</a>. These spots are great to learn at:</p>`:""}
+      <div class="res">${scored.length ? scored.map((r,i)=>`<button type="button" onclick="__quizClose();__jump('${r.s.id}')"><span class="medal">${medals[i]}</span><span><b>${esc(r.s.name)}</b>${r.s.leave} days leave · ${r.why.join(" · ")}</span></button>`).join("")
+        : `<p style="font-weight:700;color:var(--muted)">Nothing fits perfectly. Try more leave days or another month 🐡</p>`}</div>
+      <button class="again" type="button" onclick="__quizStart()">↺ Try again</button>`;
+  }
+  window.__quizStart = () => { QA = {}; QI = 0; qbg.classList.add("open"); quizStep(); };
+  window.__quizClose = () => qbg.classList.remove("open");
+  document.getElementById("quizOpen").onclick = __quizStart;
+  qbg.addEventListener("click", e => { if(e.target===qbg) __quizClose(); });
+  document.addEventListener("keydown", e => { if(e.key==="Escape") __quizClose(); });
+
+  /* ═════════ DEPTH SCROLL: the page gets deeper blue as you scroll ═════════ */
+  const depthFill = document.getElementById("depthFill"), depthTxt = document.getElementById("depthTxt");
+  const SURF = [242,248,255], DEEP = [168,206,238], MAXM = 40;
+  function onDepth(){
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const f = max>0 ? Math.min(1, Math.max(0, scrollY/max)) : 0;
+    const c = SURF.map((v,i)=>Math.round(v+(DEEP[i]-v)*f));
+    document.body.style.backgroundColor = `rgb(${c})`;
+    document.querySelector(".controls").style.background = `rgb(${c})`;
+    depthFill.style.height = (f*100)+"%";
+    depthTxt.textContent = `-${Math.round(f*MAXM)}m`;
+  }
+  addEventListener("scroll", () => requestAnimationFrame(onDepth), {passive:true});
+  onDepth();
 
   /* FYI carousel */
   const fyi = document.getElementById("fyi"), dotsEl = document.getElementById("fyiDots");
@@ -847,6 +1011,10 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   document.getElementById("fyiPrev").onclick = () => fyi.scrollBy({left:-step(), behavior:"smooth"});
   document.getElementById("fyiNext").onclick = () => fyi.scrollBy({left:step(), behavior:"smooth"});
   syncDots();
+  document.getElementById("cal").addEventListener("click", e => {
+    const r = e.target.closest("tr.grp"); if(!r) return;
+    const c = r.dataset.c; calOpen.has(c) ? calOpen.delete(c) : calOpen.add(c); render();
+  });
   render(true);
   renderHolidays();
   setTimeout(()=>map.invalidateSize(),250);
