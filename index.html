@@ -41,7 +41,7 @@ h1,h2,h3{font-family:Fredoka,Nunito,sans-serif}
 @media (max-width:600px){.doodles .hide-sm{display:none}}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-10px) rotate(calc(var(--r,0deg) + 6deg))}}
 .hero .badge{display:inline-block;background:#fff;border-radius:999px;padding:4px 12px;font:700 13px Nunito;color:var(--pink);margin-bottom:12px;box-shadow:var(--shadow);position:relative;z-index:2}
-.hero-scene{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-scene{position:absolute;inset:0;z-index:1;pointer-events:none;filter:blur(1.2px) saturate(.75)}
 .hero-scene svg{width:100%;height:100%}
 .waves{position:absolute;left:0;right:0;bottom:-1px;height:70px;z-index:3}
 .waves svg{width:200%;height:100%;animation:wave 12s linear infinite}
@@ -105,7 +105,7 @@ select{border:2px solid var(--line);background:#fff;color:var(--ink);border-radi
 .art .fallback{display:none;position:absolute;inset:0}
 .art.nophoto img.cover,.art.nophoto .credit{display:none}
 .art.nophoto .fallback{display:block}
-.art .credit{position:absolute;right:8px;bottom:6px;font:700 10px Nunito;color:#fff;background:rgba(10,30,50,.45);padding:2px 7px;border-radius:999px;max-width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.art .credit{position:absolute;left:10px;bottom:10px;font:700 10px Nunito;color:#fff;background:rgba(10,30,50,.45);padding:2px 7px;border-radius:999px;max-width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .art{height:170px !important}
 .art .sticker{position:absolute;right:10px;bottom:-8px;width:90px;height:70px;filter:drop-shadow(0 3px 4px rgba(23,58,94,.2))}
 .art .status-tag{position:absolute;top:10px;left:10px;font:800 12px Nunito;padding:4px 10px;border-radius:999px;background:#fff;box-shadow:0 2px 6px rgba(23,58,94,.12)}
@@ -223,7 +223,7 @@ table.cal tr.spot td.c i{height:11px;opacity:.9}
 .ph h3 .sub{font:700 13px Nunito;color:var(--muted)}
 .trip-search{align-self:center;font:800 12.5px Nunito;margin-left:4px}
 /* ───── TRIP-BUILDER QUIZ ───── */
-.quiz-cta{position:relative;z-index:2;margin-top:16px;border:0;border-radius:999px;padding:11px 20px;font:800 15px Nunito;color:#fff;background:linear-gradient(135deg,#ff8a5c,#ff5f8f);box-shadow:0 6px 18px rgba(255,95,143,.35);cursor:pointer;transition:transform .2s}
+.quiz-cta{position:relative;z-index:2;margin-top:16px;border:0;border-radius:999px;padding:11px 20px;font:800 15px Nunito;color:#fff;background:linear-gradient(135deg,#0b4f7c,#1592b8 55%,#2fc6c9);box-shadow:0 6px 18px rgba(11,79,124,.35);cursor:pointer;transition:transform .2s}
 .quiz-cta:hover{transform:translateY(-2px) scale(1.03)}
 .quiz-bg{position:fixed;inset:0;z-index:3000;background:rgba(8,30,52,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:16px}
 .quiz-bg.open{display:flex}
@@ -250,7 +250,6 @@ table.cal tr.spot td.c i{height:11px;opacity:.9}
 .mine button{border:0;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 2px 8px rgba(23,58,94,.18);font-size:16px;cursor:pointer;transition:transform .2s}
 .mine button:hover{transform:scale(1.12)}
 .mine button.on{background:#fff;box-shadow:0 0 0 3px var(--pink)}
-.card.dived .art::after{content:"✅ Dived";position:absolute;left:10px;bottom:10px;background:#1e9c7e;color:#fff;font:800 11.5px Nunito;padding:3px 9px;border-radius:999px}
 .note{width:100%;min-height:60px;border:2px solid var(--line);border-radius:14px;padding:8px 10px;font:600 13.5px Nunito;color:var(--ink);resize:vertical}
 .note:focus{outline:none;border-color:var(--pink)}
 .mycount{font:800 12px Nunito;color:var(--pink);margin-left:6px}
@@ -262,6 +261,58 @@ body{transition:background-color .2s linear}
 .depth .tube i{position:absolute;left:0;right:0;top:0;background:linear-gradient(#9fd3f7,#1f5f9e);border-radius:99px}
 .depth b{font:800 11px Nunito;color:#fff;background:rgba(23,58,94,.7);padding:3px 7px;border-radius:999px;white-space:nowrap}
 @media (max-width:760px){.depth{display:none}}
+/* ───── SENTENCE SEARCH ───── */
+.controls{margin-top:-58px;padding:0 0 6px;background:transparent !important}
+.search-card{position:relative;z-index:4;background:#fff;border-radius:26px;box-shadow:0 10px 34px rgba(23,58,94,.16);padding:16px 18px 10px}
+.sentence{margin:0;font:600 clamp(17px,2.4vw,22px)/1.9 Fredoka,Nunito,sans-serif;color:var(--ink)}
+.sentence select{appearance:none;-webkit-appearance:none;border:0;border-bottom:3px dashed #8cc6ef;border-radius:10px;background:var(--pink-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232f86de' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 10px center;padding:2px 28px 2px 10px;margin:2px 2px;font:600 inherit;font-family:Fredoka,Nunito,sans-serif;font-size:inherit;color:var(--pink);cursor:pointer;max-width:100%;transition:background-color .2s}
+.sentence select:hover{background-color:#d3e8ff}
+.sentence select:focus{outline:3px solid #9fd3f7;outline-offset:1px}
+.extras{margin-top:8px;flex-wrap:nowrap}
+.extras .scroller{flex:1;min-width:0}
+@media (min-width:760px){.controls{position:sticky;top:8px}}
+@media (max-width:600px){.extras{flex-wrap:wrap}.extras .scroller{flex:1 1 100%}.extras select{margin-left:0}}
+
+/* ───── SWIPE ROWS ───── */
+.srow{margin:0 0 18px}
+.srow-h{display:flex;justify-content:space-between;align-items:center;margin:0 2px 8px}
+.srow-h h3{margin:0;font-size:19px}
+.srow-h h3 span{font:800 12px Nunito;color:var(--pink);background:var(--pink-soft);border-radius:999px;padding:2px 8px;vertical-align:middle;margin-left:4px}
+.srow-nav{display:flex;gap:6px}
+.srow-nav button{width:32px;height:32px;border-radius:50%;border:0;background:#fff;box-shadow:var(--shadow);color:var(--pink);font:800 17px Nunito;cursor:pointer}
+@media (max-width:600px){.srow-nav{display:none}}
+.strack{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 10px;-webkit-overflow-scrolling:touch}
+.strack::-webkit-scrollbar{display:none}
+.mcard{flex:0 0 min(78%,270px);scroll-snap-align:start;background:#fff;border-radius:22px;box-shadow:var(--shadow);overflow:hidden;cursor:pointer;transition:transform .3s cubic-bezier(.2,.9,.3,1.3), box-shadow .3s}
+.mcard:hover{transform:translateY(-5px)}
+.mcard:focus{outline:3px solid #9fd3f7}
+.mcard .art{height:150px !important}
+.mcard:hover .art img.cover{transform:scale(1.06)}
+.mcard.closed .art{filter:grayscale(.45)}
+.mc-body{padding:10px 14px 14px}
+.mc-body h3{margin:0;font-size:17px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc-meta{color:var(--muted);font:700 12.5px Nunito;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc-now{margin-top:7px;background:var(--pink-soft);color:#1f6fc4;border-radius:10px;padding:4px 8px;font:700 12.5px Nunito;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ───── SLIDE-UP SPOT PANEL ───── */
+body.noscroll{overflow:hidden}
+.sheet-bg{position:fixed;inset:0;z-index:2500;background:rgba(8,30,52,.45);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .25s}
+.sheet-bg.open{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:90vh;overflow-y:auto;background:#fff;border-radius:26px 26px 0 0;transform:translateY(100%);transition:transform .35s cubic-bezier(.2,.9,.3,1)}
+.sheet-bg.open .sheet{transform:none}
+@media (min-width:760px){.sheet{left:auto;top:0;width:min(480px,100%);max-height:none;border-radius:26px 0 0 26px;transform:translateX(100%)}}
+.sheet-art{height:210px !important;position:relative;overflow:hidden}
+.sheet-x{position:absolute;top:10px;right:10px;z-index:3;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.95);box-shadow:0 2px 8px rgba(0,0,0,.2);font:800 16px Nunito;color:var(--ink);cursor:pointer}
+.sheet-art .status-tag{top:10px;left:10px}
+.sheet-head{padding:14px 18px 6px}
+.sheet-head h2{margin:0;font-size:24px}
+.sheet-tabs{position:sticky;top:0;z-index:2;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;background:#fff;padding:8px 16px;border-bottom:2px solid var(--line)}
+.sheet-tabs::-webkit-scrollbar{display:none}
+.sheet-tabs button{flex:0 0 auto;border:0;background:transparent;border-radius:999px;padding:7px 13px;font:800 13.5px Nunito;color:var(--muted);cursor:pointer}
+.sheet-tabs button[aria-selected="true"]{background:var(--pink-soft);color:var(--pink)}
+.sheet-body{padding:6px 18px 4px !important;animation:pop .25s ease}
+.sheet-body p{margin:0}
+.sheet-foot{padding:10px 18px 26px}
 /* ───── FYI CAROUSEL ───── */
 .fyi-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 10px;gap:10px}
 .fyi-head h2{font-size:24px;margin:0}
@@ -349,8 +400,8 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
         <path d="M184,66 C176,72 168,58 166,44" stroke="#1c232a" stroke-width="2" fill="none"/>
       </g>
     </svg></h1>
-    <p>Weekend trips that need 0–2 days of leave, plus dreamy liveaboards worth saving leave for. Pick a month and see who's around 🐢</p>
-    <button class="quiz-cta" id="quizOpen" type="button">🎯 Find my perfect trip</button>
+    <p>Weekend escapes, long-weekend hops and liveaboards worth saving leave for. Tell us your leave, month and dream animal below 🐢</p>
+    <button class="quiz-cta" id="quizOpen" type="button">Find my perfect trip</button>
   </div>
   <div class="waves">
     <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path fill="#f2f8ff" d="M0,40 C120,10 240,10 360,40 C480,70 600,70 720,40 C840,10 960,10 1080,40 C1200,70 1320,70 1440,40 L1440,70 L0,70Z"/></svg>
@@ -358,51 +409,34 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   </div>
 </header>
 
-<section class="wrap" aria-label="How this site works">
-  <div class="how" id="how">
-    <button class="hide-how" id="hideHow" type="button">Hide</button>
-    <h2>How it works 🐚</h2>
-    <ol>
-      <li><span class="n">1</span><span class="ico">🏝️</span><b>Pick your trip type</b><small>All, Weekend (no leave), 1–2 days AL, or Liveaboard (3+ days AL)</small></li>
-      <li><span class="n">2</span><span class="ico">📅</span><b>Pick a month</b><small>Starts on this month. Spots re-sort so the best ones for that month come first</small></li>
-      <li><span class="n">3</span><span class="ico">🐢</span><b>Pick animals (optional)</b><small>Tap turtles, mantas, whale sharks… to see only spots that have them</small></li>
-      <li><span class="n">4</span><span class="ico">📍</span><b>Tap a pin or card</b><small>Open "Details" for how to get there, cash fees, dive shops & upcoming trips from SG</small></li>
-    </ol>
-    <div class="key">
-      <span><i class="dot" style="background:var(--best)"></i>Best season</span>
-      <span><i class="dot" style="background:var(--ok)"></i>Diveable</span>
-      <span><i class="dot" style="background:var(--closed)"></i>Off season</span>
-      <span>💙💙💙🤍🤍 = how easy to book</span>
-      <span>🔶 = Advanced cert needed</span>
-    </div>
-  </div>
-</section>
+
 
 <div class="controls">
   <div class="wrap">
-    <div class="row">
-      <div class="tabs" role="group" aria-label="Trip type">
-        <button data-type="all" aria-pressed="true">🐬 All</button>
-        <button data-type="weekend" aria-pressed="false">🏝️ Weekend</button>
-        <button data-type="short" aria-pressed="false">✈️ 1–2 AL</button>
-        <button data-type="liveaboard" aria-pressed="false">⛵ Liveaboard</button>
-      </div>
-      <select id="sort" aria-label="Sort" style="margin-left:auto">
-        <option value="season">In season first</option>
-        <option value="ease">Easiest to book</option>
-        <option value="leave">Least leave</option>
-        <option value="name">A–Z</option>
-      </select>
-    </div>
-    <div class="row"><span class="label">Month</span><div class="scroller" id="months"></div></div>
-    <div class="row"><span class="label">See</span><div class="scroller" id="tags"></div></div>
-    <div class="row"><span class="label">Show</span>
-      <div class="scroller">
-        <button class="chip" id="inSeason" aria-pressed="false">🌊 In season only</button>
-        <button class="chip" id="owOnly" aria-pressed="false">🐠 OW-friendly</button>
-        <button class="chip" id="easyOnly" aria-pressed="false">⭐ Easy to book</button>
-        <button class="chip" id="wishOnly" aria-pressed="false">💙 Wishlist</button>
-        <button class="chip" id="divedOnly" aria-pressed="false">✅ Dived</button>
+    <div class="search-card">
+      <p class="sentence">
+        I can take <select id="sLeave" aria-label="Leave">
+          <option value="all">any amount of leave</option>
+          <option value="weekend">no leave (just weekends)</option>
+          <option value="short">1–2 days of leave</option>
+          <option value="liveaboard">3+ days of leave</option>
+        </select>
+        in <select id="sMonth" aria-label="Month"></select>
+        and want to see <select id="sAnimal" aria-label="Animal"></select>
+      </p>
+      <div class="row extras">
+        <div class="scroller">
+          <button class="chip" id="inSeason" aria-pressed="false">🌊 In season only</button>
+          <button class="chip" id="owOnly" aria-pressed="false">🐠 OW-friendly</button>
+          <button class="chip" id="easyOnly" aria-pressed="false">⭐ Easy to book</button>
+          <button class="chip" id="wishOnly" aria-pressed="false">💙 Wishlist</button>
+        </div>
+        <select id="sort" aria-label="Sort">
+          <option value="season">In season first</option>
+          <option value="ease">Easiest to book</option>
+          <option value="leave">Least leave</option>
+          <option value="name">A–Z</option>
+        </select>
       </div>
     </div>
   </div>
@@ -418,7 +452,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   </div>
 
   <div class="summary"><h2 id="heading">Spots</h2><small id="count"></small></div>
-  <div class="cards" id="cards"></div>
+  <div id="rows"></div>
 
   <div class="summary"><h2>Season calendar 📅</h2><small>Tap a country to see its spots</small></div>
   <div class="cal-wrap"><table class="cal" id="cal"></table></div>
@@ -449,6 +483,8 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
 </main>
 
 <div class="depth" aria-hidden="true"><div class="tube"><i id="depthFill"></i></div><b id="depthTxt">0m</b></div>
+
+<div class="sheet-bg" id="sheetBg"><aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Dive spot details"></aside></div>
 
 <div class="quiz-bg" id="quizBg" role="dialog" aria-modal="true" aria-label="Trip builder">
   <div class="quiz" id="quiz"></div>
@@ -483,7 +519,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   window.__mine = (id, k) => { LOG[id] = LOG[id] || {}; LOG[id][k] = !LOG[id][k]; saveLog(); render(); };
   window.__note = (id, v) => { LOG[id] = LOG[id] || {}; LOG[id].n = v; saveLog(); };
   const calOpen = new Set();
-  const state = { type:"all", month:new Date().getMonth()+1, tags:new Set(), inSeason:false, owOnly:false, easyOnly:false, wishOnly:false, divedOnly:false, sort:"season" };
+  const state = { type:"all", month:new Date().getMonth()+1, tags:new Set(), inSeason:false, owOnly:false, easyOnly:false, wishOnly:false, sort:"season" };
   const YEAR = new Date().getFullYear();
   const catOf = s => { const n = parseFloat(String(s.leave).match(/\d+(\.\d+)?/)?.[0] ?? "0"); return n>=3 ? "liveaboard" : n>=1 ? "short" : "weekend"; };
   const inTab = s => state.type==="all" || catOf(s)===state.type;
@@ -650,15 +686,10 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   /* ═════════ HERO ═════════ */
   // Swimming procession: [creature, y, scale, seconds, delay, direction (1 = left→right, -1 = right→left), opacity]
   const SWIM = [
-    ["whaleshark", 228, .62, 46,  -8,  1, .92],
-    ["manta",       70, .38, 34, -20,  1, .9 ],
-    ["greyreef",   150, .42, 24,  -3, -1, .85],
-    ["blacktip",   262, .34, 20, -12,  1, .9 ],
-    ["whitetip",   108, .32, 28, -17, -1, .8 ],
-    ["tuna",        40, .26, 15,  -5, -1, .85],
-    ["tuna",        58, .22, 15,  -6.2,-1, .75],
-    ["cuttlefish", 190, .3,  38, -25, -1, .85],
-    ["turtle",     128, .36, 30, -11,  1, .9 ]
+    ["whaleshark", 236, .6,  90, -30,  1, .55],
+    ["manta",       60, .36, 75, -55, -1, .5 ],
+    ["turtle",     150, .34, 80, -10,  1, .55],
+    ["greyreef",   268, .32, 70, -45, -1, .45]
   ];
   document.getElementById("heroScene").innerHTML = `<svg viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid slice">
     ${SWIM.map(([k,y,sc,dur,del,dir,op]) => `<g class="${dir>0?"glide":"glideR"}" style="animation-duration:${dur}s;animation-delay:${del}s;opacity:${op}"><g transform="translate(0 ${y}) scale(${dir*sc} ${sc})"><g class="swim">${R[k]()}</g></g></g>`).join("")}
@@ -679,15 +710,17 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   bub.innerHTML = Array.from({length:16},(_,i)=>{const sz=6+Math.random()*16;return `<i style="left:${Math.random()*100}%;width:${sz}px;height:${sz}px;animation-duration:${6+Math.random()*8}s;animation-delay:${-Math.random()*10}s"></i>`;}).join("");
 
   /* ═════════ CONTROLS ═════════ */
-  const monthsEl = document.getElementById("months");
-  monthsEl.innerHTML = `<button class="chip" data-m="0">Any</button>` + M.map((n,i)=>`<button class="chip" data-m="${i+1}">${n}</button>`).join("");
-  monthsEl.addEventListener("click", e => { const b=e.target.closest("[data-m]"); if(!b) return; state.month=+b.dataset.m; render(); });
+  const sLeave = document.getElementById("sLeave"), sMonth = document.getElementById("sMonth"), sAnimal = document.getElementById("sAnimal");
+  sMonth.innerHTML = `<option value="0">any month</option>` + ["January","February","March","April","May","June","July","August","September","October","November","December"].map((n,i)=>`<option value="${i+1}">${n}</option>`).join("");
   const used = new Set(SPOTS.flatMap(s=>s.tags||[]));
-  const tagsEl = document.getElementById("tags");
-  tagsEl.innerHTML = Object.keys(TAGS).filter(t=>used.has(t)).map(t=>`<button class="chip" data-t="${t}" aria-pressed="false">${TAGS[t][0]} ${TAGS[t][1]}</button>`).join("");
-  tagsEl.addEventListener("click", e => { const b=e.target.closest("[data-t]"); if(!b) return; const t=b.dataset.t; state.tags.has(t)?state.tags.delete(t):state.tags.add(t); render(); });
-  document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => { state.type=b.dataset.type; render(true); }));
-  ["inSeason","owOnly","easyOnly","wishOnly","divedOnly"].forEach(k => document.getElementById(k).addEventListener("click", () => { state[k]=!state[k]; render(); }));
+  sAnimal.innerHTML = `<option value="">anything ✨</option>` + Object.keys(TAGS).filter(t=>used.has(t)).map(t=>`<option value="${t}">${TAGS[t][1].toLowerCase()} ${TAGS[t][0]}</option>`).join("");
+  sLeave.onchange = () => { state.type = sLeave.value; render(true); };
+  sMonth.onchange = () => { state.month = +sMonth.value; render(); };
+  sAnimal.onchange = () => { state.tags = new Set(sAnimal.value ? [sAnimal.value] : []); render(); };
+  const measurer = document.createElement("span"); measurer.style.cssText = "position:absolute;visibility:hidden;white-space:nowrap"; document.body.appendChild(measurer);
+  const fitSel = el => { const cs = getComputedStyle(el); measurer.style.font = cs.font; measurer.style.fontFamily = cs.fontFamily; measurer.style.fontSize = cs.fontSize; measurer.style.fontWeight = cs.fontWeight; measurer.textContent = el.options[el.selectedIndex].text; el.style.width = (measurer.offsetWidth + 46) + "px"; };
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>[sLeave,sMonth,sAnimal].forEach(fitSel));
+  ["inSeason","owOnly","easyOnly","wishOnly"].forEach(k => document.getElementById(k).addEventListener("click", () => { state[k]=!state[k]; render(); }));
   document.getElementById("sort").addEventListener("change", e => { state.sort=e.target.value; render(); });
 
   /* ═════════ MAP ═════════ */
@@ -696,13 +729,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   L.marker([1.35,103.82],{icon:L.divIcon({className:"",html:'<div class="sg-pin">🏠</div>',iconSize:[26,26],iconAnchor:[13,13]})}).addTo(map).bindTooltip("Home sweet Singapore");
   const layer = L.layerGroup().addTo(map);
 
-  window.__jump = id => {
-    const el = document.getElementById("spot-"+id); if(!el) return;
-    el.classList.add("in");
-    el.scrollIntoView({behavior:"smooth", block:"start"});
-    el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
-    const d = el.querySelector("details"); if(d) d.open = true;
-  };
+  window.__jump = id => openSheet(id);
 
   function filtered(){
     let list = SPOTS.filter(inTab);
@@ -711,7 +738,6 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     if(state.owOnly) list = list.filter(s => s.cert==="OW");
     if(state.easyOnly) list = list.filter(s => (s.ease||0)>=4);
     if(state.wishOnly) list = list.filter(s => (LOG[s.id]||{}).w);
-    if(state.divedOnly) list = list.filter(s => (LOG[s.id]||{}).d);
     const rank = {best:0, ok:1, closed:2, any:0};
     return list.sort({
       season:(a,b)=> rank[statusOf(a,state.month)]-rank[statusOf(b,state.month)] || (b.ease||0)-(a.ease||0),
@@ -721,81 +747,122 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     }[state.sort]);
   }
 
-  function card(s){
-    const st = statusOf(s,state.month);
-    const hearts = `<span class="hearts" title="Ease of booking ${s.ease}/5">${"💙".repeat(s.ease)}${"🤍".repeat(5-s.ease)}</span>`;
-    const nowItems = (s.see||[]).filter(x=>hereNow(x,state.month));
-    const nowLine = !state.month ? "" : st==="closed"
-      ? `<div class="now off">💤 Not recommended in ${M[state.month-1]}</div>`
-      : nowItems.length ? `<div class="now"><b>In ${M[state.month-1]}:</b> ${nowItems.map(x=>esc(x.what)).join(" · ")}</div>` : "";
-    const cal = M.map((n,i)=>{ const c=statusOf(s,i+1); return `<span class="${c==="closed"?"":c}${state.month===i+1?" sel":""}" title="${n}"></span>`; }).join("");
-    const art = s.photo
+  function artFor(s, st){
+    return s.photo
       ? `<img class="cover" src="${esc(s.photo)}" alt="${esc(s.photoAlt||s.name)}" loading="lazy" onerror="this.closest('.art').classList.add('nophoto')"><div class="fallback">${scene(s, st)}</div>${s.photoCredit?`<span class="credit">📷 ${esc(s.photoCredit)}</span>`:""}`
       : scene(s, st);
-    const see = (s.see||[]).map(x=>`<li class="${hereNow(x,state.month)?"on":""}">${x.tag&&TAGS[x.tag]?TAGS[x.tag][0]+" ":""}${esc(x.what)} <span>· ${esc(x.where)}${x.months?` · ${x.months.map(m=>M[m-1]).join(", ")}`:""}</span></li>`).join("");
-    const ops = (s.operators||[]).map(o=>`<li><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>${o.note?` <span style="color:var(--muted)">· ${esc(o.note)}</span>`:""}</li>`).join("");
-    const q = encodeURIComponent(`Singapore dive shop trip ${s.searchName||s.name.replace(/\s*\(.*?\)/g,"")} ${YEAR} ${YEAR+1}`);
-    const trips = (s.trips||[]).map(o=>`<li><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>${o.note?` <span style="color:var(--muted)">· ${esc(o.note)}</span>`:""}</li>`).join("")
-      + `<li><a class="search-btn" href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener">🔎 Search for upcoming trips from SG</a></li>`;
-    const ul = (a,c="") => a&&a.length?`<ul class="${c}">${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"";
-    return `
-    <article class="card ${st}${(LOG[s.id]||{}).d?" dived":""}" id="spot-${esc(s.id)}">
-      <div class="art">${art}
-        <div class="mine"><button type="button" class="${(LOG[s.id]||{}).w?"on":""}" title="Wishlist" aria-label="Add to wishlist" onclick="event.stopPropagation();__mine('${s.id}','w')">${(LOG[s.id]||{}).w?"💙":"🤍"}</button><button type="button" class="${(LOG[s.id]||{}).d?"on":""}" title="I've dived here" aria-label="Mark as dived" onclick="event.stopPropagation();__mine('${s.id}','d')">✅</button></div>
+  }
+  const mineBtns = s => `<div class="mine"><button type="button" class="${(LOG[s.id]||{}).w?"on":""}" title="Wishlist" aria-label="Add to wishlist" onclick="event.stopPropagation();__mine('${s.id}','w')">${(LOG[s.id]||{}).w?"💙":"🤍"}</button></div>`;
+
+  function miniCard(s){
+    const st = statusOf(s,state.month);
+    const nowItems = (s.see||[]).filter(x=>hereNow(x,state.month));
+    const hi = state.month && st!=="closed" && nowItems.length ? `<div class="mc-now">${TAGS[nowItems[0].tag]?TAGS[nowItems[0].tag][0]:"✨"} ${esc(nowItems[0].what.split("(")[0].trim())}</div>` : "";
+    return `<div class="mcard ${st}" role="button" tabindex="0" onclick="__jump('${s.id}')" onkeydown="if(event.key==='Enter')__jump('${s.id}')">
+      <div class="art">${artFor(s,st)}${mineBtns(s)}
         ${state.month?`<span class="status-tag ${st}">${STATUS[st]}</span>`:""}
         <span class="flag">${FLAG[s.country]||""} ${esc(s.country)}</span>
       </div>
-      <div class="top">
+      <div class="mc-body">
         <h3>${esc(s.name)}</h3>
-        <div class="meta">${CAT_LABEL[catOf(s)]}${s.type==="liveaboard"&&catOf(s)!=="liveaboard"?" · ⛵ liveaboard":""}</div>
+        <div class="mc-meta">🗓 ${esc(s.leave)}d leave · ${s.cert==="AOW"?"🔶 AOW":"🐠 OW"} · ${"💙".repeat(s.ease)}</div>
+        ${hi}
+      </div>
+    </div>`;
+  }
+
+  let sheetId = null, sheetTab = "over";
+  function sheetHTML(s){
+    const st = statusOf(s,state.month);
+    const nowItems = (s.see||[]).filter(x=>hereNow(x,state.month));
+    const cal = M.map((n,i)=>{ const c=statusOf(s,i+1); return `<span class="${c==="closed"?"":c}${state.month===i+1?" sel":""}" title="${n}"></span>`; }).join("");
+    const see = (s.see||[]).map(x=>`<li class="${hereNow(x,state.month)?"on":""}">${x.tag&&TAGS[x.tag]?TAGS[x.tag][0]+" ":""}${esc(x.what)} <span>· ${esc(x.where)}${x.months?` · ${x.months.map(m=>M[m-1]).join(", ")}`:""}</span></li>`).join("");
+    const linkList = arr => (arr||[]).map(o=>`<li><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>${o.note?` <span style="color:var(--muted)">· ${esc(o.note)}</span>`:""}</li>`).join("");
+    const q = encodeURIComponent(`Singapore dive shop trip ${s.searchName||s.name.replace(/\s*\(.*?\)/g,"")} ${YEAR} ${YEAR+1}`);
+    const ul = (a,c="") => a&&a.length?`<ul class="${c}">${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"";
+    const TABS = [["over","Overview"],["go","Getting there"],["shops","Shops & trips"],["notes","My notes"]];
+    const panes = {
+      over: `${state.month ? (st==="closed" ? `<div class="now off">💤 Not recommended in ${M[state.month-1]}</div>` : nowItems.length ? `<div class="now"><b>In ${M[state.month-1]}:</b> ${nowItems.map(x=>esc(x.what)).join(" · ")}</div>` : "") : ""}
+        <h4>Season</h4><div class="mini-cal">${cal}</div><div class="mini-cal-l">${M.map(n=>`<span>${n[0]}</span>`).join("")}</div>
+        <h4>What you'll see & where</h4><ul class="see">${see}</ul>
+        <h4>Certification</h4><p>${esc(s.certNote)}</p>
+        ${s.tips&&s.tips.length?`<h4>Tips</h4>${ul(s.tips)}`:""}`,
+      go: `<h4>Getting there from SG</h4>${s.getThere&&s.getThere.length?`<ol>${s.getThere.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`:""}
+        ${s.fees&&s.fees.length?`<h4>Fees & cash 💵</h4>${ul(s.fees,"cash")}`:""}
+        ${s.cost?`<h4>Rough cost</h4><p>${esc(s.cost)}</p>`:""}
+        <h4>Ease of booking · ${s.ease}/5</h4><p>${esc(s.easeNote)}</p>
+        ${s.verify&&s.verify.length?`<p class="verify">⚠️ Re-check before booking: ${s.verify.map(esc).join(", ")}.</p>`:""}`,
+      shops: `${(s.operators||[]).length?`<h4>Dive shops & boats</h4><ul>${linkList(s.operators)}</ul>`:""}
+        <h4>Upcoming trips from SG 🗓️</h4><ul class="trips">${linkList(s.trips)}<li><a class="search-btn" href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener">🔎 Search for upcoming trips from SG</a></li></ul>`,
+      notes: `<h4>My notes 📝</h4><textarea class="note" placeholder="e.g. Went Apr 2025 with Gill Divers, saw 3 turtles…" oninput="__note('${s.id}', this.value)">${esc((LOG[s.id]||{}).n||"")}</textarea>
+        <p class="verify">💙 and notes are saved on this device only.</p>`
+    };
+    return `<div class="art sheet-art">${artFor(s,st)}${mineBtns(s)}
+        ${state.month?`<span class="status-tag ${st}">${STATUS[st]}</span>`:""}
+        <button class="sheet-x" type="button" aria-label="Close" onclick="__closeSheet()">✕</button>
+      </div>
+      <div class="sheet-head">
+        <h2>${esc(s.name)}</h2>
+        <div class="meta">${FLAG[s.country]||""} ${esc(s.country)} · ${CAT_LABEL[catOf(s)]}</div>
         <div class="pills">
           <span class="pill">🗓 ${esc(s.leave)} day${s.leave==="1"?"":"s"} leave</span>
           <span class="pill ${s.cert==="AOW"?"aow":"ow"}">${s.cert==="AOW"?"🔶 AOW needed":"🐠 OW OK"}</span>
-          <span class="pill" style="background:#e8f3ff;color:#1f6fc4">Booking ${hearts}</span>
+          <span class="pill" style="background:#e8f3ff;color:#1f6fc4">Booking ${"💙".repeat(s.ease)}${"🤍".repeat(5-s.ease)}</span>
         </div>
-        ${nowLine}
-        <div class="mini-cal">${cal}</div>
-        <div class="mini-cal-l">${M.map(n=>`<span>${n[0]}</span>`).join("")}</div>
       </div>
-      <details>
-        <summary>Details, route & dive shops</summary>
-        <div class="body">
-          <h4>What you'll see & where</h4><ul class="see">${see}</ul>
-          <h4>Certification</h4><p style="margin:0">${esc(s.certNote)}</p>
-          <h4>Getting there from SG</h4>${s.getThere&&s.getThere.length?`<ol>${s.getThere.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`:""}
-          ${s.fees&&s.fees.length?`<h4>Fees & cash 💵</h4>${ul(s.fees,"cash")}`:""}
-          <h4>Ease of booking · ${s.ease}/5</h4><p style="margin:0">${esc(s.easeNote)}</p>
-          ${ops?`<h4>Dive shops & boats</h4><ul>${ops}</ul>`:""}
-          <h4>Upcoming trips from SG 🗓️</h4><ul class="trips">${trips}</ul>
-          ${s.cost?`<h4>Rough cost</h4><p style="margin:0">${esc(s.cost)}</p>`:""}
-          ${s.tips&&s.tips.length?`<h4>Tips</h4>${ul(s.tips)}`:""}
-          ${s.verify&&s.verify.length?`<p class="verify">⚠️ Re-check before booking: ${s.verify.map(esc).join(", ")}.</p>`:""}
-          <h4>My notes 📝</h4><textarea class="note" placeholder="e.g. Went Apr 2025 with Gill Divers, saw 3 turtles…" oninput="__note('${s.id}', this.value)">${esc((LOG[s.id]||{}).n||"")}</textarea>
-          <p class="verify">Last checked: ${esc(s.checked||"—")} · Notes, 💙 and ✅ are saved on this device only.</p>
-        </div>
-      </details>
-    </article>`;
+      <div class="sheet-tabs" role="tablist">${TABS.map(([k,n])=>`<button type="button" role="tab" aria-selected="${k===sheetTab}" onclick="__sheetTab('${k}')">${n}</button>`).join("")}</div>
+      <div class="body sheet-body">${panes[sheetTab]}</div>
+      <p class="verify sheet-foot">Last checked: ${esc(s.checked||"—")} · <a href="#${esc(s.id)}" onclick="event.preventDefault();navigator.clipboard&&navigator.clipboard.writeText(location.href.split('#')[0]+'#${esc(s.id)}');this.textContent='Link copied ✓'">Copy link to this spot</a></p>`;
+  }
+  const sheetBg = document.getElementById("sheetBg"), sheetEl = document.getElementById("sheet");
+  function openSheet(id, keepTab){
+    const s = SPOTS.find(x=>x.id===id); if(!s) return;
+    if(!keepTab) sheetTab = "over";
+    sheetId = id; sheetEl.innerHTML = sheetHTML(s);
+    if(!sheetBg.classList.contains("open")){ sheetBg.classList.add("open"); document.body.classList.add("noscroll"); sheetEl.scrollTop = 0; }
+    try { history.replaceState(null, "", "#"+id); } catch(e){}
+  }
+  window.__sheetTab = k => { sheetTab = k; openSheet(sheetId, true); };
+  window.__closeSheet = () => { sheetBg.classList.remove("open"); document.body.classList.remove("noscroll"); sheetId = null; try { history.replaceState(null, "", location.pathname + location.search); } catch(e){} };
+  sheetBg.addEventListener("click", e => { if(e.target===sheetBg) __closeSheet(); });
+  document.addEventListener("keydown", e => { if(e.key==="Escape" && sheetId) __closeSheet(); });
+
+  const ROWS = [
+    { t: () => state.month ? `🌟 At their best in ${M[state.month-1]}` : "🌟 Easiest to book", f: s => state.month ? statusOf(s,state.month)==="best" : (s.ease||0)>=4 },
+    { t: () => "💙 Your wishlist", f: s => (LOG[s.id]||{}).w },
+    { t: () => "🏝️ No leave needed", f: s => catOf(s)==="weekend" },
+    { t: () => "✈️ Long-weekend escapes · 1–2 AL", f: s => catOf(s)==="short" },
+    { t: () => "🐋 Big animal encounters", f: s => (s.tags||[]).some(t=>["whalesharks","mantas","threshers","mola","sharks","whales"].includes(t)) },
+    { t: () => "🐌 Macro & critters", f: s => (s.tags||[]).includes("macro") },
+    { t: () => "⛵ Worth saving leave for · 3+ AL", f: s => catOf(s)==="liveaboard" }
+  ];
+  function rowHTML(title, list, i){
+    return `<section class="srow">
+      <div class="srow-h"><h3>${title} <span>${list.length}</span></h3>
+        <div class="srow-nav"><button type="button" aria-label="Scroll left" onclick="this.closest('.srow').querySelector('.strack').scrollBy({left:-300,behavior:'smooth'})">‹</button><button type="button" aria-label="Scroll right" onclick="this.closest('.srow').querySelector('.strack').scrollBy({left:300,behavior:'smooth'})">›</button></div></div>
+      <div class="strack">${list.map(miniCard).join("")}</div>
+    </section>`;
   }
 
   const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.08}) : null;
 
   function render(refit){
-    document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.type===state.type));
-    monthsEl.querySelectorAll("[data-m]").forEach(b=>b.setAttribute("aria-pressed", +b.dataset.m===state.month));
-    tagsEl.querySelectorAll("[data-t]").forEach(b=>b.setAttribute("aria-pressed", state.tags.has(b.dataset.t)));
-    ["inSeason","owOnly","easyOnly","wishOnly","divedOnly"].forEach(k=>document.getElementById(k).setAttribute("aria-pressed", state[k]));
-    const nW = Object.values(LOG).filter(x=>x.w).length, nD = Object.values(LOG).filter(x=>x.d).length;
+    sLeave.value = state.type; sMonth.value = String(state.month); sAnimal.value = [...state.tags][0] || "";
+    [sLeave, sMonth, sAnimal].forEach(fitSel);
+    ["inSeason","owOnly","easyOnly","wishOnly"].forEach(k=>document.getElementById(k).setAttribute("aria-pressed", state[k]));
+    const nW = Object.values(LOG).filter(x=>x.w).length;
     document.getElementById("wishOnly").innerHTML = `💙 Wishlist${nW?` <span class="mycount">${nW}</span>`:""}`;
-    document.getElementById("divedOnly").innerHTML = `✅ Dived${nD?` <span class="mycount">${nD}</span>`:""}`;
 
     const list = filtered();
-    const label = {weekend:"Weekend getaways · no leave 🏝️", short:"Short getaways · 1–2 days AL ✈️", liveaboard:"Liveaboards · 3+ days AL ⛵", all:"All spots 🐬"}[state.type];
+    const label = "Explore 🐬";
     document.getElementById("heading").textContent = label;
     const nBest = state.month ? list.filter(s=>statusOf(s,state.month)==="best").length : 0;
     document.getElementById("count").textContent = `${list.length} spot${list.length===1?"":"s"}` + (state.month?` · ${nBest} at their best in ${M[state.month-1]}`:"");
-    const cardsEl = document.getElementById("cards");
-    cardsEl.innerHTML = list.length ? list.map(card).join("") : `<div class="empty">🐡 No spots match these filters, try fewer!</div>`;
-    cardsEl.querySelectorAll(".card").forEach((c,i)=>{ c.style.transitionDelay = Math.min(i,8)*60+"ms"; io ? io.observe(c) : c.classList.add("in"); });
+    const rowsEl = document.getElementById("rows");
+    if(!list.length) rowsEl.innerHTML = `<div class="empty">🐡 No spots match. Try "any month" or "anything" in the sentence above.</div>`;
+    else if(list.length <= 5 || state.wishOnly) rowsEl.innerHTML = rowHTML("Your matches", list);
+    else rowsEl.innerHTML = ROWS.map(r=>({t:r.t(), l:list.filter(r.f)})).filter(r=>r.l.length).map(r=>rowHTML(r.t, r.l)).join("") + rowHTML("All matching spots", list);
+    if(sheetId) openSheet(sheetId, true);
 
     layer.clearLayers();
     list.forEach(s=>{
@@ -821,11 +888,6 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   }
 
 
-  /* how-it-works hide/show (remembered per browser) */
-  const how = document.getElementById("how"), hideBtn = document.getElementById("hideHow");
-  const setHow = closed => { how.classList.toggle("closed", closed); hideBtn.textContent = closed ? "Show" : "Hide"; };
-  try { setHow(localStorage.getItem("howClosed")==="1"); } catch(e){}
-  hideBtn.addEventListener("click", () => { const c = !how.classList.contains("closed"); setHow(c); try{ localStorage.setItem("howClosed", c?"1":"0"); }catch(e){} });
 
 
   /* ═════════ PUBLIC HOLIDAY PLANNER ═════════
@@ -1017,6 +1079,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   });
   render(true);
   renderHolidays();
+  const hashId = decodeURIComponent(location.hash.slice(1)); if(hashId && SPOTS.some(x=>x.id===hashId)) setTimeout(()=>openSheet(hashId), 300);
   setTimeout(()=>map.invalidateSize(),250);
 })();
 </script>

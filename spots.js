@@ -50,6 +50,8 @@ window.DIVE_SPOTS = [
   /* ───────────────────────── MALAYSIA ───────────────────────── */
   {
     id: "tioman",
+    photo: "photos/tioman.jpg",
+    photoCredit: "Klook",
     name: "Tioman",
     country: "Malaysia",
     type: "weekend",
@@ -106,6 +108,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "aur",
+    photo: "photos/aur.jpg",
     name: "Pulau Aur & Dayang",
     country: "Malaysia",
     type: "weekend",
@@ -152,6 +155,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "redang",
+    photo: "photos/redang.jpg",
     name: "Redang",
     country: "Malaysia",
     type: "weekend",
@@ -274,6 +278,7 @@ window.DIVE_SPOTS = [
   /* ───────────────────────── INDONESIA ───────────────────────── */
   {
     id: "nusapenida",
+    photo: "photos/nusapenida.jpg",
     name: "Nusa Penida & Lembongan (Bali)",
     country: "Indonesia",
     type: "weekend",
@@ -317,6 +322,8 @@ window.DIVE_SPOTS = [
 
   {
     id: "tulamben",
+    photo: "photos/tulamben.jpg",
+    photoCredit: "tinyocean.eu",
     name: "Tulamben & Amed (Bali)",
     country: "Indonesia",
     type: "weekend",
@@ -399,6 +406,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "moalboal",
+    photo: "photos/moalboal.jpg",
     name: "Moalboal (Cebu)",
     country: "Philippines",
     type: "weekend",
