@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dive Events in SG</title>
+<meta name="description" content="Upcoming diving-related events in Singapore: dive expos, local dives and group trips.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pages.css">
+<style>
+.ev{display:grid;grid-template-columns:72px 1fr;gap:14px;border:2px solid var(--line);border-radius:22px;padding:14px;margin:10px 0;background:#fff;transition:transform .25s,border-color .25s}
+.ev:hover{transform:translateY(-3px);border-color:var(--blue)}
+.date{background:linear-gradient(160deg,#4fc3f0,#2f86de);color:#fff;border-radius:16px;text-align:center;padding:8px 4px;align-self:start}
+.date .m{display:block;font:800 12px Nunito;text-transform:uppercase;letter-spacing:.08em;opacity:.9}
+.date .d{display:block;font:700 26px Fredoka;line-height:1.05}
+.date .y{display:block;font:700 11px Nunito;opacity:.85}
+.ev h3{margin:0 0 2px !important;font-size:18px}
+.ev .where{color:var(--muted);font-weight:700;font-size:13px}
+.ev p{margin:6px 0 !important;font-size:14.5px}
+.ev .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.ev .tag{font:800 11.5px Nunito;padding:3px 9px;border-radius:999px;background:var(--aqua-soft);color:#1f8f86}
+.ev .tag.check{background:#fff4dc;color:#b07800}
+.ev .links{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;font-size:13.5px}
+.ongoing .ev{grid-template-columns:52px 1fr}
+.ongoing .date{background:var(--blue-soft);color:var(--blue);font-size:26px;display:grid;place-items:center;padding:8px 0}
+.empty{color:var(--muted);font-weight:700}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="doodles"></div>
+  <div class="wrap">
+    <a class="back" href="index.html">← Back to dive spots</a>
+    <h1>Dive events in Singapore 🗓️</h1>
+    <p>Expos, local dives and group trips: things to put in your calendar between dive holidays.</p>
+    <div class="tagrow"><span>🎪 Expos</span><span>🤿 Local dives</span><span>👯 Meetups</span></div>
+  </div>
+  <div class="waves"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="#f2f8ff" d="M0,34 C120,8 240,8 360,34 C480,60 600,60 720,34 C840,8 960,8 1080,34 C1200,60 1320,60 1440,34 L1440,60 L0,60Z"/></svg></div>
+</header>
+
+<main class="wrap">
+  <nav class="toc" aria-label="On this page">
+    <a href="#upcoming">Upcoming</a><a href="#ongoing">Regular & watch list</a><a href="#more">Find more</a>
+  </nav>
+
+  <section class="block" id="upcoming">
+    <h2>Upcoming 📅</h2>
+    <div id="upList"></div>
+  </section>
+
+  <section class="block ongoing" id="ongoing">
+    <h2>Regular & watch list 👀</h2>
+    <p>No fixed date yet, or happens regularly. Worth following.</p>
+    <div id="onList"></div>
+  </section>
+
+  <section class="block" id="more">
+    <h2>Find more events 🔎</h2>
+    <ul>
+      <li><a href="https://www.adex.asia" target="_blank" rel="noopener">ADEX official site</a>: tickets, speakers and the Voice of the Ocean competition.</li>
+      <li><a href="https://www.meetup.com/the-singapore-scuba-diving-meetup-group/" target="_blank" rel="noopener">The Singapore Scuba Diving Meetup Group</a>: group trips and diver meetups.</li>
+      <li><a href="https://www.nparks.gov.sg" target="_blank" rel="noopener">NParks</a>: Sisters' Islands Marine Park news and guided programmes.</li>
+      <li><a href="https://openwateratlas.com/en/events/" target="_blank" rel="noopener">Open Water Atlas</a>: global dive and watersports event calendar.</li>
+      <li>Follow your favourite Singapore dive schools on Instagram. Most announce trips there first.</li>
+    </ul>
+    <div class="callout">✏️ To add an event, open <code>events.html</code> on GitHub, find <code>EVENTS</code> near the bottom, and copy one <code>{ … },</code> block. Past events hide themselves automatically.</div>
+  </section>
+
+  <div class="next">
+    <a href="open-water.html"><b>Open Water licence →</b><span>Get certified from Singapore</span></a>
+    <a href="advanced-open-water.html"><b>Advanced Open Water →</b><span>Go to 30m, unlock Sipadan</span></a>
+  </div>
+</main>
+
+<footer>🗓️ Last checked Oct 2026. Dates can change, so always confirm on the organiser's page.</footer>
+
+<script>
+/* ===================================================================
+   EDIT EVENTS HERE
+   EVENTS  = things with dates. Format dates as "YYYY-MM-DD".
+             end is optional (for multi-day events).
+             check: true shows a "confirm date" tag.
+   ONGOING = regular things or "watch this space" items (no date).
+   =================================================================== */
+const EVENTS = [
+  { start:"2027-02-23", end:"2027-03-02", title:"Deep South Maldives liveaboard (8D7N)",
+    where:"Maldives · MV Ariyal · organised by Singapore Scuba Diving Meetup",
+    what:"Group liveaboard trip organised by the Singapore meetup community. Price excludes green tax, crew tips and domestic flights.",
+    url:"https://www.meetup.com/the-singapore-scuba-diving-meetup-group/", tags:["Group trip"] },
+  { start:"2027-04-09", end:"2027-04-11", title:"ADEX 2027: Asia Dive Expo",
+    where:"Marina Bay Sands Expo (per expo listings) · 9am–6pm",
+    what:"Asia's biggest dive show: deals on trips and gear, talks by famous explorers, free try-dives and freediving, the Voice of the Ocean photo awards, and a kids' zone. 2026 day passes started from S$10.",
+    url:"https://www.adex.asia", tags:["Expo","Free try-dives"], check:true }
+];
+
+const ONGOING = [
+  { icon:"🏝️", title:"Sisters' Islands Marine Park diving reopening",
+    when:"Expected later in 2026",
+    what:"Singapore's marine park dive trail is set to reopen after restoration. It's likely guided-only, with limited numbers. Watch NParks for permit and operator details.",
+    url:"https://www.thescubanews.com/2026/04/15/singapore-set-to-reopen-diving-at-sisters-islands-marine-park-after-multi-year-restoration/", tags:["Watch list"] },
+  { icon:"🤿", title:"Pulau Hantu weekend dives",
+    when:"Most weekends · year-round",
+    what:"Singapore's local dive site, 30 minutes by boat. Low visibility but surprisingly rich, with nudibranchs, seahorses and octopus. A good way to keep your skills fresh.",
+    url:"https://travel.padi.com/dive-trip/singapur/pulau-hantu-tauchausflug-13981", tags:["Local dive"] },
+  { icon:"📸", title:"ADEX Voice of the Ocean competition",
+    when:"Usually opens months before ADEX",
+    what:"Underwater photo, video and art competition. Winners are shown at ADEX in April.",
+    url:"https://www.divephotoguide.com/underwater-photography-scuba-ocean-news/adex-voice-ocean-2026-competition-launched", tags:["Competition"] }
+];
+
+/* ------------- rendering (no need to edit below) ------------- */
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const toD = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); };
+const ymd = d => `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`;
+const today = new Date(); today.setHours(0,0,0,0);
+
+const upcoming = EVENTS.filter(e => toD(e.end || e.start) >= today).sort((a,b) => toD(a.start) - toD(b.start));
+document.getElementById("upList").innerHTML = upcoming.length ? upcoming.map(e => {
+  const s = toD(e.start), en = e.end ? toD(e.end) : null;
+  const range = en ? `${s.getDate()} ${MON[s.getMonth()]} – ${en.getDate()} ${MON[en.getMonth()]} ${en.getFullYear()}` : `${s.getDate()} ${MON[s.getMonth()]} ${s.getFullYear()}`;
+  const endPlus = new Date((en || s).getTime()); endPlus.setDate(endPlus.getDate()+1);
+  const gcal = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(e.title)}&dates=${ymd(s)}/${ymd(endPlus)}&location=${encodeURIComponent(e.where||"")}&details=${encodeURIComponent((e.what||"")+"\n"+(e.url||""))}`;
+  return `<div class="ev">
+    <div class="date"><span class="m">${MON[s.getMonth()]}</span><span class="d">${s.getDate()}</span><span class="y">${s.getFullYear()}</span></div>
+    <div>
+      <h3>${esc(e.title)}</h3>
+      <div class="where">📍 ${esc(e.where)} · ${range}</div>
+      <p>${esc(e.what)}</p>
+      <div class="tags">${(e.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}${e.check?`<span class="tag check">⚠️ confirm date</span>`:""}</div>
+      <div class="links">${e.url?`<a href="${esc(e.url)}" target="_blank" rel="noopener">Details →</a>`:""}<a href="${gcal}" target="_blank" rel="noopener">＋ Add to Google Calendar</a></div>
+    </div>
+  </div>`;
+}).join("") : `<p class="empty">No dated events right now. Check the watch list below. 🐠</p>`;
+
+document.getElementById("onList").innerHTML = ONGOING.map(e => `<div class="ev">
+  <div class="date">${e.icon||"🐠"}</div>
+  <div>
+    <h3>${esc(e.title)}</h3>
+    <div class="where">🕒 ${esc(e.when)}</div>
+    <p>${esc(e.what)}</p>
+    <div class="tags">${(e.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
+    ${e.url?`<div class="links"><a href="${esc(e.url)}" target="_blank" rel="noopener">More info →</a></div>`:""}
+  </div>
+</div>`).join("");
+</script>
+<script src="pages.js"></script>
+</body>
+</html>

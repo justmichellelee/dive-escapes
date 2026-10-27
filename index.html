@@ -34,8 +34,7 @@ h1,h2,h3{font-family:Fredoka,Nunito,sans-serif}
 .hero h1{color:#0f3157;text-shadow:0 2px 0 rgba(255,255,255,.5)}
 .doodles{position:absolute;inset:0;z-index:1;pointer-events:none}
 .doodles span{position:absolute;display:block;animation:floaty 7s ease-in-out infinite;opacity:.9}
-.doodles svg{width:100%;height:100%;overflow:visible}
-.doodles path,.doodles circle,.doodles ellipse{fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.doodles img{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 1px 1px rgba(15,49,87,.15))}
 @media (max-width:600px){.doodles .hide-sm{display:none}}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-10px) rotate(calc(var(--r,0deg) + 6deg))}}
 .hero .badge{display:inline-block;background:#fff;border-radius:999px;padding:4px 12px;font:700 13px Nunito;color:var(--pink);margin-bottom:12px;box-shadow:var(--shadow);position:relative;z-index:2}
@@ -155,8 +154,49 @@ table.cal td.c.ok i{background:var(--ok)}
 table.cal td.c.best i{background:var(--best)}
 table.cal th.sel{color:var(--pink)}
 table.cal tr{cursor:pointer}
+table.cal tr.grp{cursor:default}
+table.cal tr.grp td{position:static;background:var(--pink-soft);color:var(--pink);font:800 12.5px Nunito;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:10px;text-align:left}
+table.cal tr.grp:not(:first-child) td{}
+table.cal tbody tr.grp + tr td{padding-top:4px}
 table.cal tr:hover td.c i{transform:scaleY(1.25)}
 
+/* ───── HOW IT WORKS ───── */
+.how{margin:6px auto 4px;background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:16px 16px 14px;position:relative}
+.how h2{font-size:20px;margin:0 0 10px}
+.how .hide-how{position:absolute;top:12px;right:12px;border:0;background:var(--pink-soft);color:var(--pink);font:800 12px Nunito;border-radius:999px;padding:5px 10px;cursor:pointer}
+.how ol{list-style:none;margin:0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(4,1fr)}
+@media (max-width:760px){.how ol{grid-template-columns:1fr 1fr}}
+.how li{background:var(--bg);border-radius:18px;padding:12px;position:relative}
+.how .n{position:absolute;top:-8px;left:-6px;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#2f86de,#4fc3f0);color:#fff;font:800 13px Nunito;display:grid;place-items:center;box-shadow:0 2px 6px rgba(47,134,222,.35)}
+.how .ico{font-size:24px;display:block;margin-bottom:2px}
+.how b{display:block;font-size:14.5px}
+.how small{display:block;color:var(--muted);font-size:12.5px;font-weight:600;line-height:1.4;margin-top:2px}
+.how .key{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.how.closed ol,.how.closed .key{display:none}
+.how.closed h2{margin:0;font-size:16px}
+/* ───── FYI CAROUSEL ───── */
+.fyi-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 10px;gap:10px}
+.fyi-head h2{font-size:24px;margin:0}
+.fyi-nav{display:flex;gap:8px}
+.fyi-nav button{width:38px;height:38px;border-radius:50%;border:0;background:#fff;box-shadow:var(--shadow);color:var(--pink);font:800 18px Nunito;cursor:pointer;transition:transform .2s}
+.fyi-nav button:hover{transform:scale(1.1)}
+.fyi{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 18px;-webkit-overflow-scrolling:touch}
+.fyi::-webkit-scrollbar{display:none}
+.fyi a{flex:0 0 min(82%,320px);scroll-snap-align:start;text-decoration:none;color:var(--ink);background:#fff;border-radius:26px;box-shadow:var(--shadow);overflow:hidden;transition:transform .3s cubic-bezier(.2,.9,.3,1.3)}
+.fyi a:hover{transform:translateY(-6px) rotate(-.5deg)}
+.fyi .pic{height:130px;display:grid;place-items:center;font-size:62px;position:relative;overflow:hidden}
+.fyi .pic span{animation:bobby 3.2s ease-in-out infinite;display:inline-block;filter:drop-shadow(0 4px 6px rgba(23,58,94,.2))}
+.fyi .pic i{position:absolute;border-radius:50%;border:2px solid rgba(255,255,255,.8);animation:bubUp2 5s ease-in infinite}
+.fyi .txt{padding:12px 16px 16px}
+.fyi .kicker{font:800 11.5px Nunito;text-transform:uppercase;letter-spacing:.08em;color:var(--lilac)}
+.fyi h3{font-size:19px;margin:2px 0 4px}
+.fyi p{margin:0;color:var(--muted);font-weight:600;font-size:13.5px}
+.fyi .read{display:inline-block;margin-top:10px;font:800 13px Nunito;color:var(--pink)}
+.dots{display:flex;justify-content:center;gap:6px;margin:-6px 0 22px}
+.dots i{width:7px;height:7px;border-radius:99px;background:var(--line);transition:all .3s}
+.dots i.on{width:20px;background:var(--pink)}
+@keyframes bobby{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-8px) rotate(4deg)}}
+@keyframes bubUp2{0%{transform:translateY(40px);opacity:0}20%{opacity:1}100%{transform:translateY(-120px);opacity:0}}
 footer{color:var(--muted);font-size:13px;font-weight:600;padding:24px 0 50px;text-align:center}
 footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in-out infinite}
 
@@ -205,6 +245,26 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   </div>
 </header>
 
+<section class="wrap" aria-label="How this site works">
+  <div class="how" id="how">
+    <button class="hide-how" id="hideHow" type="button">Hide</button>
+    <h2>How it works 🐚</h2>
+    <ol>
+      <li><span class="n">1</span><span class="ico">🏝️</span><b>Pick your trip type</b><small>Weekend (no leave), 1–2 days AL, or Liveaboard (3+ days AL)</small></li>
+      <li><span class="n">2</span><span class="ico">📅</span><b>Pick a month</b><small>Starts on this month. Spots re-sort so the best ones for that month come first</small></li>
+      <li><span class="n">3</span><span class="ico">🐢</span><b>Pick animals (optional)</b><small>Tap turtles, mantas, whale sharks… to see only spots that have them</small></li>
+      <li><span class="n">4</span><span class="ico">📍</span><b>Tap a pin or card</b><small>Open "Details" for how to get there, cash fees, dive shops & upcoming trips from SG</small></li>
+    </ol>
+    <div class="key">
+      <span><i class="dot" style="background:var(--best)"></i>Best season</span>
+      <span><i class="dot" style="background:var(--ok)"></i>Diveable</span>
+      <span><i class="dot" style="background:var(--closed)"></i>Off season</span>
+      <span>💙💙💙🤍🤍 = how easy to book</span>
+      <span>🔶 = Advanced cert needed</span>
+    </div>
+  </div>
+</section>
+
 <div class="controls">
   <div class="wrap">
     <div class="row">
@@ -247,6 +307,25 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
 
   <div class="summary"><h2>Season calendar 📅</h2><small>Tap a row to jump to it</small></div>
   <div class="cal-wrap"><table class="cal" id="cal"></table></div>
+
+  <div class="fyi-head"><h2>FYI 💡</h2>
+    <div class="fyi-nav"><button type="button" id="fyiPrev" aria-label="Previous">‹</button><button type="button" id="fyiNext" aria-label="Next">›</button></div>
+  </div>
+  <div class="fyi" id="fyi">
+    <a href="open-water.html">
+      <div class="pic" style="background:linear-gradient(160deg,#c8f3f0,#5fcad6)"><span>🐠</span><i style="left:20%;width:14px;height:14px;bottom:10px"></i><i style="left:76%;width:10px;height:10px;bottom:0;animation-delay:-2s"></i></div>
+      <div class="txt"><div class="kicker">Get certified</div><h3>Open Water licence</h3><p>What it is, how to get it from Singapore (Oceanarium, Tioman, Bali, Gili) and what you can do after.</p><span class="read">Read more →</span></div>
+    </a>
+    <a href="advanced-open-water.html">
+      <div class="pic" style="background:linear-gradient(160deg,#d8edff,#6eaeec)"><span>🦈</span><i style="left:24%;width:12px;height:12px;bottom:6px;animation-delay:-1s"></i><i style="left:70%;width:16px;height:16px;bottom:0;animation-delay:-3s"></i></div>
+      <div class="txt"><div class="kicker">Level up</div><h3>Advanced Open Water</h3><p>Go to 30m and unlock Sipadan, threshers and mola mola. Where to do it and which electives to pick.</p><span class="read">Read more →</span></div>
+    </a>
+    <a href="events.html">
+      <div class="pic" style="background:linear-gradient(160deg,#e2edff,#7f9ff0)"><span>🗓️</span><i style="left:18%;width:10px;height:10px;bottom:4px;animation-delay:-2.5s"></i><i style="left:80%;width:14px;height:14px;bottom:0;animation-delay:-.5s"></i></div>
+      <div class="txt"><div class="kicker">What's on</div><h3>Dive events in Singapore</h3><p>ADEX, Pulau Hantu dives, group trips and more, with an add-to-calendar button.</p><span class="read">Read more →</span></div>
+    </a>
+  </div>
+  <div class="dots" id="fyiDots"></div>
 </main>
 
 <footer>
@@ -379,30 +458,20 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   document.getElementById("heroScene").innerHTML = `<svg viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid slice">
     <g class="glide"><g transform="translate(0 205) scale(.9)"><g class="swim">${C.whaleshark()}</g></g></g>
     <g class="glide2"><g transform="translate(0 110) scale(.55)"><g class="swim2">${C.turtle()}</g></g></g>
-    <g transform="translate(880 90) scale(.6)"><g class="swim">${C.manta()}</g></g>
     ${fish(760,210,1.4,"#ffd76a")}${fish(790,228,1.2,"#ff9cc2")}${fish(812,206,1.1,"#fff")}
   </svg>`;
 
-  /* ═════════ HEADER DOODLES (white line art) ═════════ */
-  const DOODLE = {
-    octopus:`<path d="M30,34 C14,34 10,10 30,6 C50,10 46,34 30,34Z"/><circle cx="24" cy="20" r="1.6"/><circle cx="36" cy="20" r="1.6"/><path d="M27,26 q3,3 6,0"/><path d="M18,32 q-4,10 -10,12 M24,34 q-2,10 -6,16 M30,34 q0,10 2,16 M36,34 q2,10 8,14 M42,32 q6,8 12,8"/>`,
-    jelly:`<path d="M10,26 C10,6 50,6 50,26 Q45,30 40,26 Q35,30 30,26 Q25,30 20,26 Q15,30 10,26Z"/><path d="M18,30 q-4,8 2,14 q5,6 0,12 M30,30 q4,8 -2,14 q-4,6 2,12 M42,30 q-4,8 2,14 q4,6 -1,12"/><circle cx="24" cy="18" r="1.4"/><circle cx="36" cy="18" r="1.4"/>`,
-    star:`<path d="M30,6 L36,22 L53,23 L40,33 L45,50 L30,40 L15,50 L20,33 L7,23 L24,22Z"/><circle cx="26" cy="27" r="1.4"/><circle cx="34" cy="27" r="1.4"/><path d="M27,32 q3,2 6,0"/>`,
-    seahorse:`<path d="M34,8 q10,0 10,8 l6,2 l-6,3 q-2,6 -8,8 q8,6 6,16 q-2,10 -12,10 q-8,0 -8,-7 q0,-6 6,-6 q4,0 4,4"/><path d="M34,8 q-6,0 -8,6 q-2,6 4,8"/><circle cx="38" cy="14" r="1.4"/><path d="M28,26 l-6,-2 M28,32 l-6,0 M30,38 l-6,2"/>`,
-    crab:`<ellipse cx="30" cy="32" rx="16" ry="10"/><path d="M14,30 q-8,-4 -8,-12 q4,2 6,0 q-2,-4 2,-6 q4,4 2,10 M46,30 q8,-4 8,-12 q-4,2 -6,0 q2,-4 -2,-6 q-4,4 -2,10"/><path d="M16,38 l-8,6 M20,41 l-6,8 M44,38 l8,6 M40,41 l6,8"/><path d="M25,22 v-6 M35,22 v-6"/><circle cx="25" cy="14" r="2"/><circle cx="35" cy="14" r="2"/><path d="M26,34 q4,3 8,0"/>`,
-    shell:`<path d="M30,48 L10,22 Q30,0 50,22Z"/><path d="M30,48 L20,14 M30,48 L30,10 M30,48 L40,14"/><path d="M24,48 h12"/>`,
-    fish:`<path d="M10,30 C18,14 40,14 48,30 C40,46 18,46 10,30Z"/><path d="M10,30 L2,22 L2,38Z"/><circle cx="38" cy="27" r="1.8"/><path d="M26,22 q4,8 0,16"/>`,
-    whale:`<path d="M6,34 C10,18 40,14 52,26 C56,32 52,40 44,40 L18,40 C10,40 6,38 6,34Z"/><path d="M6,34 L0,26 M6,34 L0,40"/><path d="M40,14 q-2,-8 4,-10 M44,14 q2,-8 8,-8"/><circle cx="42" cy="30" r="1.6"/><path d="M14,36 q14,4 30,0"/>`,
-    bubble3:`<circle cx="20" cy="40" r="8"/><circle cx="34" cy="24" r="5"/><circle cx="26" cy="10" r="3"/>`
-  };
+  /* ═════════ HEADER DOODLES (PNG line art in /doodles) ═════════ */
   const PLACES = [
-    {k:"octopus",x:80,y:6,s:72,r:"-8deg"},{k:"jelly",x:64,y:42,s:58,r:"6deg",c:"hide-sm"},
-    {k:"star",x:4,y:72,s:46,r:"-14deg"},{k:"seahorse",x:90,y:46,s:64,r:"4deg"},
-    {k:"crab",x:46,y:70,s:52,r:"0deg",c:"hide-sm"},{k:"shell",x:22,y:74,s:40,r:"12deg"},
-    {k:"fish",x:52,y:4,s:50,r:"-4deg",c:"hide-sm"},{k:"whale",x:72,y:72,s:66,r:"0deg"},
-    {k:"bubble3",x:40,y:34,s:40,r:"0deg",c:"hide-sm"},{k:"jelly",x:30,y:2,s:40,r:"-6deg",c:"hide-sm"}
+    {k:"manta",x:76,y:4,s:96,r:"-6deg"},{k:"turtle",x:88,y:44,s:74,r:"8deg"},
+    {k:"starfish",x:3,y:72,s:50,r:"-14deg"},{k:"jellyfish",x:62,y:40,s:64,r:"4deg",c:"hide-sm"},
+    {k:"fishschool",x:48,y:4,s:62,r:"0deg",c:"hide-sm"},{k:"scallop",x:22,y:76,s:40,r:"10deg"},
+    {k:"mask",x:44,y:70,s:58,r:"-6deg",c:"hide-sm"},{k:"fins",x:70,y:72,s:60,r:"12deg"},
+    {k:"tanks",x:96,y:8,s:46,r:"8deg",c:"hide-sm"},{k:"bubbles",x:34,y:36,s:40,r:"0deg",c:"hide-sm"},
+    {k:"snorkel",x:30,y:2,s:46,r:"-10deg",c:"hide-sm"},{k:"coral",x:56,y:74,s:50,r:"0deg",c:"hide-sm"},
+    {k:"conch",x:92,y:80,s:38,r:"0deg",c:"hide-sm"},{k:"seaweed",x:12,y:60,s:44,r:"0deg",c:"hide-sm"}
   ];
-  document.getElementById("doodles").innerHTML = PLACES.map((p,i)=>`<span class="${p.c||""}" style="left:${p.x}%;top:${p.y}%;width:${p.s}px;height:${p.s}px;--r:${p.r};animation-delay:${-i*0.9}s;animation-duration:${6+(i%4)}s"><svg viewBox="0 0 60 56">${DOODLE[p.k]}</svg></span>`).join("");
+  document.getElementById("doodles").innerHTML = PLACES.map((p,i)=>`<span class="${p.c||""}" style="left:${p.x}%;top:${p.y}%;width:${p.s}px;height:${p.s}px;--r:${p.r};animation-delay:${-i*0.9}s;animation-duration:${6+(i%4)}s"><img src="doodles/${p.k}.png" alt="" loading="lazy"></span>`).join("");
   const bub = document.getElementById("bubbles");
   bub.innerHTML = Array.from({length:16},(_,i)=>{const sz=6+Math.random()*16;return `<i style="left:${Math.random()*100}%;width:${sz}px;height:${sz}px;animation-duration:${6+Math.random()*8}s;animation-delay:${-Math.random()*10}s"></i>`;}).join("");
 
@@ -419,7 +488,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   document.getElementById("sort").addEventListener("change", e => { state.sort=e.target.value; render(); });
 
   /* ═════════ MAP ═════════ */
-  const map = L.map("map", { scrollWheelZoom:false }).setView([6,112],4);
+  const map = L.map("map", { scrollWheelZoom:true, zoomSnap:0.5, wheelPxPerZoomLevel:90 }).setView([6,112],4);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution:"&copy; OpenStreetMap contributors", maxZoom:18 }).addTo(map);
   L.marker([1.35,103.82],{icon:L.divIcon({className:"",html:'<div class="sg-pin">🏠</div>',iconSize:[26,26],iconAnchor:[13,13]})}).addTo(map).bindTooltip("Home sweet Singapore");
   const layer = L.layerGroup().addTo(map);
@@ -529,11 +598,32 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     if(refit && list.length) map.fitBounds(L.latLngBounds(list.map(s=>[s.lat,s.lng]).concat([[1.35,103.82]])).pad(.15));
 
     const calList = SPOTS.filter(inTab);
+    const ORDER = ["Singapore","Malaysia","Indonesia","Philippines","Thailand","Japan", ...new Set(SPOTS.map(s=>s.country))].filter((c,i,a)=>a.indexOf(c)===i);
     document.getElementById("cal").innerHTML =
       `<thead><tr><th>Spot</th>${M.map((n,i)=>`<th class="${state.month===i+1?"sel":""}">${n}</th>`).join("")}</tr></thead><tbody>` +
-      calList.map(s=>`<tr onclick="__jump('${s.id}')"><td>${(TAGS[(s.tags||[])[0]]||["🐠"])[0]} ${esc(s.name)}</td>${M.map((n,i)=>`<td class="c ${statusOf(s,i+1)}" title="${n}"><i></i></td>`).join("")}</tr>`).join("") + `</tbody>`;
+      ORDER.filter(c=>calList.some(s=>s.country===c)).map(c=>
+        `<tr class="grp"><td colspan="13">${FLAG[c]||""} ${c}</td></tr>` +
+        calList.filter(s=>s.country===c).map(s=>`<tr onclick="__jump('${s.id}')"><td>${(TAGS[(s.tags||[])[0]]||["🐠"])[0]} ${esc(s.name)}</td>${M.map((n,i)=>`<td class="c ${statusOf(s,i+1)}" title="${n}"><i></i></td>`).join("")}</tr>`).join("")
+      ).join("") + `</tbody>`;
   }
 
+
+  /* how-it-works hide/show (remembered per browser) */
+  const how = document.getElementById("how"), hideBtn = document.getElementById("hideHow");
+  const setHow = closed => { how.classList.toggle("closed", closed); hideBtn.textContent = closed ? "Show" : "Hide"; };
+  try { setHow(localStorage.getItem("howClosed")==="1"); } catch(e){}
+  hideBtn.addEventListener("click", () => { const c = !how.classList.contains("closed"); setHow(c); try{ localStorage.setItem("howClosed", c?"1":"0"); }catch(e){} });
+
+  /* FYI carousel */
+  const fyi = document.getElementById("fyi"), dotsEl = document.getElementById("fyiDots");
+  const slides = [...fyi.children];
+  dotsEl.innerHTML = slides.map(()=>"<i></i>").join("");
+  const step = () => slides[0].getBoundingClientRect().width + 14;
+  const syncDots = () => { const i = Math.round(fyi.scrollLeft / step()); [...dotsEl.children].forEach((d,j)=>d.classList.toggle("on", j===Math.min(i,slides.length-1))); };
+  fyi.addEventListener("scroll", () => requestAnimationFrame(syncDots));
+  document.getElementById("fyiPrev").onclick = () => fyi.scrollBy({left:-step(), behavior:"smooth"});
+  document.getElementById("fyiNext").onclick = () => fyi.scrollBy({left:step(), behavior:"smooth"});
+  syncDots();
   render(true);
   setTimeout(()=>map.invalidateSize(),250);
 })();
