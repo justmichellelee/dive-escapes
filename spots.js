@@ -191,6 +191,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "perhentian",
+    photo: "photos/perhentian.jpg",
     name: "Perhentian Islands",
     country: "Malaysia",
     type: "weekend",
@@ -226,6 +227,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "sipadan",
+    photo: "photos/sipadan.jpg",
     name: "Sipadan & Mabul",
     country: "Malaysia",
     type: "weekend",
@@ -363,6 +365,7 @@ window.DIVE_SPOTS = [
   /* ───────────────────────── PHILIPPINES ───────────────────────── */
   {
     id: "malapascua",
+    photo: "photos/malapascua.jpg",
     name: "Malapascua (Cebu)",
     country: "Philippines",
     type: "weekend",
@@ -442,6 +445,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "anilao",
+    photo: "photos/anilao.jpg",
     name: "Anilao (Batangas)",
     country: "Philippines",
     type: "weekend",
@@ -521,6 +525,7 @@ window.DIVE_SPOTS = [
   /* ───────────────────────── JAPAN ───────────────────────── */
   {
     id: "richelieu",
+    photo: "photos/richelieu.jpg",
     name: "Richelieu Rock (Surin)",
     country: "Thailand",
     type: "weekend",
@@ -559,6 +564,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "kerama",
+    photo: "photos/kerama.jpg",
     name: "Kerama Islands (Okinawa)",
     country: "Japan",
     type: "weekend",
@@ -593,6 +599,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "ishigaki",
+    photo: "photos/ishigaki.jpg",
     name: "Ishigaki (Yaeyama)",
     country: "Japan",
     type: "weekend",
@@ -628,6 +635,7 @@ window.DIVE_SPOTS = [
   /* ───────────────────────── MORE: PULAU WEH, TAIWAN ───────────────────────── */
   {
     id: "pulauweh",
+    photo: "photos/pulauweh.jpg",
     name: "Pulau Weh (Sabang, Aceh)",
     country: "Indonesia",
     type: "weekend",
@@ -672,6 +680,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "greenisland",
+    photo: "photos/greenisland.jpg",
     name: "Green Island (Lüdao)",
     country: "Taiwan",
     type: "weekend",
@@ -742,6 +751,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "xiaoliuqiu",
+    photo: "photos/xiaoliuqiu.jpg",
     name: "Xiaoliuqiu (Lambai Island)",
     country: "Taiwan",
     type: "weekend",
@@ -776,6 +786,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "kenting",
+    photo: "photos/kenting.jpg",
     name: "Kenting (Houbihu)",
     country: "Taiwan",
     type: "weekend",
@@ -845,6 +856,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "similan",
+    photo: "photos/similan.jpg",
     name: "Similan Islands (liveaboard)",
     country: "Thailand",
     type: "liveaboard",
@@ -882,6 +894,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "komodo",
+    photo: "photos/komodo.jpg",
     name: "Komodo",
     country: "Indonesia",
     type: "liveaboard",
@@ -917,6 +930,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "rajaampat",
+    photo: "photos/rajaampat.jpg",
     name: "Raja Ampat",
     country: "Indonesia",
     type: "liveaboard",
@@ -951,6 +965,7 @@ window.DIVE_SPOTS = [
 
   {
     id: "tubbataha",
+    photo: "photos/tubbataha.jpg",
     name: "Tubbataha Reefs",
     country: "Philippines",
     type: "liveaboard",

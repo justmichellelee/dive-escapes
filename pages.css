@@ -9,19 +9,19 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:15.5px/1.6 Nunito,system-ui,sans-serif;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font:15.5px/1.6 Poppins,system-ui,sans-serif;overflow-x:hidden}
 a{color:var(--blue);font-weight:700}
-h1,h2,h3{font-family:Fredoka,Nunito,sans-serif;line-height:1.15}
+h1,h2,h3{font-family:Montserrat,sans-serif;line-height:1.15}
 .wrap{max-width:860px;margin:0 auto;padding:0 16px}
 
 /* hero */
 .hero{position:relative;overflow:hidden;background:linear-gradient(175deg,#d4efff 0%,#9fd3f7 40%,#5fb0ec 75%,#3b8fd9 100%);padding:22px 0 80px}
-.hero .back{position:relative;z-index:2;display:inline-block;background:#fff;color:var(--blue);text-decoration:none;border-radius:999px;padding:5px 12px;font:800 13px Nunito;box-shadow:var(--shadow);margin-bottom:16px}
+.hero .back{position:relative;z-index:2;display:inline-block;background:#fff;color:var(--blue);text-decoration:none;border-radius:999px;padding:5px 12px;font:700 13px Poppins;box-shadow:var(--shadow);margin-bottom:16px}
 .hero .back:hover{transform:translateX(-2px)}
 .hero h1{position:relative;z-index:2;font-size:clamp(30px,6.5vw,48px);margin:0 0 8px;color:#0f3157;text-shadow:0 2px 0 rgba(255,255,255,.5)}
 .hero p{position:relative;z-index:2;margin:0;max-width:600px;font-weight:700;color:#123a63}
 .hero .tagrow{position:relative;z-index:2;display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.hero .tagrow span{background:rgba(255,255,255,.85);border-radius:999px;padding:4px 11px;font:800 12.5px Nunito}
+.hero .tagrow span{background:rgba(255,255,255,.85);border-radius:999px;padding:4px 11px;font:700 12.5px Poppins}
 .waves{position:absolute;left:0;right:0;bottom:-1px;height:60px;z-index:3}
 .waves svg{width:200%;height:100%;animation:wave 12s linear infinite}
 .doodles{position:absolute;inset:0;z-index:1;pointer-events:none}
@@ -32,7 +32,7 @@ h1,h2,h3{font-family:Fredoka,Nunito,sans-serif;line-height:1.15}
 /* jump nav */
 .toc{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding:12px 2px 6px;position:sticky;top:0;background:var(--bg);z-index:10}
 .toc::-webkit-scrollbar{display:none}
-.toc a{flex:0 0 auto;text-decoration:none;border:2px solid var(--line);background:#fff;color:var(--ink);padding:5px 12px;border-radius:999px;font:700 13px Nunito}
+.toc a{flex:0 0 auto;text-decoration:none;border:2px solid var(--line);background:#fff;color:var(--ink);padding:5px 12px;border-radius:999px;font:700 13px Poppins}
 .toc a:hover{border-color:var(--blue);color:var(--blue)}
 
 /* sections */
@@ -46,12 +46,12 @@ section.block li{margin:4px 0}
 
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0 4px}
 .fact{background:var(--bg);border-radius:18px;padding:12px;text-align:center}
-.fact .big{font:700 26px Fredoka,sans-serif;color:var(--blue);display:block;line-height:1.1}
+.fact .big{font:700 26px Montserrat,sans-serif;color:var(--blue);display:block;line-height:1.1}
 .fact small{color:var(--muted);font-weight:700;font-size:12.5px}
 
 .steps{list-style:none;padding:0 !important;counter-reset:s;display:grid;gap:10px}
 .steps li{background:var(--bg);border-radius:18px;padding:12px 14px 12px 52px;position:relative;counter-increment:s;margin:0 !important}
-.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#2f86de,#4fc3f0);color:#fff;font:800 13px Nunito;display:grid;place-items:center}
+.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#2f86de,#4fc3f0);color:#fff;font:700 13px Poppins;display:grid;place-items:center}
 .steps b{display:block}
 
 .places{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));margin-top:10px}
@@ -60,7 +60,7 @@ section.block li{margin:4px 0}
 .place .emo{font-size:30px;line-height:1}
 .place h3{margin:6px 0 2px !important}
 .place .meta{color:var(--muted);font-size:13px;font-weight:700}
-.place .price{display:inline-block;margin:8px 0 4px;background:var(--aqua-soft);color:#1f8f86;font:800 13px Nunito;padding:3px 10px;border-radius:999px}
+.place .price{display:inline-block;margin:8px 0 4px;background:var(--aqua-soft);color:#1f8f86;font:700 13px Poppins;padding:3px 10px;border-radius:999px}
 .place ul{font-size:14px}
 .place .go{display:inline-block;margin-top:6px;font-size:13.5px}
 
@@ -68,7 +68,7 @@ section.block li{margin:4px 0}
 .callout.warn{background:#fff4dc}
 .compare{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;margin-top:8px;overflow:hidden;border-radius:16px;border:2px solid var(--line)}
 .compare th,.compare td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line)}
-.compare th{background:var(--blue-soft);font:800 13px Nunito}
+.compare th{background:var(--blue-soft);font:700 13px Poppins}
 .compare tr:last-child td{border-bottom:0}
 .table-scroll{overflow-x:auto}
 
@@ -76,10 +76,14 @@ section.block li{margin:4px 0}
 .sources a{font-weight:600}
 .next{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:18px 0 10px}
 .next a{display:block;text-decoration:none;background:#fff;border-radius:20px;padding:14px 16px;box-shadow:var(--shadow);color:var(--ink)}
-.next a b{display:block;font:600 18px Fredoka}
+.next a b{display:block;font:600 18px Montserrat}
 .next a span{color:var(--muted);font-size:13px;font-weight:700}
 footer{color:var(--muted);font-size:13px;font-weight:600;padding:20px 0 50px;text-align:center}
 
 @keyframes wave{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-10px) rotate(calc(var(--r,0deg) + 6deg))}}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none !important;transition:none !important}section.block{opacity:1;transform:none}}
+
+body{animation:pageIn .9s ease both}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero h1{font-weight:800;text-transform:uppercase;letter-spacing:.01em}
