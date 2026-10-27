@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dive Escapes from SG</title>
+<meta name="description" content="Cute guide to dive getaways and liveaboards from Singapore: seasons, routes, dive shops and what you'll see.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f2f8ff; --surface:#ffffff; --ink:#173a5e; --muted:#6f8fae; --line:#d6e8f8;
+  --pink:#2f86de; --pink-soft:#e2f0ff; --lilac:#4fb3e8; --lilac-soft:#e3f5ff;
+  --aqua:#3fcfd6; --aqua-soft:#dcf7f8; --peach:#ffb38a; --sun:#ffd76a;
+  --best:#22c3a6; --ok:#ffbd4f; --closed:#d5e1ec;
+  --shadow:0 2px 0 rgba(47,134,222,.10), 0 10px 30px rgba(63,150,230,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15.5px/1.55 Nunito,system-ui,sans-serif;overflow-x:hidden}
+a{color:var(--pink);font-weight:700}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:Fredoka,Nunito,sans-serif}
+
+/* ───── HERO ───── */
+.hero{position:relative;overflow:hidden;background:linear-gradient(175deg,#d4efff 0%,#9fd3f7 40%,#5fb0ec 75%,#3b8fd9 100%);padding:34px 0 90px;color:var(--ink)}
+.hero h1{font-size:clamp(32px,7vw,54px);line-height:1.05;margin:0 0 10px;position:relative;z-index:2}
+.hero h1 .sparkle{display:inline-block;animation:twinkle 2.4s ease-in-out infinite}
+.hero p{margin:0;max-width:560px;font-weight:700;position:relative;z-index:2;color:#123a63}
+.hero h1{color:#0f3157;text-shadow:0 2px 0 rgba(255,255,255,.5)}
+.doodles{position:absolute;inset:0;z-index:1;pointer-events:none}
+.doodles span{position:absolute;display:block;animation:floaty 7s ease-in-out infinite;opacity:.9}
+.doodles svg{width:100%;height:100%;overflow:visible}
+.doodles path,.doodles circle,.doodles ellipse{fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:600px){.doodles .hide-sm{display:none}}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-10px) rotate(calc(var(--r,0deg) + 6deg))}}
+.hero .badge{display:inline-block;background:#fff;border-radius:999px;padding:4px 12px;font:700 13px Nunito;color:var(--pink);margin-bottom:12px;box-shadow:var(--shadow);position:relative;z-index:2}
+.hero-scene{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-scene svg{width:100%;height:100%}
+.waves{position:absolute;left:0;right:0;bottom:-1px;height:70px;z-index:3}
+.waves svg{width:200%;height:100%;animation:wave 12s linear infinite}
+.waves .w2{position:absolute;inset:0;opacity:.5;animation-duration:18s;animation-direction:reverse}
+
+.bubbles{position:absolute;inset:0;z-index:1;pointer-events:none}
+.bubbles i{position:absolute;bottom:-20px;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,rgba(255,255,255,.3) 60%,rgba(255,255,255,.1));border:1.5px solid rgba(255,255,255,.8);animation:rise linear infinite}
+
+/* ───── CONTROLS ───── */
+.controls{position:relative;z-index:1000;background:var(--bg);padding:12px 0 10px}
+@media (max-width:600px){.controls .tabs{display:flex;width:100%}.controls .tabs button{flex:1 1 auto;padding:8px 4px;font-size:12.5px}}
+@media (min-width:760px){.controls{position:sticky;top:0;box-shadow:0 6px 18px rgba(47,134,222,.08)}}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row + .row{margin-top:9px}
+.tabs{display:inline-flex;max-width:100%;overflow-x:auto;scrollbar-width:none;background:#fff;border-radius:999px;padding:4px;box-shadow:var(--shadow)}
+.tabs button{border:0;background:transparent;color:var(--ink);padding:8px 13px;white-space:nowrap;flex:0 0 auto;border-radius:999px;font:700 14px Nunito,sans-serif;cursor:pointer;transition:all .25s}
+.tabs button[aria-pressed="true"]{background:linear-gradient(135deg,#2f86de,#4fc3f0);color:#fff;transform:scale(1.04)}
+.scroller{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:3px 2px 4px}
+.scroller::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:2px solid var(--line);background:#fff;color:var(--ink);padding:5px 12px;border-radius:999px;font:700 13px Nunito,sans-serif;cursor:pointer;white-space:nowrap;transition:transform .2s, background .2s, border-color .2s}
+.chip:hover{transform:translateY(-2px)}
+.chip:active{transform:scale(.94)}
+.chip[aria-pressed="true"]{background:var(--lilac-soft);border-color:var(--lilac);color:#1f6fb8}
+#months .chip[aria-pressed="true"]{background:var(--pink-soft);border-color:var(--pink);color:#1f6fc4}
+.label{font:800 11.5px Nunito,sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-right:2px;min-width:44px}
+select{border:2px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:6px 10px;font:700 13px Nunito,sans-serif}
+
+/* ───── MAP ───── */
+.map-shell{position:relative;margin:16px 0 8px;border-radius:28px;padding:8px;background:linear-gradient(135deg,#bfe4ff,#9fd8f2,#bff3ee);box-shadow:var(--shadow)}
+#map{height:min(55vh,470px);border-radius:22px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);font-weight:700;margin:8px 4px 0}
+.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.pin{width:38px;height:38px;border-radius:50% 50% 50% 4px;transform:rotate(-45deg);display:grid;place-items:center;border:3px solid #fff;box-shadow:0 4px 10px rgba(23,58,94,.25);transition:transform .2s}
+.pin span{transform:rotate(45deg);font-size:18px;line-height:1}
+.pin.best{background:var(--best);animation:bob 1.8s ease-in-out infinite}
+.pin.ok{background:var(--ok)}
+.pin.closed{background:var(--closed);filter:saturate(.4);opacity:.85}
+.pin.any{background:var(--lilac)}
+.pin.lob{border-style:dashed}
+.leaflet-marker-icon:hover .pin{transform:rotate(-45deg) scale(1.15)}
+.sg-pin{font-size:22px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.25))}
+.leaflet-popup-content-wrapper{border-radius:18px}
+.leaflet-popup-content{font:14px Nunito,sans-serif;color:var(--ink)}
+.leaflet-popup-content b{font-family:Fredoka,sans-serif;font-size:17px}
+.leaflet-popup-content button{margin-top:8px;border:0;background:var(--pink);color:#fff;padding:6px 12px;border-radius:999px;cursor:pointer;font:700 12px Nunito}
+
+/* ───── CARDS ───── */
+.summary{display:flex;justify-content:space-between;align-items:baseline;margin:22px 0 10px;gap:8px;flex-wrap:wrap}
+.summary h2{font-size:24px;margin:0}
+.summary small{color:var(--muted);font-weight:700}
+.cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));margin-bottom:26px}
+.card{background:var(--surface);border-radius:26px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:20px;transition:transform .3s cubic-bezier(.2,.9,.3,1.3), box-shadow .3s;opacity:0;transform:translateY(24px) scale(.97)}
+@media (min-width:760px){.card{scroll-margin-top:190px}}
+.card.in{opacity:1;transform:none}
+.card.in:hover{transform:translateY(-6px) rotate(-.4deg)}
+.card.flash{animation:wiggle .6s ease 2}
+.art{position:relative;height:150px;overflow:hidden}
+.art svg{display:block;width:100%;height:100%}
+.art img{width:100%;height:100%;object-fit:cover;display:block}
+.art .sticker{position:absolute;right:10px;bottom:-8px;width:90px;height:70px;filter:drop-shadow(0 3px 4px rgba(23,58,94,.2))}
+.art .status-tag{position:absolute;top:10px;left:10px;font:800 12px Nunito;padding:4px 10px;border-radius:999px;background:#fff;box-shadow:0 2px 6px rgba(23,58,94,.12)}
+.status-tag.best{color:#1e9c7e}.status-tag.ok{color:#d1861a}.status-tag.closed{color:var(--muted)}
+.art .flag{position:absolute;top:10px;right:10px;font:800 11.5px Nunito;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.85);color:var(--ink)}
+.top{padding:12px 16px 12px}
+.card h3{font-size:21px;margin:0;line-height:1.15}
+.meta{color:var(--muted);font-size:13px;font-weight:700;margin-top:2px}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.pill{font:800 12px Nunito,sans-serif;padding:4px 9px;border-radius:999px;background:var(--aqua-soft);color:#1f8f86}
+.pill.aow{background:#ffe6dc;color:#e0623a}
+.pill.ow{background:var(--lilac-soft);color:#2a78c2}
+.hearts{letter-spacing:1px}
+.now{margin-top:10px;font-size:13.5px;background:var(--pink-soft);border-radius:14px;padding:7px 10px;font-weight:600}
+.now b{color:#1f6fc4}
+.now.off{background:#eef3f8;color:var(--muted)}
+.mini-cal{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;margin-top:10px}
+.mini-cal span{height:8px;border-radius:99px;background:var(--closed)}
+.mini-cal span.ok{background:var(--ok)}
+.mini-cal span.best{background:var(--best)}
+.mini-cal span.sel{transform:scaleY(1.7);box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--pink)}
+.mini-cal-l{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;font-size:10px;font-weight:800;color:var(--muted);text-align:center;margin-top:3px}
+
+details{border-top:2px dashed var(--line)}
+details summary{list-style:none;cursor:pointer;padding:11px 16px;font:800 14px Nunito,sans-serif;color:var(--pink);display:flex;justify-content:space-between;align-items:center}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"🐚";transition:transform .35s}
+details[open] summary::after{transform:rotate(180deg) scale(1.2)}
+details[open] .body{animation:pop .35s ease}
+.body{padding:0 16px 16px;font-size:14.2px}
+.body h4{font:800 12px Nunito,sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--lilac);margin:16px 0 6px}
+.body h4::before{content:"✦ ";color:var(--pink)}
+.body ul,.body ol{margin:0;padding-left:20px}
+.body li{margin:4px 0}
+.see{list-style:none;padding-left:0 !important}
+.see li{padding:6px 10px;border-radius:12px;background:#f2f8ff;margin:5px 0}
+.see li span{color:var(--muted)}
+.see li.on{background:var(--pink-soft);font-weight:700}
+.see li.on::after{content:" ✨"}
+.trips{list-style:none;padding-left:0 !important}
+.trips li{padding:6px 10px;border-radius:12px;background:#f2f8ff;margin:5px 0}
+.search-btn{display:inline-block;text-decoration:none}
+.cash{background:#fff4dc;border-radius:14px;padding:9px 12px 9px 28px}
+.verify{color:var(--muted);font-size:13px}
+.empty{padding:30px;text-align:center;color:var(--muted);border:2px dashed var(--line);border-radius:22px;font-weight:700}
+
+/* ───── CALENDAR ───── */
+.cal-wrap{overflow-x:auto;background:#fff;border-radius:24px;box-shadow:var(--shadow);margin-bottom:26px;padding:6px}
+table.cal{border-collapse:separate;border-spacing:3px;width:100%;min-width:640px;font-size:13px}
+table.cal th{font:800 12px Nunito;color:var(--muted);padding:6px 2px}
+table.cal td{padding:3px 2px;text-align:center}
+table.cal th:first-child,table.cal td:first-child{text-align:left;padding-left:10px;white-space:nowrap;position:sticky;left:0;background:#fff;font-weight:700}
+table.cal td.c i{display:block;height:16px;border-radius:99px;background:var(--closed);transition:transform .2s}
+table.cal td.c.ok i{background:var(--ok)}
+table.cal td.c.best i{background:var(--best)}
+table.cal th.sel{color:var(--pink)}
+table.cal tr{cursor:pointer}
+table.cal tr:hover td.c i{transform:scaleY(1.25)}
+
+footer{color:var(--muted);font-size:13px;font-weight:600;padding:24px 0 50px;text-align:center}
+footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in-out infinite}
+
+/* ───── CREATURE ANIMATIONS ───── */
+.swim{animation:swim 6s ease-in-out infinite}
+.swim2{animation:swim 7.5s ease-in-out infinite reverse}
+.flap{animation:flap 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.sway{animation:sway 3.5s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}
+.bub{animation:bubUp 4s ease-in infinite}
+.glide{animation:glide 26s linear infinite}
+.glide2{animation:glide 34s linear infinite;animation-delay:-14s}
+
+@keyframes swim{0%,100%{transform:translate(0,0)}25%{transform:translate(6px,-5px)}50%{transform:translate(12px,2px)}75%{transform:translate(4px,5px)}}
+@keyframes flap{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.82)}}
+@keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+@keyframes bubUp{0%{transform:translateY(0);opacity:0}15%{opacity:.9}100%{transform:translateY(-120px);opacity:0}}
+@keyframes glide{from{transform:translateX(-25%)}to{transform:translateX(125%)}}
+@keyframes rise{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:1}100%{transform:translateY(-110vh) translateX(30px);opacity:0}}
+@keyframes wave{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes bob{0%,100%{transform:rotate(-45deg) translate(0,0)}50%{transform:rotate(-45deg) translate(3px,-3px)}}
+@keyframes twinkle{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.3) rotate(20deg)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-2deg) scale(1.02)}75%{transform:rotate(2deg) scale(1.02)}}
+@keyframes pop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes swimFooter{0%,100%{transform:translateX(-30px) scaleX(1)}49%{transform:translateX(30px) scaleX(1)}50%{transform:translateX(30px) scaleX(-1)}99%{transform:translateX(-30px) scaleX(-1)}}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .card{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="bubbles" id="bubbles"></div>
+  <div class="doodles" id="doodles"></div>
+  <div class="hero-scene" id="heroScene"></div>
+  <div class="wrap">
+    <span class="badge">🫧 from Singapore, into the blue</span>
+    <h1>Dive Escapes <span class="sparkle">✨</span></h1>
+    <p>Weekend trips that need 0–2 days of leave, plus dreamy liveaboards worth saving leave for. Pick a month and see who's around 🐢</p>
+  </div>
+  <div class="waves">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path fill="#f2f8ff" d="M0,40 C120,10 240,10 360,40 C480,70 600,70 720,40 C840,10 960,10 1080,40 C1200,70 1320,70 1440,40 L1440,70 L0,70Z"/></svg>
+    <svg class="w2" viewBox="0 0 1440 70" preserveAspectRatio="none"><path fill="#f2f8ff" d="M0,30 C180,60 360,0 540,30 C720,60 900,0 1080,30 C1260,60 1350,20 1440,30 L1440,70 L0,70Z"/></svg>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="row">
+      <div class="tabs" role="group" aria-label="Trip type">
+        <button data-type="weekend" aria-pressed="true">🏝️ Weekend</button>
+        <button data-type="short" aria-pressed="false">✈️ 1–2 AL</button>
+        <button data-type="liveaboard" aria-pressed="false">⛵ Liveaboard</button>
+        <button data-type="all" aria-pressed="false">🐬 All</button>
+      </div>
+      <select id="sort" aria-label="Sort" style="margin-left:auto">
+        <option value="season">In season first</option>
+        <option value="ease">Easiest to book</option>
+        <option value="leave">Least leave</option>
+        <option value="name">A–Z</option>
+      </select>
+    </div>
+    <div class="row"><span class="label">Month</span><div class="scroller" id="months"></div></div>
+    <div class="row"><span class="label">See</span><div class="scroller" id="tags"></div></div>
+    <div class="row"><span class="label">Show</span>
+      <div class="scroller">
+        <button class="chip" id="inSeason" aria-pressed="false">🌊 In season only</button>
+        <button class="chip" id="owOnly" aria-pressed="false">🐠 OW-friendly</button>
+        <button class="chip" id="easyOnly" aria-pressed="false">⭐ Easy to book</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="map-shell"><div id="map" aria-label="Map of dive spots"></div></div>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--best)"></i>Best season</span>
+    <span><i class="dot" style="background:var(--ok)"></i>Diveable</span>
+    <span><i class="dot" style="background:var(--closed)"></i>Closed / poor</span>
+    <span>⛵ dashed = liveaboard</span>
+  </div>
+
+  <div class="summary"><h2 id="heading">Spots</h2><small id="count"></small></div>
+  <div class="cards" id="cards"></div>
+
+  <div class="summary"><h2>Season calendar 📅</h2><small>Tap a row to jump to it</small></div>
+  <div class="cal-wrap"><table class="cal" id="cal"></table></div>
+</main>
+
+<footer>
+  <div class="fish">🐠</div><br>
+  Info changes, so always double-check ferry times, permits and fees before booking.<br>
+  Edit spots in <code>spots.js</code> on GitHub 🐚
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="spots.js"></script>
+<script>
+(function(){
+  const SPOTS = window.DIVE_SPOTS || [];
+  const M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const TAGS = {
+    turtles:["🐢","Turtles"], mantas:["🩵","Mantas"], whalesharks:["🐋","Whale sharks"], threshers:["🦈","Threshers"],
+    mola:["🐡","Mola mola"], sharks:["🦈","Sharks"], macro:["🐌","Macro & nudis"], wrecks:["⚓","Wrecks"],
+    schools:["🐟","Big schools"], sardines:["✨","Sardine run"], whales:["🐳","Humpback whales"], coral:["🪸","Coral"]
+  };
+  const FLAG = {Malaysia:"🇲🇾",Indonesia:"🇮🇩",Philippines:"🇵🇭",Thailand:"🇹🇭",Japan:"🇯🇵",Singapore:"🇸🇬"};
+  const SKY = {
+    Malaysia:["#c8f3f0","#5fcad6"], Indonesia:["#d8edff","#6eaeec"], Philippines:["#d2e6ff","#5f98e4"],
+    Thailand:["#d3f6ff","#4fbcdc"], Japan:["#e2edff","#7f9ff0"], Singapore:["#daf7ef","#5fc0da"]
+  };
+  const state = { type:"weekend", month:new Date().getMonth()+1, tags:new Set(), inSeason:false, owOnly:false, easyOnly:false, sort:"season" };
+  const YEAR = new Date().getFullYear();
+  const catOf = s => { const n = parseFloat(String(s.leave).match(/\d+(\.\d+)?/)?.[0] ?? "0"); return n>=3 ? "liveaboard" : n>=1 ? "short" : "weekend"; };
+  const inTab = s => state.type==="all" || catOf(s)===state.type;
+  const CAT_LABEL = { weekend:"🏝️ Weekend · no leave", short:"✈️ Short getaway · 1–2 days AL", liveaboard:"⛵ Long trip · 3+ days AL" };
+  const statusOf = (s,m) => !m ? "any" : (s.best||[]).includes(m) ? "best" : (s.open||[]).includes(m) ? "ok" : "closed";
+  const STATUS = { best:"🌟 Best season", ok:"👍 Diveable", closed:"💤 Off season", any:"" };
+  const leaveNum = s => parseFloat(String(s.leave).replace(/[^\d.]/g," ").trim().split(" ")[0]) || 0;
+  const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const hereNow = (x,m) => m && x.months && x.months.includes(m);
+
+  /* ═════════ CUTE CREATURE DRAWINGS (original SVG) ═════════ */
+  const INK="#173a5e", BLUSH="#ff9cc2";
+  const face = (x,y,r=2.6) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${INK}"/><circle cx="${x+.9}" cy="${y-1}" r="${r*.35}" fill="#fff"/><circle cx="${x-1}" cy="${y+6}" r="3.2" fill="${BLUSH}" opacity=".75"/><path d="M${x+2},${y+4} q3,3 6,0" stroke="${INK}" stroke-width="1.5" fill="none" stroke-linecap="round"/>`;
+  const fish = (x,y,s=1,c="#ffd76a") => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-10,0 C-4,-8 8,-8 12,0 C8,8 -4,8 -10,0Z" fill="${c}"/><path d="M-9,0 L-17,-6 L-16,0 L-17,6Z" fill="${c}"/><circle cx="6" cy="-1.5" r="1.5" fill="${INK}"/></g>`;
+  const C = {
+    turtle: () => `
+      <ellipse cx="20" cy="-24" rx="17" ry="6.5" transform="rotate(-28 20 -24)" fill="#a8e6c9"/>
+      <ellipse cx="20" cy="24" rx="15" ry="6" transform="rotate(28 20 24)" fill="#a8e6c9"/>
+      <ellipse cx="-28" cy="-18" rx="10" ry="5" transform="rotate(30 -28 -18)" fill="#a8e6c9"/>
+      <ellipse cx="-28" cy="18" rx="10" ry="5" transform="rotate(-30 -28 18)" fill="#a8e6c9"/>
+      <ellipse cx="0" cy="0" rx="38" ry="26" fill="#6fcf9f"/>
+      <path d="M-20,-13 L0,-21 L20,-13 L21,8 L0,17 L-21,8Z" fill="#4fb487" opacity=".55"/>
+      <circle cx="0" cy="-3" r="6" fill="#ffd6e6" opacity=".7"/>
+      <circle cx="46" cy="-2" r="13" fill="#a8e6c9"/>${face(50,-5)}`,
+    manta: () => `
+      <g class="flap"><path d="M0,-8 C25,-34 58,-32 74,-10 C52,-4 30,8 0,20 C-30,8 -52,-4 -74,-10 C-58,-32 -25,-34 0,-8Z" fill="#a99af0"/></g>
+      <ellipse cx="0" cy="4" rx="20" ry="10" fill="#f1ecff"/>
+      <path d="M0,18 q5,20 -6,36" stroke="#a99af0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M-14,-12 q-6,-8 0,-12 M14,-12 q6,-8 0,-12" stroke="#8f7fe0" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <circle cx="-11" cy="-2" r="2.6" fill="${INK}"/><circle cx="11" cy="-2" r="2.6" fill="${INK}"/>
+      <circle cx="-15" cy="5" r="3" fill="${BLUSH}" opacity=".8"/><circle cx="15" cy="5" r="3" fill="${BLUSH}" opacity=".8"/>
+      <path d="M-4,5 q4,4 8,0" stroke="${INK}" stroke-width="1.5" fill="none" stroke-linecap="round"/>`,
+    whaleshark: () => `
+      <path d="M-66,0 L-94,-24 L-85,0 L-94,22Z" fill="#7aa6e0"/>
+      <path d="M-8,-20 L4,-35 L14,-19Z" fill="#6a94d0"/>
+      <path d="M-70,0 C-40,-27 40,-27 62,-6 C67,0 63,9 56,11 C30,23 -40,21 -70,0Z" fill="#8fb6ea"/>
+      <path d="M-48,6 C-10,19 30,17 58,8 C40,18 -10,24 -48,6Z" fill="#e4efff"/>
+      ${[[-40,-8],[-25,-14],[-10,-6],[5,-14],[20,-8],[-30,2],[0,2],[30,-2],[-52,-2]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.6" fill="#fff" opacity=".85"/>`).join("")}
+      <path d="M8,10 L0,26 L18,12Z" fill="#6a94d0"/>${face(44,-6)}`,
+    shark: (thresher) => `
+      ${thresher ? `<path d="M-52,-2 C-82,-10 -112,-30 -132,-38 C-106,-22 -86,-6 -66,2 L-72,14Z" fill="#9fb0c8"/>` : `<path d="M-52,0 L-74,-20 L-68,0 L-74,16Z" fill="#9fb0c8"/>`}
+      <path d="M-6,-14 L6,-32 L14,-13Z" fill="#8fa1bc"/>
+      <path d="M-55,0 C-30,-19 30,-19 55,-2 C59,2 53,9 45,9 C20,17 -30,15 -55,0Z" fill="#b5c3d8"/>
+      <path d="M-40,5 C-10,14 25,13 47,7 C25,16 -10,17 -40,5Z" fill="#eef3fb"/>
+      <path d="M5,9 L-3,25 L16,11Z" fill="#8fa1bc"/>${face(38,-5)}`,
+    mola: () => `
+      <path d="M-24,-26 L-34,-64 L-10,-32Z" fill="#b8b0e4"/><path d="M-24,26 L-34,64 L-10,32Z" fill="#b8b0e4"/>
+      <ellipse cx="0" cy="0" rx="40" ry="35" fill="#d4cef2"/>
+      <path d="M-38,-18 Q-50,0 -38,18" stroke="#b8b0e4" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle cx="21" cy="-8" r="4" fill="${INK}"/><circle cx="22.5" cy="-9.5" r="1.4" fill="#fff"/>
+      <circle cx="22" cy="5" r="4" fill="${BLUSH}" opacity=".8"/><circle cx="37" cy="3" r="3.2" fill="#ff7fb0"/>`,
+    nudi: () => `
+      <path d="M-46,8 C-40,-13 30,-15 46,4 C30,15 -30,17 -46,8Z" fill="#c78cf5"/>
+      ${[-32,-20,-8,4,16].map(x=>`<ellipse cx="${x}" cy="-8" rx="5" ry="7" fill="#ffb15e"/>`).join("")}
+      ${[-28,-10,8,24].map(x=>`<circle cx="${x}" cy="6" r="2.2" fill="#fff6a8"/>`).join("")}
+      <path d="M30,-6 l7,-16 M24,-8 l2,-17" stroke="#ff8f3d" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="35" cy="1" r="2.2" fill="${INK}"/><circle cx="36" cy="7" r="2.6" fill="${BLUSH}"/>`,
+    school: () => [[-40,-18],[-20,-24],[0,-18],[20,-24],[-30,0],[-10,-4],[10,0],[30,-6],[-20,18],[0,14],[20,18],[40,10]]
+      .map(([x,y],i)=>fish(x,y,1.05,["#ffd76a","#ffb38a","#ff9cc2"][i%3])).join(""),
+    sardines: () => Array.from({length:26},(_,i)=>{const a=i/26*Math.PI*2, r=24+ (i%3)*9; return fish(Math.cos(a)*r*1.4, Math.sin(a)*r*.8, .6, i%2?"#cfe3f2":"#e9f3fb");}).join(""),
+    wreck: () => `
+      <g transform="rotate(-8)">
+        <rect x="-3" y="-38" width="5" height="30" fill="#b48f74"/>
+        <path d="M-62,10 L62,10 L48,32 L-48,32Z" fill="#d9b394"/>
+        <rect x="-22" y="-10" width="44" height="22" rx="6" fill="#f3dcc8"/>
+        ${[-12,0,12].map(x=>`<circle cx="${x}" cy="1" r="4" fill="#a7d8f0" stroke="#fff" stroke-width="1.5"/>`).join("")}
+        <path d="M-40,22 q8,-6 16,0" stroke="#c99a7a" stroke-width="2" fill="none"/>
+      </g>${fish(48,-20,.9,"#ff9cc2")}${fish(-50,-26,.8,"#ffd76a")}`,
+    whale: () => `
+      <path d="M-76,0 L-102,-20 Q-92,0 -102,20Z" fill="#7fa9e6"/>
+      <path d="M-80,0 C-50,-31 50,-29 76,-5 C82,4 72,17 56,17 C10,25 -50,19 -80,0Z" fill="#95bcf0"/>
+      <path d="M-40,8 C0,20 40,18 64,12" stroke="#e4efff" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M12,10 C2,30 -18,42 -36,44 C-20,31 -6,21 0,10Z" fill="#7fa9e6"/>${face(52,-4)}
+      <path d="M40,-26 q-4,-14 2,-20 M44,-26 q4,-12 12,-14" stroke="#bfe2ff" stroke-width="3" fill="none" stroke-linecap="round"/>`,
+    coral: () => fish(-30,-10,1.2,"#ff9cc2") + fish(10,-20,1,"#ffd76a") + fish(36,4,1.1,"#b79cff")
+  };
+  const CREATURE = { turtles:"turtle", mantas:"manta", whalesharks:"whaleshark", threshers:"thresher", mola:"mola", sharks:"shark",
+    macro:"nudi", wrecks:"wreck", schools:"school", sardines:"sardines", whales:"whale", coral:"coral" };
+  const draw = (tag) => { const k = CREATURE[tag] || "coral"; return k==="thresher" ? C.shark(true) : k==="shark" ? C.shark(false) : C[k](); };
+
+  const seabed = (w,h) => `
+    <path d="M0,${h-18} C${w*.2},${h-30} ${w*.4},${h-8} ${w*.6},${h-20} C${w*.8},${h-32} ${w*.9},${h-14} ${w},${h-22} L${w},${h} L0,${h}Z" fill="#fff1dc"/>
+    <g class="sway"><path d="M${w*.08},${h-18} q-6,-22 4,-38 M${w*.08},${h-28} q8,-8 12,-18" stroke="#ff8fbd" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+    <g class="sway" style="animation-delay:-1.2s"><path d="M${w*.9},${h-20} q4,-18 -2,-34 q6,6 8,-12" stroke="#b79cff" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+    <g class="sway" style="animation-delay:-2s"><path d="M${w*.78},${h-22} q-5,-14 2,-26 q5,-10 0,-20" stroke="#6fcf9f" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+    <circle cx="${w*.2}" cy="${h-14}" r="5" fill="#ffc6de"/><circle cx="${w*.5}" cy="${h-10}" r="4" fill="#ffe08a"/>`;
+  const bubbles = (w,h,n=6) => Array.from({length:n},(_,i)=>`<circle class="bub" style="animation-delay:${(-i*0.7).toFixed(1)}s" cx="${(w*(.15+i*.13))%w}" cy="${h-20}" r="${3+(i%3)}" fill="none" stroke="#fff" stroke-width="1.5" opacity=".9"/>`).join("");
+
+  function scene(s, st){
+    const W=320,H=150, [a,b] = SKY[s.country] || ["#d8edff","#6eaeec"], id="g"+s.id;
+    const main = (s.tags||[])[0], second = (s.tags||[])[1];
+    const big = ["mola","whaleshark","whales","threshers","wrecks"].includes(main) ? .62 : .78;
+    return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs>
+      <rect width="${W}" height="${H}" fill="url(#${id})"/>
+      <path d="M0,18 Q40,8 80,18 T160,18 T240,18 T320,18" stroke="#fff" stroke-width="2" fill="none" opacity=".5"/>
+      ${seabed(W,H)}
+      ${second && second!==main ? `<g transform="translate(66 52) scale(.38)"><g class="swim2">${draw(second)}</g></g>` : ""}
+      <g transform="translate(${W*.56} ${H*.5}) scale(${big})"><g class="swim">${draw(main)}</g></g>
+      ${bubbles(W,H)}
+    </svg>`;
+  }
+
+  /* ═════════ HERO ═════════ */
+  document.getElementById("heroScene").innerHTML = `<svg viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid slice">
+    <g class="glide"><g transform="translate(0 205) scale(.9)"><g class="swim">${C.whaleshark()}</g></g></g>
+    <g class="glide2"><g transform="translate(0 110) scale(.55)"><g class="swim2">${C.turtle()}</g></g></g>
+    <g transform="translate(880 90) scale(.6)"><g class="swim">${C.manta()}</g></g>
+    ${fish(760,210,1.4,"#ffd76a")}${fish(790,228,1.2,"#ff9cc2")}${fish(812,206,1.1,"#fff")}
+  </svg>`;
+
+  /* ═════════ HEADER DOODLES (white line art) ═════════ */
+  const DOODLE = {
+    octopus:`<path d="M30,34 C14,34 10,10 30,6 C50,10 46,34 30,34Z"/><circle cx="24" cy="20" r="1.6"/><circle cx="36" cy="20" r="1.6"/><path d="M27,26 q3,3 6,0"/><path d="M18,32 q-4,10 -10,12 M24,34 q-2,10 -6,16 M30,34 q0,10 2,16 M36,34 q2,10 8,14 M42,32 q6,8 12,8"/>`,
+    jelly:`<path d="M10,26 C10,6 50,6 50,26 Q45,30 40,26 Q35,30 30,26 Q25,30 20,26 Q15,30 10,26Z"/><path d="M18,30 q-4,8 2,14 q5,6 0,12 M30,30 q4,8 -2,14 q-4,6 2,12 M42,30 q-4,8 2,14 q4,6 -1,12"/><circle cx="24" cy="18" r="1.4"/><circle cx="36" cy="18" r="1.4"/>`,
+    star:`<path d="M30,6 L36,22 L53,23 L40,33 L45,50 L30,40 L15,50 L20,33 L7,23 L24,22Z"/><circle cx="26" cy="27" r="1.4"/><circle cx="34" cy="27" r="1.4"/><path d="M27,32 q3,2 6,0"/>`,
+    seahorse:`<path d="M34,8 q10,0 10,8 l6,2 l-6,3 q-2,6 -8,8 q8,6 6,16 q-2,10 -12,10 q-8,0 -8,-7 q0,-6 6,-6 q4,0 4,4"/><path d="M34,8 q-6,0 -8,6 q-2,6 4,8"/><circle cx="38" cy="14" r="1.4"/><path d="M28,26 l-6,-2 M28,32 l-6,0 M30,38 l-6,2"/>`,
+    crab:`<ellipse cx="30" cy="32" rx="16" ry="10"/><path d="M14,30 q-8,-4 -8,-12 q4,2 6,0 q-2,-4 2,-6 q4,4 2,10 M46,30 q8,-4 8,-12 q-4,2 -6,0 q2,-4 -2,-6 q-4,4 -2,10"/><path d="M16,38 l-8,6 M20,41 l-6,8 M44,38 l8,6 M40,41 l6,8"/><path d="M25,22 v-6 M35,22 v-6"/><circle cx="25" cy="14" r="2"/><circle cx="35" cy="14" r="2"/><path d="M26,34 q4,3 8,0"/>`,
+    shell:`<path d="M30,48 L10,22 Q30,0 50,22Z"/><path d="M30,48 L20,14 M30,48 L30,10 M30,48 L40,14"/><path d="M24,48 h12"/>`,
+    fish:`<path d="M10,30 C18,14 40,14 48,30 C40,46 18,46 10,30Z"/><path d="M10,30 L2,22 L2,38Z"/><circle cx="38" cy="27" r="1.8"/><path d="M26,22 q4,8 0,16"/>`,
+    whale:`<path d="M6,34 C10,18 40,14 52,26 C56,32 52,40 44,40 L18,40 C10,40 6,38 6,34Z"/><path d="M6,34 L0,26 M6,34 L0,40"/><path d="M40,14 q-2,-8 4,-10 M44,14 q2,-8 8,-8"/><circle cx="42" cy="30" r="1.6"/><path d="M14,36 q14,4 30,0"/>`,
+    bubble3:`<circle cx="20" cy="40" r="8"/><circle cx="34" cy="24" r="5"/><circle cx="26" cy="10" r="3"/>`
+  };
+  const PLACES = [
+    {k:"octopus",x:80,y:6,s:72,r:"-8deg"},{k:"jelly",x:64,y:42,s:58,r:"6deg",c:"hide-sm"},
+    {k:"star",x:4,y:72,s:46,r:"-14deg"},{k:"seahorse",x:90,y:46,s:64,r:"4deg"},
+    {k:"crab",x:46,y:70,s:52,r:"0deg",c:"hide-sm"},{k:"shell",x:22,y:74,s:40,r:"12deg"},
+    {k:"fish",x:52,y:4,s:50,r:"-4deg",c:"hide-sm"},{k:"whale",x:72,y:72,s:66,r:"0deg"},
+    {k:"bubble3",x:40,y:34,s:40,r:"0deg",c:"hide-sm"},{k:"jelly",x:30,y:2,s:40,r:"-6deg",c:"hide-sm"}
+  ];
+  document.getElementById("doodles").innerHTML = PLACES.map((p,i)=>`<span class="${p.c||""}" style="left:${p.x}%;top:${p.y}%;width:${p.s}px;height:${p.s}px;--r:${p.r};animation-delay:${-i*0.9}s;animation-duration:${6+(i%4)}s"><svg viewBox="0 0 60 56">${DOODLE[p.k]}</svg></span>`).join("");
+  const bub = document.getElementById("bubbles");
+  bub.innerHTML = Array.from({length:16},(_,i)=>{const sz=6+Math.random()*16;return `<i style="left:${Math.random()*100}%;width:${sz}px;height:${sz}px;animation-duration:${6+Math.random()*8}s;animation-delay:${-Math.random()*10}s"></i>`;}).join("");
+
+  /* ═════════ CONTROLS ═════════ */
+  const monthsEl = document.getElementById("months");
+  monthsEl.innerHTML = `<button class="chip" data-m="0">Any</button>` + M.map((n,i)=>`<button class="chip" data-m="${i+1}">${n}</button>`).join("");
+  monthsEl.addEventListener("click", e => { const b=e.target.closest("[data-m]"); if(!b) return; state.month=+b.dataset.m; render(); });
+  const used = new Set(SPOTS.flatMap(s=>s.tags||[]));
+  const tagsEl = document.getElementById("tags");
+  tagsEl.innerHTML = Object.keys(TAGS).filter(t=>used.has(t)).map(t=>`<button class="chip" data-t="${t}" aria-pressed="false">${TAGS[t][0]} ${TAGS[t][1]}</button>`).join("");
+  tagsEl.addEventListener("click", e => { const b=e.target.closest("[data-t]"); if(!b) return; const t=b.dataset.t; state.tags.has(t)?state.tags.delete(t):state.tags.add(t); render(); });
+  document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => { state.type=b.dataset.type; render(true); }));
+  ["inSeason","owOnly","easyOnly"].forEach(k => document.getElementById(k).addEventListener("click", () => { state[k]=!state[k]; render(); }));
+  document.getElementById("sort").addEventListener("change", e => { state.sort=e.target.value; render(); });
+
+  /* ═════════ MAP ═════════ */
+  const map = L.map("map", { scrollWheelZoom:false }).setView([6,112],4);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", { attribution:"&copy; OpenStreetMap &copy; CARTO", subdomains:"abcd", maxZoom:18 }).addTo(map);
+  L.marker([1.35,103.82],{icon:L.divIcon({className:"",html:'<div class="sg-pin">🏠</div>',iconSize:[26,26],iconAnchor:[13,13]})}).addTo(map).bindTooltip("Home sweet Singapore");
+  const layer = L.layerGroup().addTo(map);
+
+  window.__jump = id => {
+    const el = document.getElementById("spot-"+id); if(!el) return;
+    el.classList.add("in");
+    el.scrollIntoView({behavior:"smooth", block:"start"});
+    el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+    const d = el.querySelector("details"); if(d) d.open = true;
+  };
+
+  function filtered(){
+    let list = SPOTS.filter(inTab);
+    if(state.tags.size) list = list.filter(s => [...state.tags].some(t => (s.tags||[]).includes(t)));
+    if(state.inSeason && state.month) list = list.filter(s => statusOf(s,state.month)!=="closed");
+    if(state.owOnly) list = list.filter(s => s.cert==="OW");
+    if(state.easyOnly) list = list.filter(s => (s.ease||0)>=4);
+    const rank = {best:0, ok:1, closed:2, any:0};
+    return list.sort({
+      season:(a,b)=> rank[statusOf(a,state.month)]-rank[statusOf(b,state.month)] || (b.ease||0)-(a.ease||0),
+      ease:(a,b)=> (b.ease||0)-(a.ease||0),
+      leave:(a,b)=> leaveNum(a)-leaveNum(b),
+      name:(a,b)=> a.name.localeCompare(b.name)
+    }[state.sort]);
+  }
+
+  function card(s){
+    const st = statusOf(s,state.month);
+    const hearts = `<span class="hearts" title="Ease of booking ${s.ease}/5">${"💙".repeat(s.ease)}${"🤍".repeat(5-s.ease)}</span>`;
+    const nowItems = (s.see||[]).filter(x=>hereNow(x,state.month));
+    const nowLine = !state.month ? "" : st==="closed"
+      ? `<div class="now off">💤 Not recommended in ${M[state.month-1]}</div>`
+      : nowItems.length ? `<div class="now"><b>In ${M[state.month-1]}:</b> ${nowItems.map(x=>esc(x.what)).join(" · ")}</div>` : "";
+    const cal = M.map((n,i)=>{ const c=statusOf(s,i+1); return `<span class="${c==="closed"?"":c}${state.month===i+1?" sel":""}" title="${n}"></span>`; }).join("");
+    const art = s.photo
+      ? `<img src="${esc(s.photo)}" alt="${esc(s.name)}" loading="lazy"><svg class="sticker" viewBox="-80 -50 160 100">${draw((s.tags||[])[0])}</svg>`
+      : scene(s, st);
+    const see = (s.see||[]).map(x=>`<li class="${hereNow(x,state.month)?"on":""}">${x.tag&&TAGS[x.tag]?TAGS[x.tag][0]+" ":""}${esc(x.what)} <span>· ${esc(x.where)}${x.months?` · ${x.months.map(m=>M[m-1]).join(", ")}`:""}</span></li>`).join("");
+    const ops = (s.operators||[]).map(o=>`<li><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>${o.note?` <span style="color:var(--muted)">· ${esc(o.note)}</span>`:""}</li>`).join("");
+    const q = encodeURIComponent(`Singapore dive shop trip ${s.searchName||s.name.replace(/\s*\(.*?\)/g,"")} ${YEAR} ${YEAR+1}`);
+    const trips = (s.trips||[]).map(o=>`<li><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>${o.note?` <span style="color:var(--muted)">· ${esc(o.note)}</span>`:""}</li>`).join("")
+      + `<li><a class="search-btn" href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener">🔎 Search for upcoming trips from SG</a></li>`;
+    const ul = (a,c="") => a&&a.length?`<ul class="${c}">${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"";
+    return `
+    <article class="card ${st}" id="spot-${esc(s.id)}">
+      <div class="art">${art}
+        ${state.month?`<span class="status-tag ${st}">${STATUS[st]}</span>`:""}
+        <span class="flag">${FLAG[s.country]||""} ${esc(s.country)}</span>
+      </div>
+      <div class="top">
+        <h3>${esc(s.name)}</h3>
+        <div class="meta">${CAT_LABEL[catOf(s)]}${s.type==="liveaboard"&&catOf(s)!=="liveaboard"?" · ⛵ liveaboard":""}</div>
+        <div class="pills">
+          <span class="pill">🗓 ${esc(s.leave)} day${s.leave==="1"?"":"s"} leave</span>
+          <span class="pill ${s.cert==="AOW"?"aow":"ow"}">${s.cert==="AOW"?"🔶 AOW needed":"🐠 OW OK"}</span>
+          <span class="pill" style="background:#e8f3ff;color:#1f6fc4">Booking ${hearts}</span>
+        </div>
+        ${nowLine}
+        <div class="mini-cal">${cal}</div>
+        <div class="mini-cal-l">${M.map(n=>`<span>${n[0]}</span>`).join("")}</div>
+      </div>
+      <details>
+        <summary>Details, route & dive shops</summary>
+        <div class="body">
+          <h4>What you'll see & where</h4><ul class="see">${see}</ul>
+          <h4>Certification</h4><p style="margin:0">${esc(s.certNote)}</p>
+          <h4>Getting there from SG</h4>${s.getThere&&s.getThere.length?`<ol>${s.getThere.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`:""}
+          ${s.fees&&s.fees.length?`<h4>Fees & cash 💵</h4>${ul(s.fees,"cash")}`:""}
+          <h4>Ease of booking · ${s.ease}/5</h4><p style="margin:0">${esc(s.easeNote)}</p>
+          ${ops?`<h4>Dive shops & boats</h4><ul>${ops}</ul>`:""}
+          <h4>Upcoming trips from SG 🗓️</h4><ul class="trips">${trips}</ul>
+          ${s.cost?`<h4>Rough cost</h4><p style="margin:0">${esc(s.cost)}</p>`:""}
+          ${s.tips&&s.tips.length?`<h4>Tips</h4>${ul(s.tips)}`:""}
+          ${s.verify&&s.verify.length?`<p class="verify">⚠️ Re-check before booking: ${s.verify.map(esc).join(", ")}.</p>`:""}
+          <p class="verify">Last checked: ${esc(s.checked||"—")}</p>
+        </div>
+      </details>
+    </article>`;
+  }
+
+  const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.08}) : null;
+
+  function render(refit){
+    document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.type===state.type));
+    monthsEl.querySelectorAll("[data-m]").forEach(b=>b.setAttribute("aria-pressed", +b.dataset.m===state.month));
+    tagsEl.querySelectorAll("[data-t]").forEach(b=>b.setAttribute("aria-pressed", state.tags.has(b.dataset.t)));
+    ["inSeason","owOnly","easyOnly"].forEach(k=>document.getElementById(k).setAttribute("aria-pressed", state[k]));
+
+    const list = filtered();
+    const label = {weekend:"Weekend getaways · no leave 🏝️", short:"Short getaways · 1–2 days AL ✈️", liveaboard:"Liveaboards · 3+ days AL ⛵", all:"All spots 🐬"}[state.type];
+    document.getElementById("heading").textContent = label;
+    const nBest = state.month ? list.filter(s=>statusOf(s,state.month)==="best").length : 0;
+    document.getElementById("count").textContent = `${list.length} spot${list.length===1?"":"s"}` + (state.month?` · ${nBest} at their best in ${M[state.month-1]}`:"");
+    const cardsEl = document.getElementById("cards");
+    cardsEl.innerHTML = list.length ? list.map(card).join("") : `<div class="empty">🐡 No spots match these filters, try fewer!</div>`;
+    cardsEl.querySelectorAll(".card").forEach((c,i)=>{ c.style.transitionDelay = Math.min(i,8)*60+"ms"; io ? io.observe(c) : c.classList.add("in"); });
+
+    layer.clearLayers();
+    list.forEach(s=>{
+      const st = statusOf(s,state.month), lob = s.type==="liveaboard";
+      const emo = lob ? "⛵" : (TAGS[(s.tags||[])[0]]||["🐠"])[0];
+      const icon = L.divIcon({className:"", html:`<div class="pin ${st}${lob?" lob":""}"><span>${emo}</span></div>`, iconSize:[38,38], iconAnchor:[6,38], popupAnchor:[13,-34]});
+      L.marker([s.lat,s.lng],{icon}).addTo(layer).bindTooltip(s.name)
+        .bindPopup(`<b>${esc(s.name)}</b><br>${FLAG[s.country]||""} ${esc(s.leave)}d leave · ${s.cert}<br>${state.month?STATUS[st]+" in "+M[state.month-1]:""}<br><button onclick="__jump('${s.id}')">See details 🐚</button>`);
+    });
+    if(refit && list.length) map.fitBounds(L.latLngBounds(list.map(s=>[s.lat,s.lng]).concat([[1.35,103.82]])).pad(.15));
+
+    const calList = SPOTS.filter(inTab);
+    document.getElementById("cal").innerHTML =
+      `<thead><tr><th>Spot</th>${M.map((n,i)=>`<th class="${state.month===i+1?"sel":""}">${n}</th>`).join("")}</tr></thead><tbody>` +
+      calList.map(s=>`<tr onclick="__jump('${s.id}')"><td>${(TAGS[(s.tags||[])[0]]||["🐠"])[0]} ${esc(s.name)}</td>${M.map((n,i)=>`<td class="c ${statusOf(s,i+1)}" title="${n}"><i></i></td>`).join("")}</tr>`).join("") + `</tbody>`;
+  }
+
+  render(true);
+  setTimeout(()=>map.invalidateSize(),250);
+})();
+</script>
+</body>
+</html>
