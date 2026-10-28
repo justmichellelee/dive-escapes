@@ -807,6 +807,239 @@ table.cal tr.spot:hover td{background:#e1f0ff}
 .dv.deep .dv-mid{transition-delay:.9s,.9s}
 .dv.deep .dv-cap{transition-delay:1.1s,1.1s}
 .dv:not(.deep) .dv-mid,.dv:not(.deep) .dv-cap{transition-duration:.5s,.4s}
+
+/* ───── LEAVE OPTIMISER ───── */
+.lo-box{background:#fff;border-radius:28px;box-shadow:var(--shadow);padding:20px;margin-bottom:26px}
+.lo-ctl{display:flex;flex-direction:column;gap:12px;font:500 clamp(17px,2vw,21px) Poppins,sans-serif;color:var(--ink)}
+.lo-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.lo-al{display:inline-flex;background:#eef5fb;border-radius:999px;padding:4px;gap:2px}
+.lo-al button{border:0;background:transparent;width:44px;height:38px;border-radius:999px;font:800 16px Montserrat,sans-serif;color:#0f3157;cursor:pointer;transition:all .2s}
+.lo-al button.on{background:linear-gradient(135deg,#2f86de,#4fc3f0);color:#fff;box-shadow:0 4px 12px rgba(47,134,222,.35)}
+.lo-row select{appearance:none;-webkit-appearance:none;border:1.5px solid var(--line);background:#f5f9fd url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%230f3157' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") no-repeat right 12px center;border-radius:12px;padding:7px 32px 7px 12px;font:700 15px Poppins,sans-serif;color:#0f3157;cursor:pointer}
+.lo-legend{display:flex;gap:14px;margin:16px 0 4px;font:600 12px Poppins;color:var(--muted)}
+.lo-legend span{display:inline-flex;align-items:center;gap:6px}
+.lo-legend i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.lo-legend .x-we,.lo-strip .x-we{background:#dceefc}.lo-legend .x-ph,.lo-strip .x-ph{background:#ff8a5c}.lo-legend .x-al,.lo-strip .x-al{background:#ffd166}
+#loResults{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;margin-top:12px}
+.lo-card{border:1.5px solid #e4eef7;border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:12px;animation:msIn .45s both;transition:border-color .2s, box-shadow .2s}
+.lo-card:hover{border-color:#b9dcf6;box-shadow:0 10px 26px rgba(47,134,222,.12)}
+.lo-h{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.lo-h b{font:800 16px Montserrat,sans-serif;color:#0f3157}.lo-h small{font:600 12px Poppins;color:var(--muted)}
+.lo-sub{font:600 13px Poppins;color:#e0623a;margin-top:2px}
+.lo-badges{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.lo-len{font:800 20px/1 Montserrat,sans-serif;color:#0f3157}
+.lo-cost{font:700 11.5px Poppins;background:#fff3d6;color:#9a6a00;border-radius:99px;padding:2px 8px}.lo-cost.free{background:#dcf7ef;color:#11967f}
+.lo-star{font:700 11px Poppins;background:#0f3157;color:#fff;border-radius:99px;padding:2px 8px}
+.lo-strip{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.lo-strip::-webkit-scrollbar{display:none}
+.lo-strip span{flex:1 0 34px;max-width:46px;border-radius:10px;padding:5px 0;text-align:center;display:flex;flex-direction:column;line-height:1.1}
+.lo-strip i{font:600 10px Poppins;font-style:normal;opacity:.75}.lo-strip b{font:800 14px Montserrat,sans-serif}
+.lo-strip .x-wd{background:#f3f6fa;color:#9db3c8}
+.lo-strip .x-ph{color:#fff}.lo-strip .x-al{color:#5e4300}.lo-strip .x-we{color:#1f6fb8}
+.lo-strip .x-out{opacity:.35;transform:scale(.88)}
+.lo-take{font:600 12.5px Poppins;color:#9a6a00}
+.lo-spots{display:flex;flex-direction:column;gap:6px}
+.lo-spot{display:flex;align-items:center;gap:10px;border:0;background:#f5f9fd;border-radius:14px;padding:7px 10px 7px 7px;cursor:pointer;text-align:left;font:inherit;color:var(--ink);transition:background .2s, transform .2s}
+.lo-spot:hover{background:#e8f3fd;transform:translateX(3px)}
+.lo-ph{width:40px;height:40px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#dceefc;display:grid;place-items:center}
+.lo-ph img{width:100%;height:100%;object-fit:cover}
+.lo-nm{flex:1;display:flex;flex-direction:column}.lo-nm b{font:700 14px Montserrat,sans-serif}.lo-nm small{font:500 12px Poppins;color:var(--muted)}
+.lo-go{font:700 12px Poppins;color:var(--blue)}
+.lo-none,.lo-empty{color:var(--muted);font-weight:600;margin:0}
+@media (max-width:640px){.lo-box{padding:16px}#loResults{grid-template-columns:1fr}.lo-al button{width:40px}}
+
+/* ───── COST RECEIPT ───── */
+.receipt{position:relative;background:#fffdf8;border-radius:16px;padding:18px 18px 16px;margin:6px 2px 4px;box-shadow:0 1px 0 #efe6d4,0 10px 26px rgba(15,49,87,.08);font-family:Poppins,sans-serif;color:#2b2b2b;
+  -webkit-mask:radial-gradient(circle 7px at 50% 0,#0000 98%,#000) 0 0/18px 51% repeat-x, radial-gradient(circle 7px at 50% 100%,#0000 98%,#000) 0 100%/18px 51% repeat-x;
+  mask:radial-gradient(circle 7px at 50% 0,#0000 98%,#000) 0 0/18px 51% repeat-x, radial-gradient(circle 7px at 50% 100%,#0000 98%,#000) 0 100%/18px 51% repeat-x}
+.rc-top{text-align:center;display:flex;flex-direction:column;gap:2px;margin-top:4px}
+.rc-top span{font:600 11px Poppins;letter-spacing:.25em;text-transform:uppercase;color:#a08a5c}
+.rc-top b{font:800 18px Montserrat,sans-serif;color:#0f3157}.rc-top small{font:600 12px Poppins;color:#e0623a}
+.rc-opts{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.rc-opts>div{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.rc-opts span{width:58px;font:600 12px Poppins;color:#8a7a5a}
+.rc-chip{border:1.5px solid #e8dcc2;background:#fff;color:#4a3f2a;border-radius:99px;padding:3px 11px;font:600 12.5px Poppins;cursor:pointer;transition:all .15s}
+.rc-chip.on{background:#0f3157;border-color:#0f3157;color:#fff}
+.rc-cut{border-top:2px dashed #e3d7bc;margin:14px -4px}
+.rc-lines{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.rc-lines li{display:flex;align-items:flex-end;gap:6px;font-size:13.5px}
+.rc-l{display:flex;flex-direction:column;max-width:70%}.rc-l small{font-size:11px;color:#9b8b6b}.rc-l a{font-size:11.5px;font-weight:700}
+.rc-lines i{flex:1;border-bottom:2px dotted #d9ccad;margin-bottom:5px;min-width:12px}
+.rc-lines b{font:700 13.5px "Courier New",monospace;white-space:nowrap}
+.rc-total{display:flex;justify-content:space-between;align-items:baseline}
+.rc-total span{font:800 15px Montserrat,sans-serif;color:#0f3157}.rc-total small{font:500 11px Poppins;color:#9b8b6b}
+.rc-total b{font:800 22px Montserrat,sans-serif;color:#0f3157}
+.rc-note{font-size:12.5px;margin:12px 0 0;color:#5a4a2a}
+.rc-fine{font-size:11px;color:#a5967a;margin:10px 0 4px;text-align:center}
+
+/* timeline accordion */
+.tl-box .wh-chips{display:none}
+.tl-box .wh-top{justify-content:flex-end}
+.tl-crow{margin-top:6px;padding:8px 0;border-top:1px solid #eef3f8;border-radius:0}
+.tl-crow .tl-name b{font:800 15px Montserrat,sans-serif;color:#0f3157;display:inline-flex;align-items:center;gap:8px}
+.tl-crow .tl-name b .flagimg{width:22px;height:15px}
+.tl-crow .tl-name em{font-style:normal;color:var(--blue);font-size:12px}
+.tl-crow .tl-bar{opacity:.85}
+.tl-crow.open{background:#f3f8fd}.tl-crow.open .tl-name{background:#f3f8fd !important}
+.tl-subs{animation:tlOpen .35s ease both;box-shadow:inset 3px 0 #cfe4f7}
+.tl-subs .tl-name{padding-left:10px;font-size:13.5px}
+@keyframes tlOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* ───── EXPLORE DEPTH ZONES ───── */
+body{overflow-x:clip}
+.zone{width:100vw;margin-left:calc(50% - 50vw);padding:34px 0 30px;position:relative}
+.zone-in{max-width:1100px;margin:0 auto;padding:0 16px}
+.zone + .zone{margin-top:0}
+.zone-h{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:0 2px 14px}
+.zone-h h3{margin:4px 0 2px;font:800 clamp(20px,2.4vw,26px) Montserrat,sans-serif}
+.zone-n{font:700 12px Poppins;border-radius:999px;padding:2px 9px;vertical-align:middle;margin-left:4px;background:rgba(255,255,255,.6);color:#0f3157}
+.zone-h p{margin:0;font:500 14px Poppins,sans-serif;opacity:.8}
+.zone-tag{display:inline-block;font:700 11px Poppins,sans-serif;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.55);color:#0f3157}
+.zone .srow-nav button{background:rgba(255,255,255,.9);color:#0f3157}
+.z-spot{background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff8e6 18%,#e6f8ff 100%);color:#0f3157;border-radius:0}
+.z-spot .zone-tag{background:#ffe7a8;color:#7a5200}
+.z-shallow{background:linear-gradient(180deg,#e6f8ff 0%,#bfeffa 45%,#8fdcf2 100%);color:#0b3550}
+.z-mid{background:linear-gradient(180deg,#8fdcf2 0%,#4ea7dc 40%,#2b78b8 100%);color:#062a47}
+.z-mid .zone-h p{color:#062a47;opacity:.85}
+.z-deep{background:linear-gradient(180deg,#2b78b8 0%,#123f6c 35%,#071b30 100%);color:#fff;padding-bottom:46px}
+.z-deep .zone-tag{background:rgba(255,255,255,.14);color:#cdeaff}
+.z-deep .zone-n{background:rgba(255,255,255,.16);color:#fff}
+.z-deep .srow-nav button{background:rgba(255,255,255,.15);color:#fff}
+.z-deep::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1.5px 1.5px at 12% 30%,rgba(220,245,255,.5),transparent),radial-gradient(1.5px 1.5px at 38% 70%,rgba(220,245,255,.4),transparent),radial-gradient(2px 2px at 64% 22%,rgba(220,245,255,.35),transparent),radial-gradient(1.5px 1.5px at 86% 60%,rgba(220,245,255,.45),transparent),radial-gradient(1.5px 1.5px at 52% 88%,rgba(220,245,255,.3),transparent)}
+.zone + .summary,#rows + .summary{margin-top:30px}
+/* spotlight big cards */
+.mcard.big{flex-basis:min(84%,330px)}
+.mcard.big .art{height:200px !important}
+.mcard.big h3{font-size:18px}
+/* shallow compact cards */
+.ccard{flex:0 0 min(88%,360px);scroll-snap-align:start;display:flex;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 22px rgba(10,80,120,.14);cursor:pointer;transition:transform .3s cubic-bezier(.2,.9,.3,1.3)}
+.ccard:hover{transform:translateY(-4px)}
+.ccard .art{flex:0 0 130px;height:auto !important;min-height:130px}
+.ccard .art img.cover{width:100%;height:100%;object-fit:cover}
+.cc-body{padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.cc-top{display:flex;align-items:center;gap:8px}.cc-top .flagimg{width:20px;height:13px}
+.cc-st{font:700 11px Poppins;border-radius:99px;padding:2px 8px;background:#e8f3fd;color:#1f6fb8}.cc-st.best{background:#dcf7ef;color:#11967f}.cc-st.ok{background:#fff3d6;color:#9a6a00}.cc-st.closed{background:#eef2f6;color:#8aa0b5}
+.ccard h3{margin:2px 0 0;font:800 17px Montserrat,sans-serif;color:#0f3157}
+.cc-time{font:600 13px Poppins;color:#0b6e8f}
+.cc-meta{font:500 12.5px Poppins;color:var(--muted)}
+/* deep cinematic cards */
+.lcard{position:relative;flex:0 0 min(90%,460px);height:300px;scroll-snap-align:start;border-radius:24px;overflow:hidden;cursor:pointer;box-shadow:0 18px 40px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.2,.9,.3,1.2)}
+.lcard:hover{transform:translateY(-6px) scale(1.01)}
+.lcard .art{position:absolute;inset:0;height:100% !important}
+.lcard .art img.cover{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.lcard:hover .art img.cover{transform:scale(1.06)}
+.lc-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,20,38,0) 35%,rgba(4,20,38,.85) 100%)}
+.lcard .status-tag{position:absolute;top:14px;left:14px}
+.lc-body{position:absolute;left:18px;right:18px;bottom:16px;color:#fff;display:flex;flex-direction:column;gap:3px}
+.lc-meta{font:500 12.5px Poppins;opacity:.85;display:flex;align-items:center;gap:6px}.lc-meta .flagimg{width:18px;height:12px}
+.lcard h3{margin:0;font:800 26px Montserrat,sans-serif;color:#fff}
+.lc-see{font:600 13.5px Poppins;color:#bfe9ff}
+.lc-price{margin-top:6px;align-self:flex-start;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 12px;font:600 13px Poppins}
+.lc-price b{font-weight:800}
+@media (max-width:640px){.zone{padding:26px 0 22px}.lcard{height:260px}.ccard .art{flex-basis:110px}}
+
+.lcard .status-tag{z-index:2;background:rgba(255,255,255,.95);padding:5px 11px;border-radius:999px;font:700 12px Poppins,sans-serif}
+.lcard .status-tag.best{color:#11967f}.lcard .status-tag.ok{color:#b07800}.lcard .status-tag.closed{color:#8aa0b5}
+.z-deep{padding-bottom:90px}
+.z-deep{-webkit-mask:linear-gradient(#000,#000) top/100% calc(100% - 59px) no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0,0 H1440 V34 C1320,60 1200,60 1080,34 C960,8 840,8 720,34 C600,60 480,60 360,34 C240,8 120,8 0,34 Z'/%3E%3C/svg%3E") bottom/100% 60px no-repeat;mask:linear-gradient(#000,#000) top/100% calc(100% - 59px) no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0,0 H1440 V34 C1320,60 1200,60 1080,34 C960,8 840,8 720,34 C600,60 480,60 360,34 C240,8 120,8 0,34 Z'/%3E%3C/svg%3E") bottom/100% 60px no-repeat}
+
+/* ── background variants (preview) ── */
+body[class*="v-"] .z-spot{background:none}
+body[class*="v-"] .z-deep{-webkit-mask:none;mask:none;padding-bottom:30px}
+body[class*="v-"] .z-deep::before{display:none}
+/* A: separate tinted panels */
+body.v-panels .zone{width:auto;margin:0 0 18px;border-radius:30px;padding:24px 0 20px}
+body.v-panels .zone-in{padding:0 22px}
+body.v-panels .z-spot{padding:10px 0}body.v-panels .z-spot .zone-in{padding:0}
+body.v-panels .z-shallow{background:#def5fa;color:#0b3550}
+body.v-panels .z-mid{background:#dfeafe;color:#0f3157}
+body.v-panels .z-mid .zone-h p{color:#3d5b7c}
+body.v-panels .z-deep{background:linear-gradient(160deg,#0f3a63,#071b30);color:#fff}
+body.v-panels .z-shallow .zone-tag{background:#fff;color:#0b7a95}body.v-panels .z-mid .zone-tag{background:#fff;color:#2f6fd6}
+/* B: clean light + depth rail */
+body.v-rail .zone{width:auto;margin:0;background:none !important;color:#0f3157;padding:22px 0}
+body.v-rail .zone-in{position:relative;padding:0 0 0 64px}
+body.v-rail .z-spot .zone-in{padding-left:0}
+body.v-rail .zone:not(.z-spot) .zone-in::before{content:"";position:absolute;left:22px;top:-22px;bottom:-22px;width:3px;border-radius:3px}
+body.v-rail .z-shallow .zone-in::before{background:linear-gradient(#bfeefa,#7fd0ee)}
+body.v-rail .z-mid .zone-in::before{background:linear-gradient(#7fd0ee,#2f86de)}
+body.v-rail .z-deep .zone-in::before{background:linear-gradient(#2f86de,#0b2a4a)}
+body.v-rail .zone:not(.z-spot) .zone-tag{position:absolute;left:0;top:2px;width:48px;height:48px;border-radius:50%;padding:0;display:grid;place-items:center;font:800 12px Montserrat,sans-serif;letter-spacing:0;color:#fff;box-shadow:0 0 0 5px #f2f8ff}
+body.v-rail .zone:not(.z-spot) .zone-tag{font-size:0}
+body.v-rail .zone:not(.z-spot) .zone-tag::after{font-size:12px}
+body.v-rail .z-shallow .zone-tag{background:#4fc3e0}body.v-rail .z-shallow .zone-tag::after{content:"5m"}
+body.v-rail .z-mid .zone-tag{background:#2f86de}body.v-rail .z-mid .zone-tag::after{content:"18m"}
+body.v-rail .z-deep .zone-tag{background:#0b2a4a}body.v-rail .z-deep .zone-tag::after{content:"30m"}
+body.v-rail .z-deep .zone-n,body.v-rail .zone-n{background:#e3effa}
+body.v-rail .z-deep .srow-nav button{background:#fff;color:#0f3157}
+/* C: photo banner headers */
+body.v-photo .zone{width:auto;margin:0 0 10px;background:none !important;color:#0f3157;padding:14px 0}
+body.v-photo .zone-in{padding:0}
+body.v-photo .zone:not(.z-spot) .zone-h{position:relative;border-radius:24px;overflow:hidden;padding:56px 24px 22px;color:#fff;background-size:cover;background-position:center;margin-bottom:16px}
+body.v-photo .zone:not(.z-spot) .zone-h p{color:#e6f6ff;opacity:1}
+body.v-photo .z-shallow .zone-h{background-image:linear-gradient(90deg,rgba(6,60,90,.75),rgba(6,60,90,.15)),url(photos/aur.jpg)}
+body.v-photo .z-mid .zone-h{background-image:linear-gradient(90deg,rgba(8,45,95,.78),rgba(8,45,95,.15)),url(photos/kohtao.jpg)}
+body.v-photo .z-deep .zone-h{background-image:linear-gradient(90deg,rgba(3,15,30,.85),rgba(3,15,30,.25)),url(photos/rajaampat.jpg)}
+body.v-photo .zone:not(.z-spot) .zone-tag{background:rgba(255,255,255,.2);color:#fff;backdrop-filter:blur(4px)}
+body.v-photo .zone:not(.z-spot) .zone-n{background:rgba(255,255,255,.25);color:#fff}
+body.v-photo .zone:not(.z-spot) .srow-nav button{background:rgba(255,255,255,.9)}
+/* D: one dark ocean section */
+body.v-dark .zone:not(.z-spot){background:#071b30 !important;color:#fff;padding:26px 0}
+body.v-dark .z-shallow{padding-top:44px !important;border-radius:0}
+body.v-dark .zone:not(.z-spot) .zone-h{position:relative;padding-top:18px}
+body.v-dark .zone:not(.z-spot) .zone-h::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,rgba(120,210,255,.7),rgba(120,210,255,0))}
+body.v-dark .zone:not(.z-spot) .zone-tag{background:none;padding:0;color:#7fd3ff}
+body.v-dark .zone:not(.z-spot) .zone-n{background:rgba(255,255,255,.12);color:#fff}
+body.v-dark .zone:not(.z-spot) .zone-h p{color:#a9c7e0;opacity:1}
+body.v-dark .zone:not(.z-spot) .srow-nav button{background:rgba(255,255,255,.1);color:#fff}
+body.v-dark .zone:not(.z-spot) .mcard,body.v-dark .zone:not(.z-spot) .ccard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);box-shadow:none}
+body.v-dark .zone:not(.z-spot) .mcard h3,body.v-dark .zone:not(.z-spot) .ccard h3{color:#fff}
+body.v-dark .zone:not(.z-spot) .mc-meta,body.v-dark .zone:not(.z-spot) .cc-meta{color:#a9c7e0}
+body.v-dark .zone:not(.z-spot) .cc-time{color:#7fd3ff}
+body.v-dark .zone:not(.z-spot) .mc-now{background:rgba(127,211,255,.12);color:#bfe9ff}
+
+body.v-rail .zone-n{background:#e3effa !important;color:#0f3157 !important}
+body.v-rail .zone-h p{color:#4d6b8a;opacity:1}
+body.v-rail .zone-h h3{color:#0f3157}
+
+@media (max-width:640px){
+  body.v-rail .zone-in{padding-left:42px}
+  body.v-rail .zone:not(.z-spot) .zone-in::before{left:15px}
+  body.v-rail .zone:not(.z-spot) .zone-tag{width:34px;height:34px;box-shadow:0 0 0 4px #f2f8ff}
+  body.v-rail .zone:not(.z-spot) .zone-tag::after{font-size:10px}
+  body.v-rail .ccard{flex-basis:92%}body.v-rail .ccard .art{flex-basis:96px}
+  body.v-rail .lcard{flex-basis:92%}
+}
+
+/* ───── SEA BACKGROUND: deeper as you scroll ───── */
+body{background:#dff2fb}
+.sea-bg{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.sea-bg i{position:absolute;inset:0;will-change:opacity}
+.sea-bg .s1{background:radial-gradient(120% 60% at 50% -10%,rgba(255,255,255,.9),rgba(255,255,255,0) 60%),linear-gradient(180deg,#e8f8ff 0%,#cdeefa 100%)}
+.sea-bg .s2{opacity:0;background:radial-gradient(120% 60% at 50% -10%,rgba(200,240,255,.45),rgba(200,240,255,0) 60%),linear-gradient(180deg,#8fd0f0 0%,#5ba8dc 100%)}
+.sea-bg .s3{opacity:0;background:radial-gradient(120% 60% at 50% -10%,rgba(80,150,210,.35),rgba(80,150,210,0) 60%),linear-gradient(180deg,#1f5f97 0%,#0b2f52 100%)}
+.summary h2,.summary small,.zone-h h3,.zone-h p,.fyi-head h2,.legend,footer,.depth b{transition:color .5s ease}
+body.deep-sea .summary h2,body.deep-sea .fyi-head h2,body.deep-sea .zone-h h3{color:#f2faff !important}
+body.deep-sea .summary small,body.deep-sea .zone-h p,body.deep-sea .legend,body.deep-sea footer{color:#bfe0f7 !important}
+body.deep-sea .summary .ico,body.deep-sea .fyi-head .ico{stroke:#bfe0f7}
+body.deep-sea footer code{background:rgba(255,255,255,.12);color:#fff}
+body.v-rail .zone:not(.z-spot) .zone-tag{box-shadow:0 0 0 5px rgba(255,255,255,.55)}
+/* pending fixes */
+body.v-rail .zone .lcard h3{color:#fff}
+@media (max-width:640px){
+  body.v-rail .zone-in{padding-left:42px}
+  body.v-rail .zone:not(.z-spot) .zone-in::before{left:15px}
+  body.v-rail .zone:not(.z-spot) .zone-tag{width:34px;height:34px;box-shadow:0 0 0 4px rgba(255,255,255,.55)}
+  body.v-rail .zone:not(.z-spot) .zone-tag::after{font-size:10px}
+  body.v-rail .ccard{flex-basis:92%}body.v-rail .ccard .art{flex-basis:96px}
+  body.v-rail .lcard{flex-basis:92%}
+}
+
+/* sea grain: fine particles + soft murky light (static, cheap) */
+.sea-bg .grain{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:220px 220px;opacity:.13}
+.sea-bg .murk{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .75  0 0 0 0 .92  0 0 0 0 1  0 0 0 .5 -.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");background-size:100% 100%;background-repeat:no-repeat;opacity:.28}
+
+.zone .strack{padding-bottom:30px;margin-bottom:-18px;padding-top:8px;margin-top:-4px}
 /* ───── FYI CAROUSEL ───── */
 .fyi-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 10px;gap:10px}
 .fyi-head h2{font-size:24px;margin:0}
@@ -863,7 +1096,8 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
 }
 </style>
 </head>
-<body>
+<body class="v-rail">
+<div class="sea-bg" aria-hidden="true"><i class="s1"></i><i class="s2" id="sea2"></i><i class="s3" id="sea3"></i><i class="murk"></i><i class="grain"></i></div>
 
 <header class="dv" id="top">
   <div class="dv-stage">
@@ -1005,10 +1239,17 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     </div>
   </section>
 
-  <div class="summary" id="holidays"><h2>Public holiday hacks <span id="sgFlag"></span></h2><small>Tap a date</small></div>
+  <div class="summary" id="holidays"><h2>Plan with your leave <span id="sgFlag"></span></h2><small>Uses Singapore public holidays</small></div>
+  <div class="lo-box">
+    <div class="lo-ctl">
+      <div class="lo-row"><span>I can take</span><div class="lo-al" id="loAl"></div><span>days of leave</span></div>
+      <div class="lo-row"><span>between</span><select id="loFrom" aria-label="From month"></select><span>and</span><select id="loTo" aria-label="To month"></select></div>
+    </div>
+    <div class="lo-legend"><span><i class="x-we"></i>Weekend</span><span><i class="x-ph"></i>Public holiday</span><span><i class="x-al"></i>Your leave</span></div>
+    <div id="loResults"></div>
+  </div>
   <p class="ph-intro" hidden>For each upcoming Singapore public holiday: the free long weekend, the smartest days to take leave, and dive spots in season that fit. Tap a spot to see it, or jump straight to trip links.</p>
-  <div class="ph-strip" id="phStrip"></div>
-  <div id="phPanel"></div>
+
 
   <div class="fyi-head"><h2><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg> FYI</h2>
     <div class="fyi-nav"><button type="button" id="fyiPrev" aria-label="Previous">‹</button><button type="button" id="fyiNext" aria-label="Next">›</button></div>
@@ -1046,6 +1287,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="spots.js"></script>
+<script src="costs.js"></script>
 <script>
 (function(){
   const SPOTS = window.DIVE_SPOTS || [];
@@ -1077,7 +1319,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   const saveLog = () => { try { localStorage.setItem("diveLog", JSON.stringify(LOG)); } catch(e){} };
   window.__mine = (id, k) => { LOG[id] = LOG[id] || {}; LOG[id][k] = !LOG[id][k]; saveLog(); render(); };
   window.__note = (id, v) => { LOG[id] = LOG[id] || {}; LOG[id].n = v; saveLog(); };
-  let calCountry = "All";
+  let calCountry = "All"; const tlOpen = new Set();
   const state = { type:"all", month:new Date().getMonth()+1, tags:new Set(), inSeason:false, owOnly:false, easyOnly:false, sort:"season" };
   const YEAR = new Date().getFullYear();
   const catOf = s => { const n = parseFloat(String(s.leave).match(/\d+(\.\d+)?/)?.[0] ?? "0"); return n>=3 ? "liveaboard" : n>=1 ? "short" : "weekend"; };
@@ -1440,11 +1682,11 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   }
   const mineBtns = s => "";
 
-  function miniCard(s){
+  function miniCard(s, size){
     const st = statusOf(s,state.month);
     const nowItems = (s.see||[]).filter(x=>hereNow(x,state.month));
     const hi = state.month && st!=="closed" && nowItems.length ? `<div class="mc-now">${TAGS[nowItems[0].tag]?TAGS[nowItems[0].tag][0]:"✨"} ${esc(nowItems[0].what.split("(")[0].trim())}</div>` : "";
-    return `<div class="mcard ${st}" role="button" tabindex="0" onclick="__jump('${s.id}')" onkeydown="if(event.key==='Enter')__jump('${s.id}')">
+    return `<div class="mcard ${st} ${size||""}" role="button" tabindex="0" onclick="__jump('${s.id}')" onkeydown="if(event.key==='Enter')__jump('${s.id}')">
       <div class="art">${artFor(s,st)}${mineBtns(s)}
         ${state.month?`<span class="status-tag ${st}">${STATUS[st]}</span>`:""}
         <span class="flag flag-only">${flagImg(s.country)}</span>
@@ -1457,6 +1699,58 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     </div>`;
   }
 
+  /* ═════════ TRIP COST ESTIMATOR (receipt) ═════════ */
+  const COSTS = window.DIVE_COSTS || {};
+  const COST_CFG = {};
+  const r10 = n => Math.round(n/10)*10;
+  const TIER = ["budget","mid","resort"], TIER_LB = ["Budget","Mid","Luxury"];
+  function costCfg(id){
+    const c = COSTS[id]; if(!c) return null;
+    if(!COST_CFG[id]) COST_CFG[id] = { n:c.n, d: c.liveaboard ? 0 : Math.min(12, Math.max(2, c.n*3 - (c.n>2?3:0))), t:1, dates:null };
+    return COST_CFG[id];
+  }
+  const ymd2 = d => `${String(d.getFullYear()).slice(2)}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`;
+  const flightLink = (c, dates) => c.airport ? `https://www.skyscanner.com.sg/transport/flights/sin/${c.airport.toLowerCase()}/${dates?ymd2(dates.a)+"/"+ymd2(dates.b)+"/":""}` : "";
+  function costCalc(id, cfg){
+    const c = COSTS[id]; if(!c) return null; cfg = cfg || costCfg(id);
+    const n = cfg.n, lines = [];
+    if(c.flight) lines.push({k:"fl", label:`Flights SIN ⇄ ${c.airport} (return)`, lo:c.flight[0], hi:c.flight[1], link:flightLink(c, cfg.dates)});
+    if(c.ground) lines.push({k:"gr", label:c.ground.label + (c.flight?"":" (return)"), lo:c.ground.lo, hi:c.ground.hi});
+    if(c.liveaboard){ const pn = c.boat[cfg.t]; lines.push({k:"bt", label:`Liveaboard · ${n} night${n>1?"s":""} × S$${pn}`, lo:pn*n, hi:pn*n, sub:"incl. dives & meals"}); }
+    else {
+      const pn = c.stay[cfg.t]; lines.push({k:"st", label:`Stay · ${n} night${n>1?"s":""} × S$${pn}`, lo:pn*n, hi:pn*n});
+      lines.push({k:"dv", label:`${cfg.d} dives × S$${c.dive}`, lo:c.dive*cfg.d, hi:c.dive*cfg.d, sub:"incl. gear"});
+    }
+    const dDays = c.liveaboard ? n : Math.max(1, Math.ceil(cfg.d/3));
+    (c.fees||[]).forEach(f=>{ const q = f.per==="day"?dDays:f.per==="night"?n:1, a = f.amt*q; lines.push({k:"fe", label:f.label + (q>1?` × ${q}`:""), lo:a, hi:a}); });
+    const lo = lines.reduce((t,l)=>t+l.lo,0), hi = lines.reduce((t,l)=>t+l.hi,0);
+    return { lines, lo:r10(lo), hi:r10(hi) };
+  }
+  const money = (lo,hi) => lo===hi ? `S$${Math.round(lo).toLocaleString()}` : `S$${Math.round(lo).toLocaleString()}–${Math.round(hi).toLocaleString()}`;
+  function receiptHTML(s){
+    const c = COSTS[s.id]; if(!c) return `<p>No cost estimate yet.</p>`;
+    const cfg = costCfg(s.id), r = costCalc(s.id, cfg);
+    const chip = (key, val, label, on) => `<button type="button" class="rc-chip ${on?"on":""}" onclick="__cost('${s.id}','${key}',${val})">${label}</button>`;
+    const nightsOpts = c.nights.includes(cfg.n) ? c.nights : [...c.nights, cfg.n].sort((a,b)=>a-b);
+    const title = `${esc(s.name.replace(/\s*\(.*?\)/g,""))} · ${cfg.n+1}D${cfg.n}N`;
+    return `<div class="receipt">
+      <div class="rc-top"><span>✦ Trip estimate ✦</span><b>${title}</b>${cfg.dates?`<small>${dayRange(cfg.dates.a,cfg.dates.b)}</small>`:""}</div>
+      <div class="rc-opts">
+        <div><span>Nights</span>${nightsOpts.map(v=>chip("n",v,v,v===cfg.n)).join("")}</div>
+        ${c.liveaboard?"":`<div><span>Dives</span>${[2,4,6,8,10,12].map(v=>chip("d",v,v,v===cfg.d)).join("")}</div>`}
+        <div><span>${c.liveaboard?"Boat":"Stay"}</span>${[0,1,2].map(v=>chip("t",v,TIER_LB[v],v===cfg.t)).join("")}</div>
+      </div>
+      <div class="rc-cut"></div>
+      <ul class="rc-lines">${r.lines.map(l=>`<li><span class="rc-l">${esc(l.label)}${l.sub?`<small>${l.sub}</small>`:""}${l.link?` <a href="${l.link}" target="_blank" rel="noopener">check fares ↗</a>`:""}</span><i></i><b>${money(l.lo,l.hi)}</b></li>`).join("")}</ul>
+      <div class="rc-cut"></div>
+      <div class="rc-total"><span>Total <small>per person</small></span><b>~${money(r.lo,r.hi)}</b></div>
+      ${c.note?`<p class="rc-note">💡 ${esc(c.note)}</p>`:""}
+      <p class="rc-fine">Rough estimate for twin-share rooms, excluding food and tips. Prices last checked Oct 2026. Always confirm with the operator.</p>
+    </div>`;
+  }
+  window.__cost = (id, k, v) => { const cfg = costCfg(id); cfg[k] = v; if(sheetId===id) openSheet(id, true); };
+  window.__plan = (id, n, a, b) => { const cfg = costCfg(id), c = COSTS[id]; cfg.n = n; if(!c.liveaboard) cfg.d = Math.min(12, Math.max(2, Math.round(Math.max(1,n-1)*3/2)*2)); cfg.dates = {a:new Date(a), b:new Date(b)}; sheetTab = "cost"; openSheet(id, true); };
+
   let sheetId = null, sheetTab = "over";
   function sheetHTML(s){
     const st = statusOf(s,state.month);
@@ -1466,8 +1760,9 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     const linkList = arr => (arr||[]).map(o=>`<li><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.name)}</a>${o.note?` <span style="color:var(--muted)">· ${esc(o.note)}</span>`:""}</li>`).join("");
     const q = encodeURIComponent(`Singapore dive shop trip ${s.searchName||s.name.replace(/\s*\(.*?\)/g,"")} ${YEAR} ${YEAR+1}`);
     const ul = (a,c="") => a&&a.length?`<ul class="${c}">${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:"";
-    const TABS = [["over","Overview"],["go","Getting there"],["shops","Shops & trips"],["notes","My notes"]];
+    const TABS = [["over","Overview"],["go","Getting there"],["cost","Cost"],["shops","Shops & trips"],["notes","My notes"]];
     const panes = {
+      cost: receiptHTML(s),
       over: `${state.month ? (st==="closed" ? `<div class="now off">💤 Not recommended in ${M[state.month-1]}</div>` : nowItems.length ? `<div class="now"><b>In ${M[state.month-1]}:</b> ${nowItems.map(x=>esc(x.what)).join(" · ")}</div>` : "") : ""}
         <h4>Season</h4><div class="mini-cal">${cal}</div><div class="mini-cal-l">${M.map(n=>`<span>${n[0]}</span>`).join("")}</div>
         <h4>What you'll see & where</h4><ul class="see">${see}</ul>
@@ -1515,10 +1810,11 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
 
   const MONTHS_FULL = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   const ROWS = [
-    { t: () => state.month ? `Recommended dives in ${MONTHS_FULL[state.month-1]}` : "Recommended dives", f: s => state.month ? statusOf(s,state.month)==="best" : (s.ease||0)>=4 },
-    { t: () => "No leaves needed", f: s => catOf(s)==="weekend" },
-    { t: () => "Long weekend escapes", f: s => catOf(s)==="short" },
-    { t: () => "Worth saving leaves · 3+ AL", f: s => catOf(s)==="liveaboard" }
+    { z:"spot",    tag: () => "☀️ Spotlight", t: () => state.month ? `Best in ${MONTHS_FULL[state.month-1]}` : "Easy, reliable picks",
+      x: () => state.month ? "At their peak right now. Book these first." : "Great all-rounders that are easy to book.", f: s => state.month ? statusOf(s,state.month)==="best" : (s.ease||0)>=4, card: s => miniCard(s, "big") },
+    { z:"shallow", tag: () => "5m · Shallow", t: () => "No leave needed", x: () => "Leave Friday night, back by Sunday.", f: s => catOf(s)==="weekend", card: s => compactCard(s) },
+    { z:"mid",     tag: () => "18m · Mid-water", t: () => "Long weekend escapes", x: () => "Add 1–2 days of leave to a weekend and fly somewhere new.", f: s => catOf(s)==="short", card: s => miniCard(s) },
+    { z:"deep",    tag: () => "30m · Deep", t: () => "Worth saving leave for", x: () => "Bucket-list liveaboards: 3+ days of leave, unforgettable diving.", f: s => catOf(s)==="liveaboard", card: s => lobCard(s) }
   ];
   const TILES = [
     { k:"big",   t:"Big animal encounters", sub:"Whale sharks, mantas, threshers, mola", photo:"photos/komodo.jpg", f: s => (s.tags||[]).some(t=>["whalesharks","mantas","threshers","mola","sharks","whales"].includes(t)) },
@@ -1535,6 +1831,40 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
         <span class="tile-n">${t.l.length} spots</span><b>${t.t}</b><small>${t.sub}</small><span class="tile-cta">${t.k===tileOpen?"Hide ▴":"Show spots ▾"}</span></button>`).join("")}</div>
       ${open ? `<div class="tile-open">${rowHTML(open.t, open.l)}</div>` : ""}
     </section>`;
+  }
+  function zoneHTML(r, list){
+    const nav = `<div class="srow-nav"><button type="button" aria-label="Scroll left" onclick="this.closest('.zone').querySelector('.strack').scrollBy({left:-320,behavior:'smooth'})">‹</button><button type="button" aria-label="Scroll right" onclick="this.closest('.zone').querySelector('.strack').scrollBy({left:320,behavior:'smooth'})">›</button></div>`;
+    return `<section class="zone z-${r.z}"><div class="zone-in">
+      <div class="zone-h"><div><span class="zone-tag">${r.tag()}</span><h3>${r.t()} <span class="zone-n">${list.length}</span></h3><p>${r.x()}</p></div>${nav}</div>
+      <div class="strack">${list.map(r.card).join("")}</div>
+    </div></section>`;
+  }
+  function compactCard(s){
+    const st = statusOf(s,state.month), c = COSTS[s.id] || {}, est = c.n ? costCalc(s.id, {n:c.n, d:c.liveaboard?0:Math.min(12,c.n*3), t:1, dates:null}) : null;
+    return `<div class="ccard ${st}" role="button" tabindex="0" onclick="__jump('${s.id}')" onkeydown="if(event.key==='Enter')__jump('${s.id}')">
+      <div class="art">${artFor(s,st)}</div>
+      <div class="cc-body">
+        <div class="cc-top">${flagImg(s.country)}${state.month?`<span class="cc-st ${st}">${STATUS[st]}</span>`:""}</div>
+        <h3>${esc(s.name)}</h3>
+        <div class="cc-time">${c.time?`🕒 ${esc(c.time)}`:`🗓 ${esc(s.leave)}d leave`}</div>
+        <div class="cc-meta">${s.cert==="AOW"?"🔶 AOW":"🐠 OW"}${est?` · from ~S$${est.lo.toLocaleString()}`:""}</div>
+      </div>
+    </div>`;
+  }
+  function lobCard(s){
+    const st = statusOf(s,state.month), c = COSTS[s.id] || {}, est = c.n ? costCalc(s.id, {n:c.n, d:0, t:1, dates:null}) : null;
+    const hi = (s.see||[]).find(x=>hereNow(x,state.month)) || (s.see||[])[0];
+    return `<div class="lcard ${st}" role="button" tabindex="0" onclick="__jump('${s.id}')" onkeydown="if(event.key==='Enter')__jump('${s.id}')">
+      <div class="art">${artFor(s,st)}</div>
+      <div class="lc-shade"></div>
+      ${state.month?`<span class="status-tag ${st}">${STATUS[st]}</span>`:""}
+      <div class="lc-body">
+        <div class="lc-meta">${flagImg(s.country)} ${esc(s.country)} · ${esc(s.leave)} days leave · ${s.cert==="AOW"?"AOW":"OW"}</div>
+        <h3>${esc(s.name)}</h3>
+        ${hi?`<div class="lc-see">${hi.tag&&TAGS[hi.tag]?TAGS[hi.tag][0]+" ":""}${esc(hi.what.split("(")[0].trim())}</div>`:""}
+        ${est?`<div class="lc-price"><b>${c.n} nights</b> from ~S$${est.lo.toLocaleString()}</div>`:""}
+      </div>
+    </div>`;
   }
   function rowHTML(title, list, i){
     return `<section class="srow">
@@ -1558,7 +1888,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     const rowsEl = document.getElementById("rows");
     if(!list.length) rowsEl.innerHTML = `<div class="empty">🐡 No spots match. Try "any month" or "anything" above.</div>`;
     else if(list.length <= 5) rowsEl.innerHTML = rowHTML("Your matches", list);
-    else rowsEl.innerHTML = ROWS.map(r => r.tiles ? tilesHTML(list) : (()=>{ const l=list.filter(r.f); return l.length ? rowHTML(r.t(), l) : ""; })()).join("");
+    else rowsEl.innerHTML = ROWS.map(r => { const l = list.filter(r.f); return l.length ? zoneHTML(r, l) : ""; }).join("");
     if(sheetId) openSheet(sheetId, true);
 
     layer.clearLayers();
@@ -1581,7 +1911,8 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     const now = new Date(), dim = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
     const todayPct = ((now.getMonth() + (now.getDate()-.5)/dim) / 12).toFixed(4);
     const LBL = {best:"Peak", ok:"Good", closed:"Off"}, COL = {best:"#22c3a6", ok:"#ffc65c"};
-    const runs = s => { const st = M.map((_,i)=>statusOf(s,i+1)), out = []; let i = 0;
+    const runs = s => runsSt(M.map((_,i)=>statusOf(s,i+1)));
+    const runsSt = st => { const out = []; let i = 0;
       while(i < 12){ if(st[i]==="closed"){ i++; continue; } let j = i; while(j+1 < 12 && st[j+1] !== "closed") j++; out.push({a:i, b:j, st:st.slice(i,j+1)}); i = j+1; } return out; };
     const range = (s, want) => { const st = M.map((_,i)=>statusOf(s,i+1)), ms = st.map((x,i)=>x===want?i:-1).filter(i=>i>=0); if(!ms.length) return ""; const parts=[]; let a=ms[0], p=ms[0]; for(const m of ms.slice(1)){ if(m===p+1){p=m;continue;} parts.push(a===p?M[a]:M[a]+"–"+M[p]); a=p=m; } parts.push(a===p?M[a]:M[a]+"–"+M[p]); if(parts.length>1 && ms[0]===0 && ms[ms.length-1]===11){ const f=parts.shift(), l=parts.pop(); parts.push(l.split("–")[0]+"–"+(f.split("–")[1]||f)); } return parts.join(", "); };
     const bar = (s, r, k) => { const n = r.b - r.a + 1, stops = r.st.map((x,i)=>`${COL[x]} ${(i/n*100).toFixed(2)}% ${((i+1)/n*100).toFixed(2)}%`).join(",");
@@ -1592,11 +1923,14 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     let k = 0;
     document.getElementById("cal").innerHTML =
       `<div class="tl-head"><div class="tl-name"></div><div class="tl-months">${M.map((n,i)=>`<span class="${selM===i+1?"sel":""}${now.getMonth()===i?" now":""}">${n}</span>`).join("")}</div></div>` +
-      ORDER.filter(c=>pool.some(s=>s.country===c)).map(c=>`<div class="tl-country">${flagImg(c)} ${c}</div>` +
-        pool.filter(s=>s.country===c).map(s=>{ const pr = range(s,"best"), gr = range(s,"ok");
+      ORDER.filter(c=>pool.some(s=>s.country===c)).map(c=>{ const list = pool.filter(s=>s.country===c), open = tlOpen.has(c), cst = M.map((_,i)=>countryStatus(list,i+1));
+        return `<button type="button" class="tl-row tl-crow ${open?"open":""}" data-c="${c}" aria-expanded="${open}">
+            <span class="tl-name"><b>${flagImg(c)} ${c} <em>${open?"▾":"▸"}</em></b><small>${list.length} spot${list.length>1?"s":""} · ${open?"tap to close":"tap to open"}</small></span>
+            <span class="tl-track${selM?" has-sel":""}" style="--sel:${selM?((selM-1)/12*100).toFixed(3)+"%":"-20%"}">${runsSt(cst).map(r=>bar(null,r,k++)).join("")}</span></button>` +
+        (open ? `<div class="tl-subs">` + list.map(s=>{ const pr = range(s,"best"), gr = range(s,"ok");
           return `<button type="button" class="tl-row" onclick="__jump('${s.id}')" title="${esc(s.name)}${pr?" · Peak "+pr:""}${gr?" · Good "+gr:""}">
             <span class="tl-name">${(TAGS[(s.tags||[])[0]]||["🐠"])[0]} ${esc(s.name)}<small>${esc(s.leave)}d leave</small></span>
-            <span class="tl-track${selM?" has-sel":""}" style="--sel:${selM?((selM-1)/12*100).toFixed(3)+"%":"-20%"}">${runs(s).map(r=>bar(s,r,k++)).join("")}</span></button>`; }).join("")
+            <span class="tl-track${selM?" has-sel":""}" style="--sel:${selM?((selM-1)/12*100).toFixed(3)+"%":"-20%"}">${runs(s).map(r=>bar(s,r,k++)).join("")}</span></button>`; }).join("") + `</div>` : ""); }
       ).join("") + `<div class="tl-today" style="--t:${todayPct}"><b>Today</b></div>`;
     const tsc = document.querySelector(".tl-scroll");
     if(tsc && !tsc.dataset.init && tsc.scrollWidth > tsc.clientWidth + 10){ tsc.dataset.init = 1; const nw = innerWidth < 640 ? 120 : 210, tw = tsc.scrollWidth - nw; tsc.scrollLeft = Math.max(0, nw + tw*todayPct - nw - (tsc.clientWidth - nw)/2); }
@@ -1761,7 +2095,80 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   }
 
   let phSel = null;
-  function renderHolidays(){
+  /* ═════════ LEAVE OPTIMISER ═════════ */
+  let loAL = 2, loFrom = null, loTo = null;
+  const lastPH = HOLIDAYS.map(h=>pd(h.date)).sort((a,b)=>b-a)[0];
+  function loMonths(){ const out=[], t=new Date(); let d=new Date(t.getFullYear(), t.getMonth(), 1); while(d <= lastPH){ out.push(new Date(d)); d = new Date(d.getFullYear(), d.getMonth()+1, 1); } return out; }
+  function loWindows(al, start, end){
+    const wins = [];
+    for(let a = new Date(start); a <= end; a = add(a,1)){
+      if(!isOff(add(a,-1)) || a.getTime()===start.getTime()){
+        let used = 0, b = new Date(a), alDays = [];
+        if(!isOff(b)){ if(al < 1) continue; used = 1; alDays.push(new Date(b)); }
+        while(true){ const nx = add(b,1); if(nx > add(end,10)) break; if(isOff(nx)){ b = nx; continue; } if(used < al){ used++; alDays.push(new Date(nx)); b = nx; continue; } break; }
+        // trim leave days dangling at the end (they add a day but no holiday value)
+        while(alDays.length && key(alDays[alDays.length-1])===key(b) && !isOff(add(b,1))){ b = add(b,-1); alDays.pop(); used--; }
+        const len = Math.round((b-a)/864e5)+1, phs = [];
+        for(let d=new Date(a); d<=b; d=add(d,1)) if(phSet.has(key(d))) phs.push(HOLIDAYS.find(h=>h.date===key(d)).name.replace(" (observed)",""));
+        if(phs.length && len >= 3) wins.push({a:new Date(a), b, len, al:used, alDays, phs:[...new Set(phs)]});
+      }
+    }
+    wins.sort((x,y)=> y.len-x.len || x.al-y.al || x.a-y.a);
+    const pick = [];
+    for(const w of wins){ if(pick.some(p=> !(w.b < p.a || w.a > p.b))) continue; pick.push(w); }
+    return pick.sort((x,y)=>x.a-y.a);
+  }
+  function loSpots(w, used){
+    const mid = add(w.a, Math.floor(w.len/2)), m = mid.getMonth()+1, rank = {best:0, ok:1};
+    const score = s => rank[statusOf(s,m)]*10 + (used[s.id]||0)*4 + Math.abs(w.len-needDays(s))*.6 - (s.ease||0)*.3;
+    const all = SPOTS.filter(s => needDays(s) <= w.len && statusOf(s,m) !== "closed").sort((x,y)=> score(x)-score(y));
+    const pick = [];
+    for(const s of all){ if(pick.length>=3) break; if(pick.some(p=>p.country===s.country)) continue; if(catOf(s)==="liveaboard" && pick.some(p=>catOf(p)==="liveaboard")) continue; pick.push(s); }
+    for(const s of all){ if(pick.length>=3) break; if(!pick.includes(s)) pick.push(s); }
+    pick.forEach(s=>used[s.id]=(used[s.id]||0)+1);
+    return pick.map(s=>({s, m, st:statusOf(s,m)}));
+  }
+  function loStrip(w){
+    let h = ""; for(let d=add(w.a,-1); d<=add(w.b,1); d=add(d,1)){
+      const out = d < w.a || d > w.b, ph = phSet.has(key(d)), we = d.getDay()===0||d.getDay()===6, al = w.alDays.some(x=>key(x)===key(d));
+      h += `<span class="${out?"x-out":""} ${ph?"x-ph":we?"x-we":al?"x-al":"x-wd"}"><i>${DOW[d.getDay()][0]}</i><b>${d.getDate()}</b></span>`;
+    } return h;
+  }
+  function renderLeave(){
+    const months = loMonths();
+    if(loFrom===null){ loFrom = 0; loTo = Math.min(months.length-1, 7); }
+    document.getElementById("loAl").innerHTML = [0,1,2,3,4,5].map(v=>`<button type="button" class="${v===loAL?"on":""}" data-v="${v}">${v===5?"5+":v}</button>`).join("");
+    const opt = (i,sel) => `<option value="${i}" ${i===sel?"selected":""}>${M[months[i].getMonth()]} ${months[i].getFullYear()}</option>`;
+    document.getElementById("loFrom").innerHTML = months.map((_,i)=>opt(i,loFrom)).join("");
+    document.getElementById("loTo").innerHTML = months.map((_,i)=>opt(i,loTo)).join("");
+    const today = new Date(); today.setHours(0,0,0,0);
+    const st = new Date(Math.max(months[loFrom], today)), en = new Date(months[loTo].getFullYear(), months[loTo].getMonth()+1, 0);
+    const wins = loWindows(loAL===5?9:loAL, st, en);
+    const best = wins.length ? Math.max(...wins.map(w=>w.len/(w.al+1))) : 0, used = {};
+    document.getElementById("loResults").innerHTML = wins.length ? wins.map((w,i)=>{
+      const sp = loSpots(w, used);
+      const star = w.len/(w.al+1) === best;
+      return `<div class="lo-card" style="animation-delay:${i*50}ms">
+        <div class="lo-h">
+          <div><b>${dayRange(w.a,w.b)}</b>${w.a.getFullYear()!==today.getFullYear()?` <small>${w.a.getFullYear()}</small>`:""}
+            <div class="lo-sub">${esc(w.phs.join(" + "))}</div></div>
+          <div class="lo-badges">${star?`<span class="lo-star">★ Best value</span>`:""}<span class="lo-len">${w.len} days</span><span class="lo-cost ${w.al?"":"free"}">${w.al?`for ${w.al} AL`:"no leave"}</span></div>
+        </div>
+        <div class="lo-strip">${loStrip(w)}</div>
+        ${w.al?`<div class="lo-take">Take leave: ${w.alDays.map(d=>`${DOW[d.getDay()]} ${d.getDate()} ${M[d.getMonth()]}`).join(", ")}</div>`:""}
+        <div class="lo-spots">${sp.length ? sp.map(x=>{ const c = COSTS[x.s.id], n = c ? Math.max(Math.min(...c.nights), Math.min(w.len-1, Math.max(...c.nights))) : 0;
+          const est = c ? costCalc(x.s.id, {n, d: c.liveaboard?0:Math.min(12,Math.max(2,Math.round(Math.max(1,n-1)*3/2)*2)), t:1, dates:null}) : null;
+          return `<button type="button" class="lo-spot" onclick="__plan('${x.s.id}',${n},${w.a.getTime()},${w.b.getTime()})">
+            <span class="lo-ph">${x.s.photo?`<img src="${esc(x.s.photo)}" alt="" loading="lazy">`:"🐠"}</span>
+            <span class="lo-nm"><b>${esc(x.s.name.replace(/\s*\(.*?\)/g,""))}</b><small>${x.st==="best"?"🌟 Peak":"👍 Good"}${est?` · from ~S$${est.lo.toLocaleString()}`:""}</small></span>
+            <span class="lo-go">Cost ›</span></button>`; }).join("") : `<p class="lo-none">No spots fit ${w.len} days in season. Try more leave.</p>`}</div>
+      </div>`; }).join("") : `<div class="lo-empty">No public holidays in these months. Try a wider range or more leave.</div>`;
+  }
+  document.getElementById("loAl").addEventListener("click", e => { const b = e.target.closest("button"); if(!b) return; loAL = +b.dataset.v; renderLeave(); });
+  document.getElementById("loFrom").addEventListener("change", e => { loFrom = +e.target.value; if(loTo < loFrom) loTo = loFrom; renderLeave(); });
+  document.getElementById("loTo").addEventListener("change", e => { loTo = +e.target.value; if(loFrom > loTo) loFrom = loTo; renderLeave(); });
+
+  function renderHolidays(){ renderLeave(); return;
     const groups = holidayGroups();
     if(phSel===null && groups.length) phSel = groups[0].k;
     document.getElementById("phStrip").innerHTML = groups.map(g=>`
@@ -1786,7 +2193,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
         </div>`; }).join("")}</div>
     </div>`;
   }
-  document.getElementById("phStrip").addEventListener("click", e => {
+  if(false) document.getElementById("phStrip").addEventListener("click", e => {
     const b = e.target.closest(".ph-chip"); if(!b) return;
     phSel = b.dataset.k; renderHolidays();
     document.getElementById("phPanel").animate([{opacity:0,transform:"translateY(-6px)"},{opacity:1,transform:"none"}],{duration:250});
@@ -1853,13 +2260,15 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
 
   /* ═════════ DEPTH SCROLL: the page gets deeper blue as you scroll ═════════ */
   const depthFill = document.getElementById("depthFill"), depthTxt = document.getElementById("depthTxt");
-  const SURF = [242,248,255], DEEP = [168,206,238], MAXM = 40;
+  const MAXM = 30, sea2 = document.getElementById("sea2"), sea3 = document.getElementById("sea3"), heroEl = document.getElementById("top");
+  const ss = (a,b,x) => { const t = Math.min(1, Math.max(0, (x-a)/(b-a))); return t*t*(3-2*t); };
+  let deepOn = null;
   function onDepth(){
+    const start = heroEl ? heroEl.offsetTop + heroEl.offsetHeight - innerHeight : 0;
     const max = document.documentElement.scrollHeight - innerHeight;
-    const f = max>0 ? Math.min(1, Math.max(0, scrollY/max)) : 0;
-    const c = SURF.map((v,i)=>Math.round(v+(DEEP[i]-v)*f));
-    document.body.style.backgroundColor = `rgb(${c})`;
-    document.querySelector(".controls").style.background = `rgb(${c})`;
+    const f = max>start ? Math.min(1, Math.max(0, (scrollY-start)/(max-start))) : 0;
+    sea2.style.opacity = ss(.12,.5,f).toFixed(3); sea3.style.opacity = ss(.5,.9,f).toFixed(3);
+    const d = f > .62; if(d !== deepOn){ deepOn = d; document.body.classList.toggle("deep-sea", d); }
     depthFill.style.height = (f*100)+"%";
     depthTxt.textContent = `-${Math.round(f*MAXM)}m`;
   }
@@ -1876,6 +2285,13 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   document.getElementById("fyiPrev").onclick = () => fyi.scrollBy({left:-step(), behavior:"smooth"});
   document.getElementById("fyiNext").onclick = () => fyi.scrollBy({left:step(), behavior:"smooth"});
   syncDots();
+  document.getElementById("cal").addEventListener("click", e => {
+    const b = e.target.closest(".tl-crow"); if(!b) return; const c = b.dataset.c; tlOpen.has(c) ? tlOpen.delete(c) : tlOpen.add(c); render();
+  });
+  document.querySelector(".dv-btn").addEventListener("click", e => {
+    e.preventDefault(); const c = document.querySelector(".controls"); c.style.position = "static"; const y = c.getBoundingClientRect().top + scrollY - 12; c.style.position = "";
+    scrollTo({top:y, behavior:"smooth"});
+  });
   document.getElementById("whChips").addEventListener("click", e => {
     const b = e.target.closest(".wh-chip"); if(!b) return; calCountry = b.dataset.c; render();
   });

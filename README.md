@@ -8,6 +8,7 @@ Live site: `https://<your-username>.github.io/dive-trips-near-singapore/`
 | File / folder | What it does | Edit it when… |
 |---|---|---|
 | `spots.js` | **All dive spot info** (seasons, routes, fees, shops, trip links, photos) | you want to add/change a spot |
+| `costs.js` | Trip cost estimates per spot (flights, transfers, stay, dives, fees) used by the Cost tab and the leave planner | prices change: edit the S$ numbers |
 | `index.html` | Home page: layout, map, search, rows, holiday list, quiz | you change public holidays (search `HOLIDAYS`) or the header text |
 | `open-water.html` | Open Water licence guide | prices/courses change |
 | `advanced-open-water.html` | Advanced Open Water guide | prices/courses change |
