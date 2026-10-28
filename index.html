@@ -607,6 +607,168 @@ table.cal tr.spot:hover td{background:#e1f0ff}
   .dv-l1{height:50%}.dv-l2{height:42%}.dv-l3{height:30%}
 }
 @media (prefers-reduced-motion: reduce){.dv-bob,.dv-bob .fin,.dv-bub i{animation:none}}
+
+/* hero v5: living reef */
+.dv-diver.d1,.dv-diver.d2{left:0;top:0;transform:none;will-change:transform}
+.dv-diver.fast .fin{animation-duration:.6s}
+.dv-l{overflow:visible}
+.dv-l .pl{position:absolute;display:block;transform-origin:50% 100%;animation:dvSway 5s ease-in-out infinite alternate}
+.dv-l .pl svg{width:100%;height:100%;display:block;overflow:visible}
+.dv-l .pl.kelp,.dv-l .pl.grass{animation-name:dvSwayK}
+@keyframes dvSway{from{transform:rotate(-3.5deg)}to{transform:rotate(3.5deg)}}
+@keyframes dvSwayK{from{transform:skewX(-7deg)}to{transform:skewX(7deg)}}
+.dv-l1{filter:blur(1.6px)}
+.dv-l4{filter:blur(1.2px)}
+.dv-l4 .pl{filter:blur(1.5px)}
+.dv-manta{position:absolute;z-index:2;top:20%;left:0;width:clamp(140px,16vw,260px);color:rgba(14,62,100,.55);filter:blur(1.2px);animation:dvMantaX 46s linear infinite;transform:translateY(calc(var(--p) * -30vh));opacity:calc(1 - var(--p) * 3)}
+.dv-manta svg{width:100%;display:block;animation:dvMantaY 7s ease-in-out infinite}
+.dv-manta .wing-l,.dv-manta .wing-r{transform-box:fill-box;animation:dvFlap 3.2s ease-in-out infinite}
+.dv-manta .wing-l{transform-origin:100% 60%}.dv-manta .wing-r{transform-origin:0% 60%}
+@keyframes dvMantaX{from{left:-22%}to{left:110%}}
+@keyframes dvMantaY{0%,100%{transform:translateY(0) rotate(4deg)}50%{transform:translateY(40px) rotate(-2deg)}}
+@keyframes dvFlap{0%,100%{transform:scaleY(1) rotate(0)}50%{transform:scaleY(.55) rotate(0)}}
+.dv-school{position:absolute;inset:0;z-index:6;pointer-events:none;transform:translateY(calc(var(--p) * 40vh));opacity:calc(1 - var(--p) * 2.6)}
+.dv-school i{position:absolute;left:0;top:0;width:24px;height:12px;margin:-6px 0 0 -12px;will-change:transform}
+.dv-school svg{width:100%;height:100%;display:block;fill:#134b74;opacity:.9}
+.dv-bubbles{position:absolute;inset:0;z-index:7;pointer-events:none;opacity:calc(1 - var(--p) * 1.6)}
+.dv-bubbles i{position:absolute;margin-left:-6px;animation:dvRise linear forwards}
+.dv-bubbles i b{display:block;width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.95) 0 12%,rgba(220,245,255,.25) 26%,rgba(200,240,255,.08) 60%,rgba(230,250,255,.5) 100%);box-shadow:inset 0 0 0 1px rgba(235,250,255,.6);animation:dvWob ease-in-out infinite alternate}
+@keyframes dvRise{0%{transform:translateY(0) scale(.6);opacity:0}8%{opacity:1}100%{transform:translateY(-95vh) scale(1.15);opacity:0}}
+@keyframes dvWob{from{transform:translateX(-6px) scale(1,.92)}to{transform:translateX(6px) scale(.94,1)}}
+.dv-rays i{animation:hdRay 12s ease-in-out infinite, dvRaySway 16s ease-in-out infinite alternate}
+@keyframes dvRaySway{from{margin-left:-2%}to{margin-left:2%}}
+.dv-hint{display:none}
+.dv-foot{position:absolute;bottom:3.5%;left:0;right:0;z-index:9;text-align:center;opacity:calc(1 - var(--p) * 8);pointer-events:none}
+.dv-foot b{display:block;font:600 13px Montserrat,sans-serif;letter-spacing:.14em;color:#fff;text-shadow:0 2px 12px rgba(0,15,30,.6)}
+.dv-hint2{display:block;margin-top:6px;font:500 11px Poppins,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:rgba(225,245,255,.65)}
+.dv-hint2 span{display:inline-block;animation:hdBob 2s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.dv-l .pl,.dv-manta,.dv-manta svg,.dv-manta path{animation:none}}
+
+/* hero v6: smoother descent, no paragraph */
+.dv{height:230vh}
+.dv-title{opacity:clamp(0, calc(1 - var(--p) * 2.4), 1)}
+.dv-divers{opacity:clamp(0, calc(1 - var(--p) * 1.9), 1)}
+.dv-l1{opacity:clamp(0, calc(1 - var(--p) * 1.7), 1)}
+.dv-l2{opacity:clamp(0, calc(1 - var(--p) * 1.8), 1)}
+.dv-bommie{opacity:clamp(0, calc(1 - var(--p) * 1.9), 1)}
+.dv-l3{opacity:clamp(0, calc(1 - var(--p) * 2), 1)}
+.dv-l4{opacity:clamp(0, calc(1 - var(--p) * 2), 1)}
+.dv-mist.m1,.dv-mist.m2{opacity:clamp(0, calc(1 - var(--p) * 2.5), 1)}
+.dv-school{opacity:clamp(0, calc(1 - var(--p) * 2.2), 1)}
+.dv-manta{opacity:clamp(0, calc(1 - var(--p) * 2.5), 1)}
+.dv-bg::after{opacity:calc(var(--p) * .6)}
+.dv-video{opacity:clamp(0, calc((var(--p) - .06) * 2.4), .88);filter:saturate(1.15) contrast(1.05) blur(max(0px, calc((.5 - var(--p)) * 26px))) brightness(calc(.75 + var(--p) * .25));transform:scale(calc(1.35 - var(--p) * .35))}
+.dv-bubbles{opacity:clamp(0, calc(1 - var(--p) * 1.1), 1)}
+.dv-mid{opacity:clamp(0, calc((var(--p) - .42) * 4), 1);transform:translateY(calc(-50% + (1 - var(--p)) * 60px))}
+.dv-cap{opacity:clamp(0, calc((var(--p) - .45) * 4), 1)}
+.dv-foot{opacity:clamp(0, calc(1 - var(--p) * 5), 1)}
+
+/* ───── SEASON YEAR WHEELS ───── */
+.wheels-box{background:#fff;border-radius:28px;box-shadow:var(--shadow);padding:18px 18px 22px;margin-bottom:26px}
+.wh-top{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin-bottom:14px}
+.wh-chips{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.wh-chips::-webkit-scrollbar{display:none}
+.wh-chip{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:6px 13px;font:600 13px Poppins,sans-serif;cursor:pointer;display:inline-flex;gap:6px;align-items:center;transition:all .2s}
+.wh-chip .flagimg{width:18px;height:12px}
+.wh-chip:hover{border-color:var(--blue)}
+.wh-chip.on{background:#0f3157;border-color:#0f3157;color:#fff}
+.wh-legend{display:flex;gap:14px;font:600 12.5px Poppins,sans-serif;color:var(--muted)}
+.wh-legend span{display:inline-flex;align-items:center;gap:6px}
+.lg{width:18px;height:6px;border-radius:4px;display:inline-block}
+.lg.best{background:#22c3a6}.lg.ok{background:#ffbd4f}.lg.closed{background:#dbe6f1}
+.wheels{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.wh{position:relative;border:0;background:#f5f9fd;border-radius:22px;padding:14px 10px 14px;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;font:inherit;color:var(--ink);transition:transform .25s, box-shadow .25s, background .25s;animation:whIn .5s both}
+.wh:hover{transform:translateY(-4px);background:#fff;box-shadow:0 12px 30px rgba(47,134,222,.18)}
+.wh svg{width:118px;height:118px;display:block;overflow:visible}
+.wh .seg{fill:none;stroke-width:11;stroke-linecap:round;transition:stroke-width .25s}
+.wh .seg.best{stroke:#22c3a6}.wh .seg.ok{stroke:#ffbd4f}.wh .seg.closed{stroke:#dbe6f1}
+.wh .seg.cur{stroke-width:15}
+.wh text{font:600 7.5px Poppins,sans-serif;fill:#9db3c8;text-anchor:middle}
+.wh text.cur{fill:#0f3157;font-weight:800}
+.wh .needle{transform-origin:60px 60px;transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
+.wh .needle line{stroke:#0f3157;stroke-width:2.2;stroke-linecap:round}
+.wh .needle circle{fill:#0f3157}
+.wh:hover .needle{animation:whSweep 1.1s ease}
+@keyframes whSweep{0%{transform:rotate(0deg)}}
+.wh-mid{position:absolute;top:64px;left:0;right:0;pointer-events:none;display:flex;flex-direction:column;align-items:center}
+.wh-mid b{font:800 13px Montserrat,sans-serif;line-height:1;padding:3px 8px;border-radius:999px;background:#fff;box-shadow:0 1px 4px rgba(15,49,87,.12);margin-top:0}
+.wh.best .wh-mid b{color:#11967f}.wh.ok .wh-mid b{color:#c98400}.wh.closed .wh-mid b{color:#8aa0b5}
+.wh-mid small{display:none}
+.wh-name{margin-top:8px;font:700 14px/1.2 Montserrat,sans-serif}
+.wh-meta{margin-top:4px;font:500 12px Poppins,sans-serif;color:var(--muted);display:inline-flex;gap:5px;align-items:center}
+.wh-meta .flagimg{width:16px;height:11px}
+.wh.closed{opacity:.72}
+@keyframes whIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@media (max-width:640px){.wheels{grid-template-columns:repeat(2,1fr)}.wh svg{width:104px;height:104px}.wh-mid{top:57px}}
+
+/* ───── MONTH SLIDER + PHOTO CARDS ───── */
+.ms-box .wh-chips{margin:16px 0 4px}
+.ms-slider{padding:6px 6px 0;outline:none}
+.ms-track{position:relative;height:8px;border-radius:99px;background:#e3eef8;margin:14px 22px 0;cursor:pointer;touch-action:none}
+.ms-fill{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:linear-gradient(90deg,#4fc3f0,#2f86de);transition:width .35s cubic-bezier(.3,1.3,.5,1)}
+.ms-thumb{position:absolute;top:50%;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid #2f86de;box-shadow:0 4px 12px rgba(47,134,222,.35);transform:translate(-50%,-50%);transition:left .35s cubic-bezier(.3,1.3,.5,1)}
+.ms-months{display:grid;grid-template-columns:repeat(12,1fr);margin-top:10px}
+.ms-months button{border:0;background:none;font:600 12.5px Poppins,sans-serif;color:var(--muted);padding:6px 0;cursor:pointer;border-radius:10px}
+.ms-months button.on{color:#0f3157;font-weight:800;background:#e8f3fd}
+.ms-h{display:flex;align-items:center;gap:8px;margin:18px 2px 10px;font:800 17px Montserrat,sans-serif;color:#0f3157}
+.ms-h small{font:700 12px Poppins;color:var(--muted);background:#eef5fb;border-radius:99px;padding:1px 8px}
+.ms-dot{width:10px;height:10px;border-radius:50%}.ms-dot.best{background:#22c3a6}.ms-dot.ok{background:#ffbd4f}
+.ms-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.ms-card{border:0;padding:0;text-align:left;background:#fff;border-radius:20px;overflow:hidden;cursor:pointer;font:inherit;color:var(--ink);box-shadow:0 2px 0 rgba(47,134,222,.08),0 8px 22px rgba(63,150,230,.14);transition:transform .25s, box-shadow .25s;animation:msIn .45s both}
+.ms-card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(47,134,222,.22)}
+.ms-card .art{height:140px !important}
+.ms-card .art img.cover{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.ms-card:hover .art img.cover{transform:scale(1.06)}
+.ms-tag{position:absolute;top:10px;left:10px;background:#22c3a6;color:#fff;font:700 11px Poppins;padding:3px 9px;border-radius:99px}
+.ms-body{padding:10px 13px 13px;display:flex;flex-direction:column;gap:3px}
+.ms-body b{font:700 15px/1.2 Montserrat,sans-serif}
+.ms-body small{display:inline-flex;gap:5px;align-items:center;font:500 12px Poppins;color:var(--muted)}
+.ms-body small .flagimg{width:16px;height:11px}
+.ms-body em{font:500 12.5px/1.35 Poppins;font-style:normal;color:#1f6fb8;margin-top:2px}
+.ms-pills{display:flex;flex-wrap:wrap;gap:8px}
+.ms-pill{border:1.5px solid #ffe2a8;background:#fff8ea;color:#7a5200;border-radius:99px;padding:6px 12px;font:600 13px Poppins;cursor:pointer;display:inline-flex;gap:6px;align-items:center;transition:transform .2s;animation:msIn .4s both}
+.ms-pill:hover{transform:translateY(-2px)}
+.ms-pill .flagimg{width:16px;height:11px}
+.ms-off{margin-top:16px;font:500 12.5px Poppins;color:#93a7ba}
+.ms-off a{color:#93a7ba;font-weight:600;text-decoration:none}.ms-off a:hover{color:var(--blue)}
+.ms-none{color:var(--muted);font-weight:600}
+@keyframes msIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (max-width:640px){.ms-months button{font-size:10.5px}.ms-track{margin:14px 12px 0}.ms-cards{grid-template-columns:repeat(2,1fr);gap:10px}.ms-card .art{height:110px !important}}
+
+.ms-cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;scrollbar-width:thin;gap:14px}
+.ms-card{flex:0 0 230px;scroll-snap-align:start}
+@media (max-width:640px){.ms-card{flex-basis:62%}.ms-card .art{height:120px !important}}
+
+/* ───── BOOKING-STYLE SEASON TIMELINE ───── */
+.lg.off{background:#eef3f8;box-shadow:inset 0 0 0 1px #dbe6f1}
+.lg.ok{background:#ffc65c}
+.tl-scroll{overflow-x:auto}
+.tl{position:relative;min-width:760px;--nw:210px}
+.tl-head{display:flex;position:sticky;top:0;z-index:3;background:#fff;padding-bottom:6px;border-bottom:1px solid #eaf1f8}
+.tl-name{flex:0 0 var(--nw);display:flex;flex-direction:column;justify-content:center;text-align:left;font:600 14px/1.2 Poppins,sans-serif;color:var(--ink);padding-right:12px;position:sticky;left:0;background:inherit;z-index:2}
+.tl-name small{font:500 11.5px Poppins;color:var(--muted);margin-top:2px}
+.tl-months{flex:1;display:grid;grid-template-columns:repeat(12,1fr)}
+.tl-months span{text-align:center;font:600 12.5px Poppins,sans-serif;color:var(--muted);padding:4px 0}
+.tl-months span.sel{color:#0f3157;font-weight:800}
+.tl-months span.now{color:#e0623a}
+.tl-country{display:flex;align-items:center;gap:8px;margin:14px 0 4px;font:800 13px Montserrat,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#0f3157}
+.tl-country .flagimg{width:20px;height:13px}
+.tl-row{display:flex;width:100%;border:0;background:#fff;padding:5px 0;cursor:pointer;font:inherit;border-radius:12px;transition:background .2s}
+.tl-row:hover{background:#f3f8fd}
+.tl-row:hover .tl-bar{filter:brightness(1.05) saturate(1.1);box-shadow:0 4px 12px rgba(34,195,166,.3)}
+.tl-track{flex:1;position:relative;height:30px;background:repeating-linear-gradient(90deg,transparent 0 calc(100%/12 - 1px),#edf3f9 calc(100%/12 - 1px) calc(100%/12))}
+.tl-track.has-sel::before{content:"";position:absolute;top:-5px;bottom:-5px;left:var(--sel);width:calc(100%/12);background:rgba(47,134,222,.07)}
+.tl-bar{position:absolute;top:4px;height:22px;border-radius:99px;transform-origin:left center;animation:tlGrow .7s cubic-bezier(.2,.8,.2,1) both;transition:box-shadow .2s, filter .2s;overflow:hidden}
+.tl-bar span{position:absolute;top:0;bottom:0;display:flex;align-items:center;padding-left:10px;font:700 11px Poppins,sans-serif;color:#fff;letter-spacing:.02em;white-space:nowrap;text-shadow:0 1px 2px rgba(0,60,50,.25)}
+@keyframes tlGrow{from{transform:scaleX(0);opacity:.3}to{transform:scaleX(1);opacity:1}}
+.tl-today{position:absolute;top:0;bottom:0;left:calc(var(--nw) + (100% - var(--nw)) * var(--t));width:0;border-left:2px dashed #e0623a;pointer-events:none;z-index:4}
+.tl-today b{position:absolute;top:-2px;left:-24px;background:#e0623a;color:#fff;font:700 10px Poppins;padding:2px 7px;border-radius:99px}
+@media (max-width:640px){.tl{--nw:120px;min-width:620px}.tl-name{font-size:12px}.tl-name small{font-size:10.5px}.tl-box .wh-legend::after{content:'swipe ⇆';margin-left:auto;color:#9db3c8}}
+
+.tl-name{background:#fff !important;box-shadow:6px 0 8px -6px rgba(15,49,87,.12)}
+.tl-head .tl-name{box-shadow:none}
+.tl-row:hover .tl-name{background:#f3f8fd !important}
+.tl-country{position:sticky;left:0;width:max-content;background:#fff;padding-right:10px}
 /* ───── FYI CAROUSEL ───── */
 .fyi-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 10px;gap:10px}
 .fyi-head h2{font-size:24px;margin:0}
@@ -672,6 +834,12 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     <div class="hd-snow dv-snow" id="hdSnow" aria-hidden="true"></div>
     <video class="dv-video" src="video/tioman-turtle.mp4" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video>
     <div class="dv-tag">for divers, by divers</div>
+    <div class="dv-manta" aria-hidden="true"><svg viewBox="0 0 240 120" aria-hidden="true"><g fill="currentColor">
+<path class="wing-l" d="M120,52 C96,36 52,30 6,52 C40,56 70,66 104,74 Z"/>
+<path class="wing-r" d="M120,52 C144,36 188,30 234,52 C200,56 170,66 136,74 Z"/>
+<ellipse cx="120" cy="60" rx="22" ry="18"/>
+<path d="M106,46 C104,38 108,34 112,40 M134,46 C136,38 132,34 128,40" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+<path d="M120,76 C121,92 119,104 122,118" stroke="currentColor" stroke-width="2.5" fill="none"/></g></svg></div>
     <div class="dv-title" aria-hidden="true">DIVE</div>
     <div class="dv-l dv-l1" aria-hidden="true"></div>
     <div class="dv-mist m1"></div>
@@ -689,6 +857,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
       <path d="M262,124 C258,98 270,80 276,70 M276,124 C282,100 296,88 300,80" stroke="#2a6f9f" stroke-width="6" fill="none" stroke-linecap="round"/>
       <g fill="#7cc6ec" opacity=".85"><path d="M330,96 l12,-5 l0,10z M342,96 a7,4 0 1 0 14,0 a7,4 0 1 0 -14,0"/><path d="M190,120 l10,-4 l0,8z M200,120 a6,3.5 0 1 0 12,0 a6,3.5 0 1 0 -12,0"/><path d="M420,110 l-10,-4 l0,8z M408,110 a6,3.5 0 1 1 -12,0 a6,3.5 0 1 1 12,0"/></g>
     </svg></div>
+    <div class="dv-school" id="dvSchool" aria-hidden="true"></div>
     <div class="dv-divers" aria-hidden="true">
       <div class="dv-diver d1"><div class="dv-bob"><span class="dv-bub"><i></i><i></i><i></i></span><svg viewBox="0 0 260 110" aria-hidden="true">
       <g class="fin fin-b"><path d="M50,64 L14,70 Q2,72 6,80 L12,86 Q30,80 52,70 Z" fill="#1aa39c"/><path d="M14,70 Q2,72 6,80 L12,86 Q8,78 14,70Z" fill="#0d6e69"/></g>
@@ -723,16 +892,16 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
       <circle cx="220" cy="66" r="4.2" fill="#6b7785"/>
     </svg></div></div>
     </div>
+    <div class="dv-bubbles" id="dvBubbles" aria-hidden="true"></div>
     <div class="dv-mist m2"></div>
     <div class="dv-l dv-l3" aria-hidden="true"></div>
     <div class="dv-l dv-l4" aria-hidden="true"></div>
-    <div class="dv-hint">scroll to dive <span>↓</span></div>
+    <div class="dv-foot"><b>dive trips near singapore</b><span class="dv-hint2">scroll to dive deeper <span>↓</span></span></div>
     <div class="dv-mid">
-      <h1>dive trips near singapore</h1>
+      <h1>Where will you dive next?</h1>
       <p>weekend getaway | short trips | liveaboards near singapore</p>
       <a class="dv-btn" href="#explore">Start exploring</a>
     </div>
-    <p class="dv-para" id="dvPara"><span>Made</span> <span>by</span> <span>divers</span> <span>in</span> <span>Singapore,</span> <span>for</span> <span>divers</span> <span>in</span> <span>Singapore.</span> <span>Weekend</span> <span>getaways,</span> <span>short</span> <span>trips</span> <span>and</span> <span>liveaboards:</span> <span>when</span> <span>to</span> <span>go,</span> <span>how</span> <span>to</span> <span>get</span> <span>there,</span> <span>and</span> <span>what</span> <span>you'll</span> <span>meet</span> <span>down</span> <span>there.</span> </p>
     <div class="hd-corner hd-bl dv-cap"><span class="dot"></span>Hawksbill turtle<br><b>Tioman, Malaysia</b></div>
   </div>
 </header>
@@ -781,8 +950,8 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   <div class="summary" id="explore"><h2 id="heading">Spots</h2><small id="count"></small><button class="quiz-cta quiz-mini" id="quizOpen" type="button">Find my perfect trip</button></div>
   <div id="rows"></div>
 
-  <div class="summary" id="calendar"><h2><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Season calendar</h2><small>Tap a country to see its spots</small></div>
-  <div class="cal-wrap"><table class="cal" id="cal"></table></div>
+  <div class="summary" id="calendar"><h2><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg> Season calendar</h2><small>Tap a spot to see details</small></div>
+  <div class="wheels-box tl-box"><div class="wh-top"><div class="wh-chips" id="whChips"></div><div class="wh-legend"><span><i class="lg best"></i>Peak</span><span><i class="lg ok"></i>Good</span><span><i class="lg off"></i>Off</span></div></div><div class="tl-scroll"><div class="tl" id="cal"></div></div></div>
 
   <section class="meet" id="meet" aria-label="Pick an animal">
     <div class="meet-head"><h2>Who do you want to meet?</h2><p>Tap the animal to see where and when to meet it.</p></div>
@@ -869,7 +1038,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   const saveLog = () => { try { localStorage.setItem("diveLog", JSON.stringify(LOG)); } catch(e){} };
   window.__mine = (id, k) => { LOG[id] = LOG[id] || {}; LOG[id][k] = !LOG[id][k]; saveLog(); render(); };
   window.__note = (id, v) => { LOG[id] = LOG[id] || {}; LOG[id].n = v; saveLog(); };
-  const calOpen = new Set();
+  let calCountry = "All";
   const state = { type:"all", month:new Date().getMonth()+1, tags:new Set(), inSeason:false, owOnly:false, easyOnly:false, sort:"season" };
   const YEAR = new Date().getFullYear();
   const catOf = s => { const n = parseFloat(String(s.leave).match(/\d+(\.\d+)?/)?.[0] ?? "0"); return n>=3 ? "liveaboard" : n>=1 ? "short" : "weekend"; };
@@ -1069,29 +1238,116 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path d="${d}"/>${extra}</svg>`;
   }
 
-  /* ═════════ HERO: scroll-driven dive (title, divers rise away, reef parts, turtle clip, word reveal) ═════════ */
+  /* ═════════ HERO: scroll-driven dive with swaying reef, fish school, bubbles and cursor-following divers ═════════ */
   (function(){
     const sec = document.getElementById("top"), stage = sec.querySelector(".dv-stage"), vid = sec.querySelector(".dv-video");
-    const words = [...document.querySelectorAll("#dvPara span")], mid = sec.querySelector(".dv-mid");
-    sec.querySelector(".dv-l1").innerHTML = reef(3, 260, 110, 5);
-    sec.querySelector(".dv-l2").innerHTML = reef(7, 300, 90, 8);
-    sec.querySelector(".dv-l3").innerHTML = reef(11, 330, 80, 10);
-    sec.querySelector(".dv-l4").innerHTML = reef(17, 360, 50, 12);
+    const mid = sec.querySelector(".dv-mid");
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let seed = 42; const rnd = () => (seed = (seed*9301+49297)%233280) / 233280;
+
+    /* ---- swaying plants ---- */
+    const fan = (c,l) => `<svg viewBox="0 0 100 120"><path d="M50,120 C10,90 4,40 30,14 C42,4 58,4 70,14 C96,40 90,90 50,120Z" fill="${c}"/><g stroke="${l}" stroke-width="1.6" fill="none" opacity=".75"><path d="M50,118 L50,14 M50,96 L24,40 M50,96 L76,40 M50,70 L32,24 M50,70 L68,24 M50,104 L14,64 M50,104 L86,64"/><path d="M22,50 Q50,36 78,50 M16,72 Q50,58 84,72 M30,30 Q50,20 70,30"/></g></svg>`;
+    const kelp = c => `<svg viewBox="0 0 60 200"><g fill="${c}"><path d="M30,200 C10,160 46,130 24,90 C8,60 40,30 26,0 C44,30 22,60 36,92 C54,132 20,160 36,200Z"/><path d="M34,200 C50,170 20,150 44,110 C58,86 40,70 52,46 C50,74 64,92 50,116 C34,148 56,170 42,200Z" opacity=".8"/></g></svg>`;
+    const grass = c => `<svg viewBox="0 0 120 100"><g stroke="${c}" stroke-width="5" stroke-linecap="round" fill="none">${Array.from({length:9},(_,i)=>{const x=8+i*13, h=40+((i*37)%55); return `<path d="M${x},100 Q${x+(i%2?10:-10)},${100-h/2} ${x+(i%2?-4:6)},${100-h}"/>`}).join("")}</g></svg>`;
+    const soft = (c,l) => `<svg viewBox="0 0 120 90"><g fill="${c}"><circle cx="30" cy="50" r="22"/><circle cx="58" cy="36" r="26"/><circle cx="88" cy="52" r="20"/><rect x="20" y="58" width="80" height="32" rx="10"/></g><g fill="${l}" opacity=".55">${Array.from({length:14},(_,i)=>`<circle cx="${18+(i*41)%88}" cy="${22+(i*23)%40}" r="2.4"/>`).join("")}</g></svg>`;
+    function plants(layer, n, col, lite, hmin, hmax, kinds){
+      let h = "";
+      for(let i=0;i<n;i++){
+        const k = kinds[Math.floor(rnd()*kinds.length)], ht = hmin + rnd()*(hmax-hmin), x = (i+rnd()*.8)/n*100, d = (3.5+rnd()*3).toFixed(1), dl = (-rnd()*6).toFixed(1);
+        const svg = k==="fan" ? fan(col,lite) : k==="kelp" ? kelp(col) : k==="grass" ? grass(col) : soft(col,lite);
+        const w = k==="kelp" ? ht*.32 : k==="grass" ? ht*1.1 : k==="soft" ? ht*1.3 : ht*.82;
+        h += `<i class="pl ${k}" style="left:${x.toFixed(1)}%;bottom:${(18+rnd()*28).toFixed(0)}%;height:${ht.toFixed(0)}px;width:${w.toFixed(0)}px;animation-duration:${d}s;animation-delay:${dl}s">${svg}</i>`;
+      }
+      layer.insertAdjacentHTML("beforeend", h);
+    }
+    const L = n => sec.querySelector(".dv-l"+n);
+    L(1).innerHTML = reef(3, 260, 110, 0); L(2).innerHTML = reef(7, 300, 90, 0); L(3).innerHTML = reef(11, 330, 80, 0); L(4).innerHTML = reef(17, 360, 50, 0);
+    const sm = innerWidth < 640 ? .6 : 1;
+    plants(L(1), Math.round(7*sm), "#3b8bbb", "#6db4dc", 60, 120, ["fan","kelp","soft"]);
+    plants(L(2), Math.round(9*sm), "#22679a", "#4f9ccb", 70, 150, ["fan","kelp","soft","grass"]);
+    plants(L(3), Math.round(8*sm), "#0f3f63", "#2a6c99", 80, 170, ["kelp","fan","grass"]);
+    plants(L(4), Math.round(10*sm), "#06213a", "#0f3a5c", 70, 190, ["grass","kelp"]);
+
+    /* ---- fish school (scatters from cursor) ---- */
+    const school = document.getElementById("dvSchool"), NF = innerWidth < 640 ? 18 : 30;
+    school.innerHTML = Array.from({length:NF},()=>`<i><svg viewBox="0 0 30 14"><path d="M0,7 L7,1 L7,13Z M7,7 C10,1 22,0 30,7 C22,14 10,13 7,7Z"/></svg></i>`).join("");
+    const fish = [...school.children].map((el,i)=>({el, a:rnd()*6.28, r:50+rnd()*90, sp:.6+rnd()*.5, x:innerWidth/2, y:innerHeight*.5, vx:0, vy:0, h:0}));
+
+    /* ---- bubbles ---- */
+    const bubWrap = document.getElementById("dvBubbles");
+    function bubble(x, y, big){
+      const o = document.createElement("i"), sz = (big ? 8 : 4) + rnd()*(big ? 14 : 8), dur = 5 + rnd()*5;
+      o.style.cssText = `left:${x}px;top:${y}px;width:${sz}px;height:${sz}px;animation-duration:${dur.toFixed(1)}s`;
+      o.innerHTML = `<b style="animation-duration:${(1.2+rnd()*1.4).toFixed(1)}s"></b>`;
+      bubWrap.appendChild(o); setTimeout(()=>o.remove(), dur*1000+100);
+    }
+    const vents = [.12,.3,.52,.7,.88];
+
+    /* ---- divers follow the cursor ---- */
+    const dEls = [...sec.querySelectorAll(".dv-diver")];
+    const divers = dEls.map((el,i)=>({el, x: innerWidth*(i? .62:.45), y: innerHeight*(i? .36:.45), vx:0, vy:0, ang:-0.15, lastB:0}));
+    let ptr = null, ptrT = 0, t = 0;
+    const setPtr = (x,y) => { ptr = {x, y}; ptrT = performance.now(); };
+    stage.addEventListener("mousemove", e => { setPtr(e.clientX, e.clientY); sec.style.setProperty("--mx", ((e.clientX/innerWidth)*2-1).toFixed(3)); sec.style.setProperty("--my", ((e.clientY/innerHeight)*2-1).toFixed(3)); });
+    stage.addEventListener("touchstart", e => setPtr(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
+    stage.addEventListener("touchmove", e => setPtr(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
+    stage.addEventListener("mouseleave", () => { ptrT = 0; });
+
+    function steer(o, tx, ty, acc, max, damp){
+      o.vx = (o.vx + (tx-o.x)*acc)*damp; o.vy = (o.vy + (ty-o.y)*acc)*damp;
+      const sp = Math.hypot(o.vx,o.vy); if(sp > max){ o.vx *= max/sp; o.vy *= max/sp; }
+      o.x += o.vx; o.y += o.vy; return Math.hypot(o.vx,o.vy);
+    }
+    function frame(now){
+      t += 1/60;
+      const W = innerWidth, H = stage.offsetHeight, divOff = sec.querySelector(".dv-divers").getBoundingClientRect().top;
+      const following = ptr && now-ptrT < 3000;
+      // lead diver
+      const d0 = divers[0], w0 = d0.el.offsetWidth, h0 = w0*110/260;
+      const idleX = W*.5 + W*.28*Math.sin(t*.25), idleY = H*.42 + H*.08*Math.sin(t*.5);
+      const tx = following ? ptr.x - Math.cos(d0.ang)*w0*.3 : idleX, ty = following ? ptr.y - divOff : idleY;
+      // buddy trails behind and a little above the lead
+      const sides = [ [tx,ty], [d0.x - Math.cos(d0.ang)*w0*.75 + 30, d0.y - h0*1.1] ];
+      divers.forEach((d,i) => {
+        const w = d.el.offsetWidth, h = w*110/260;
+        const sp = steer(d, sides[i][0], sides[i][1], following ? .0065 : .0012, following ? 15 : 2.6, following ? .88 : .95);
+        if(sp > .35){ let a = Math.atan2(d.vy, d.vx)-d.ang; while(a>Math.PI) a-=6.283; while(a<-Math.PI) a+=6.283; d.ang += a*.07; }
+        const flip = Math.cos(d.ang) < 0 ? -1 : 1;
+        d.el.style.transform = `translate(${(d.x-w/2).toFixed(1)}px,${(d.y-h/2).toFixed(1)}px) rotate(${d.ang.toFixed(3)}rad) scale(1,${flip})`;
+        d.el.classList.toggle("fast", sp > 3);
+        if(now - d.lastB > (sp > 3 ? 220 : 700)){ d.lastB = now; bubble(d.x + Math.cos(d.ang)*w*.38 + Math.sin(d.ang)*flip*h*.12, d.y + divOff - sec.querySelector(".dv-bubbles").getBoundingClientRect().top + Math.sin(d.ang)*w*.38 - Math.cos(d.ang)*flip*h*.12, false); }
+      });
+      // fish school
+      const sr = school.getBoundingClientRect(), cx = W*.5 + W*.3*Math.sin(t*.11+1), cy = H*.36 + H*.08*Math.sin(t*.23);
+      fish.forEach(f => {
+        f.a += .012*f.sp;
+        let fx = cx + Math.cos(f.a)*f.r*1.6, fy = cy + Math.sin(f.a*1.3)*f.r*.45;
+        steer(f, fx, fy, .004, 3.2, .96);
+        if(ptr && now-ptrT < 3000){ const dx = f.x - ptr.x, dy = f.y - (ptr.y - sr.top), dd = Math.hypot(dx,dy); if(dd < 160){ f.vx += dx/dd*1.6; f.vy += dy/dd*1.6; } }
+        const hd = Math.atan2(f.vy, f.vx); f.h += (hd - f.h + (Math.abs(hd-f.h)>Math.PI ? (hd>f.h?-6.283:6.283):0))*.15;
+        f.el.style.transform = `translate(${f.x.toFixed(1)}px,${f.y.toFixed(1)}px) rotate(${f.h.toFixed(2)}rad) scale(1,${Math.cos(f.h)<0?-1:1})`;
+      });
+      // reef bubble streams
+      if(rnd() < .2){ const v = vents[Math.floor(rnd()*vents.length)]; bubble(W*v + (rnd()*30-15), bubWrap.offsetHeight*.88, true); }
+      requestAnimationFrame(frame);
+    }
+
+    /* ---- scroll progress ---- */
     let p = -1;
     function update(){
       const total = sec.offsetHeight - innerHeight, np = Math.min(1, Math.max(0, -sec.getBoundingClientRect().top / (total || 1)));
       if(Math.abs(np - p) < 0.0005) return; p = np;
       sec.style.setProperty("--p", p.toFixed(4));
-      const n = words.length; words.forEach((w,i) => w.classList.toggle("lit", p > 0.6 + (i/n)*0.32));
-      mid.style.pointerEvents = (p > 0.32 && p < 0.7) ? "auto" : "none";
-      if(p > 0.2 && vid.paused) vid.play().catch(()=>{});
+      mid.style.pointerEvents = p > 0.5 ? "auto" : "none";
+      if(p > 0.05 && vid.paused) vid.play().catch(()=>{});
     }
     addEventListener("scroll", () => requestAnimationFrame(update), {passive:true});
     addEventListener("resize", () => { p = -1; update(); });
-    stage.addEventListener("mousemove", e => { sec.style.setProperty("--mx", ((e.clientX/innerWidth)*2-1).toFixed(3)); sec.style.setProperty("--my", ((e.clientY/innerHeight)*2-1).toFixed(3)); });
     vid.play && vid.play().catch(()=>{});
     document.getElementById("hdSnow").innerHTML = Array.from({length:40},()=>{ const z=Math.random(); return `<i style="left:${(Math.random()*100).toFixed(1)}%;top:${(Math.random()*100).toFixed(1)}%;width:${(1.5+z*3).toFixed(1)}px;height:${(1.5+z*3).toFixed(1)}px;opacity:${(.25+z*.5).toFixed(2)};animation-duration:${(14+Math.random()*18).toFixed(0)}s;animation-delay:-${(Math.random()*20).toFixed(0)}s"></i>`; }).join("");
     update();
+    if(!still) requestAnimationFrame(frame);
+    else divers.forEach((d,i)=>{ d.el.style.transform = `translate(${d.x-d.el.offsetWidth/2}px,${d.y}px) rotate(-.15rad)`; });
   })();
 
   /* ═════════ CONTROLS ═════════ */
@@ -1273,13 +1529,31 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     const ORDER = ["Singapore","Malaysia","Indonesia","Philippines","Thailand","Japan","Taiwan", ...new Set(SPOTS.map(s=>s.country))].filter((c,i,a)=>a.indexOf(c)===i);
     const rankS = {closed:0, ok:1, best:2};
     const countryStatus = (list,m) => ["closed","ok","best"][Math.max(...list.map(s=>rankS[statusOf(s,m)]))];
+    const calCountries = ORDER.filter(c=>calList.some(s=>s.country===c));
+    if(calCountry !== "All" && !calCountries.includes(calCountry)) calCountry = "All";
+    document.getElementById("whChips").innerHTML = ["All", ...calCountries].map(c=>`<button type="button" class="wh-chip ${c===calCountry?"on":""}" data-c="${c}">${c==="All"?"All":(FLAG[c]||"")+" "+c}</button>`).join("");
+    const now = new Date(), dim = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+    const todayPct = ((now.getMonth() + (now.getDate()-.5)/dim) / 12).toFixed(4);
+    const LBL = {best:"Peak", ok:"Good", closed:"Off"}, COL = {best:"#22c3a6", ok:"#ffc65c"};
+    const runs = s => { const st = M.map((_,i)=>statusOf(s,i+1)), out = []; let i = 0;
+      while(i < 12){ if(st[i]==="closed"){ i++; continue; } let j = i; while(j+1 < 12 && st[j+1] !== "closed") j++; out.push({a:i, b:j, st:st.slice(i,j+1)}); i = j+1; } return out; };
+    const range = (s, want) => { const st = M.map((_,i)=>statusOf(s,i+1)), ms = st.map((x,i)=>x===want?i:-1).filter(i=>i>=0); if(!ms.length) return ""; const parts=[]; let a=ms[0], p=ms[0]; for(const m of ms.slice(1)){ if(m===p+1){p=m;continue;} parts.push(a===p?M[a]:M[a]+"–"+M[p]); a=p=m; } parts.push(a===p?M[a]:M[a]+"–"+M[p]); if(parts.length>1 && ms[0]===0 && ms[ms.length-1]===11){ const f=parts.shift(), l=parts.pop(); parts.push(l.split("–")[0]+"–"+(f.split("–")[1]||f)); } return parts.join(", "); };
+    const bar = (s, r, k) => { const n = r.b - r.a + 1, stops = r.st.map((x,i)=>`${COL[x]} ${(i/n*100).toFixed(2)}% ${((i+1)/n*100).toFixed(2)}%`).join(",");
+      const pk = r.st.indexOf("best"), lab = pk >= 0 ? `<span style="left:${(pk/n*100).toFixed(1)}%">Peak</span>` : "";
+      return `<i class="tl-bar" style="left:${(r.a/12*100).toFixed(3)}%;width:${(n/12*100).toFixed(3)}%;background:linear-gradient(90deg,${stops});animation-delay:${k*25}ms">${n>=3?lab:""}</i>`; };
+    const pool = calList.filter(s=>calCountry==="All"||s.country===calCountry);
+    const selM = state.month;
+    let k = 0;
     document.getElementById("cal").innerHTML =
-      `<thead><tr><th>Country <small style="font-weight:700">· tap to open</small></th>${M.map((n,i)=>`<th class="${state.month===i+1?"sel":""}">${n}</th>`).join("")}</tr></thead><tbody>` +
-      ORDER.filter(c=>calList.some(s=>s.country===c)).map(c=>{
-        const list = calList.filter(s=>s.country===c), open = calOpen.has(c);
-        return `<tr class="grp ${open?"open":""}" data-c="${c}"><td>${FLAG[c]||""} ${c} <span class="cnt">${list.length}</span> <span class="chev">${open?"▾":"▸"}</span></td>${M.map((n,i)=>`<td class="c ${countryStatus(list,i+1)}" title="${n}: best spot in ${c}"><i></i></td>`).join("")}</tr>` +
-          (open ? list.map(s=>`<tr class="spot" onclick="__jump('${s.id}')"><td>${(TAGS[(s.tags||[])[0]]||["🐠"])[0]} ${esc(s.name)}</td>${M.map((n,i)=>`<td class="c ${statusOf(s,i+1)}" title="${n}"><i></i></td>`).join("")}</tr>`).join("") : "");
-      }).join("") + `</tbody>`;
+      `<div class="tl-head"><div class="tl-name"></div><div class="tl-months">${M.map((n,i)=>`<span class="${selM===i+1?"sel":""}${now.getMonth()===i?" now":""}">${n}</span>`).join("")}</div></div>` +
+      ORDER.filter(c=>pool.some(s=>s.country===c)).map(c=>`<div class="tl-country">${flagImg(c)} ${c}</div>` +
+        pool.filter(s=>s.country===c).map(s=>{ const pr = range(s,"best"), gr = range(s,"ok");
+          return `<button type="button" class="tl-row" onclick="__jump('${s.id}')" title="${esc(s.name)}${pr?" · Peak "+pr:""}${gr?" · Good "+gr:""}">
+            <span class="tl-name">${(TAGS[(s.tags||[])[0]]||["🐠"])[0]} ${esc(s.name)}<small>${esc(s.leave)}d leave</small></span>
+            <span class="tl-track${selM?" has-sel":""}" style="--sel:${selM?((selM-1)/12*100).toFixed(3)+"%":"-20%"}">${runs(s).map(r=>bar(s,r,k++)).join("")}</span></button>`; }).join("")
+      ).join("") + `<div class="tl-today" style="--t:${todayPct}"><b>Today</b></div>`;
+    const tsc = document.querySelector(".tl-scroll");
+    if(tsc && !tsc.dataset.init && tsc.scrollWidth > tsc.clientWidth + 10){ tsc.dataset.init = 1; const nw = innerWidth < 640 ? 120 : 210, tw = tsc.scrollWidth - nw; tsc.scrollLeft = Math.max(0, nw + tw*todayPct - nw - (tsc.clientWidth - nw)/2); }
   }
 
 
@@ -1556,9 +1830,8 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   document.getElementById("fyiPrev").onclick = () => fyi.scrollBy({left:-step(), behavior:"smooth"});
   document.getElementById("fyiNext").onclick = () => fyi.scrollBy({left:step(), behavior:"smooth"});
   syncDots();
-  document.getElementById("cal").addEventListener("click", e => {
-    const r = e.target.closest("tr.grp"); if(!r) return;
-    const c = r.dataset.c; calOpen.has(c) ? calOpen.delete(c) : calOpen.add(c); render();
+  document.getElementById("whChips").addEventListener("click", e => {
+    const b = e.target.closest(".wh-chip"); if(!b) return; calCountry = b.dataset.c; render();
   });
   document.getElementById("sgFlag").innerHTML = flagImg("Singapore");
   render(true);
