@@ -487,6 +487,7 @@ window.DIVE_SPOTS = [
   {
     id: "kohtao",
     name: "Koh Tao",
+    photo: "photos/kohtao.jpg",
     country: "Thailand",
     type: "weekend",
     lat: 10.09, lng: 99.84,
