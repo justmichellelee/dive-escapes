@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://justmichellelee.github.io/dive-escapes/sitemap.xml
+Sitemap: https://justmichellelee.github.io/dive-trips-near-singapore/sitemap.xml

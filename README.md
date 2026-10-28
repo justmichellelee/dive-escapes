@@ -2,7 +2,7 @@
 
 A free website (hosted on GitHub Pages) to plan dive trips from Singapore: a map, a one-sentence search, swipe-able spot rows, season calendar, public-holiday leave hacks, a trip-builder quiz, and guides to getting certified.
 
-Live site: `https://<your-username>.github.io/dive-escapes/`
+Live site: `https://<your-username>.github.io/dive-trips-near-singapore/`
 
 ## What's in this folder
 | File / folder | What it does | Edit it when… |
