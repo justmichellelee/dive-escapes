@@ -15,6 +15,7 @@ Live site: `https://<your-username>.github.io/dive-escapes/`
 | `pages.css`, `pages.js` | Shared look + doodles for the 3 guide pages | rarely |
 | `doodles/` | 20 white line-art PNGs used in the headers | you want different doodles (keep the same file names) |
 | `photos/` | Cover photos for spots | you add a photo |
+| `video/` | Turtle clip shown inside the DIVE letters (tioman-turtle.mp4) | you want a different header video (keep the same file name) |
 
 ## Everyday edits (works from your phone)
 1. Open the file on github.com, then tap the **pencil** (Edit).
