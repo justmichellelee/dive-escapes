@@ -1176,6 +1176,16 @@ body.tx-haze .sea-bg .t3{opacity:.35;background-image:radial-gradient(3px 3px at
 .photo-band::before{content:"";position:absolute;left:0;right:0;top:0;height:260px;z-index:1;background:linear-gradient(180deg,#0e344e 0%,rgba(14,52,78,.6) 45%,rgba(14,52,78,0) 100%)}
 .photo-band::after{background:linear-gradient(180deg,rgba(14,52,78,.35),rgba(10,40,64,.3)) !important}
 .dv ~ .controls{margin-top:0 !important;padding-top:22px}
+
+/* band ends in a soft wave instead of a fade */
+.photo-band{-webkit-mask:linear-gradient(#000,#000) top/100% calc(100% - 69px) no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 70' preserveAspectRatio='none'%3E%3Cpath d='M0,0 H1440 V38 C1260,70 1080,70 900,44 C720,18 540,14 360,36 C220,52 100,56 0,40 Z'/%3E%3C/svg%3E") bottom/100% 70px no-repeat !important;mask:linear-gradient(#000,#000) top/100% calc(100% - 69px) no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 70' preserveAspectRatio='none'%3E%3Cpath d='M0,0 H1440 V38 C1260,70 1080,70 900,44 C720,18 540,14 360,36 C220,52 100,56 0,40 Z'/%3E%3C/svg%3E") bottom/100% 70px no-repeat !important}
+#explore{margin-top:96px !important}
+/* contours: static, faint, soft, fading in patches */
+body.tx-contour .sea-bg .t1,body.tx-contour .sea-bg .t2{transform:none !important;will-change:auto}
+body.tx-contour .sea-bg .t1{opacity:.16 !important;-webkit-mask:radial-gradient(60% 45% at 25% 30%,#000,transparent 75%),radial-gradient(55% 45% at 80% 75%,#000,transparent 75%);mask:radial-gradient(60% 45% at 25% 30%,#000,transparent 75%),radial-gradient(55% 45% at 80% 75%,#000,transparent 75%)}
+body.tx-contour .sea-bg .t2{display:none}
+body.tx-contour.deep-sea .sea-bg .t1{opacity:.07 !important}
+.sea-bg .t1{transition:opacity 1s ease}
 /* ───── FYI CAROUSEL ───── */
 .fyi-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 10px;gap:10px}
 .fyi-head h2{font-size:24px;margin:0}
@@ -2403,7 +2413,7 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   (function(){
     const band = document.getElementById("photoBand"), ctl = document.querySelector(".controls"), leg = document.querySelector(".legend");
     const hero = document.getElementById("top");
-    const place = () => { const t = hero.offsetTop + hero.offsetHeight - 2, b = leg.getBoundingClientRect().bottom + scrollY + 50; band.style.top = t+"px"; band.style.height = (b-t)+"px"; };
+    const place = () => { const t = hero.offsetTop + hero.offsetHeight - 2, b = leg.getBoundingClientRect().bottom + scrollY + 80; band.style.top = t+"px"; band.style.height = (b-t)+"px"; };
     place(); addEventListener("resize", place); addEventListener("load", place); setTimeout(place, 1500);
     if(document.fonts && document.fonts.ready) document.fonts.ready.then(place);
     const bv = document.getElementById("bandVid"), still = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -2412,15 +2422,15 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   (function(){
     let sd = 7; const rn = () => (sd = (sd*9301+49297)%233280)/233280;
     let d = "";
-    [[260,240],[1180,520],[520,980],[1300,1180]].forEach(([cx,cy])=>{
+    [[300,300],[1250,700],[600,1150]].forEach(([cx,cy])=>{
       const ph = rn()*6, k = 3+Math.floor(rn()*3);
-      for(let r=40; r<520; r+=34){
+      for(let r=60; r<560; r+=58){
         let path = "";
         for(let a=0; a<=64; a++){ const t = a/64*Math.PI*2, rr = r*(1+.18*Math.sin(t*k+ph+r*.01)+.08*Math.sin(t*(k+2)-ph)); path += (a?"L":"M")+(cx+rr*Math.cos(t)).toFixed(0)+","+(cy+rr*.72*Math.sin(t)).toFixed(0); }
         d += `<path d="${path}Z"/>`;
       }
     });
-    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='1400' viewBox='0 0 1600 1400'><g fill='none' stroke='white' stroke-width='1.2'>${d}</g></svg>`;
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='1400' viewBox='0 0 1600 1400'><defs><filter id='b'><feGaussianBlur stdDeviation='1.6'/></filter></defs><g fill='none' stroke='white' stroke-width='2' filter='url(#b)'>${d}</g></svg>`;
     document.documentElement.style.setProperty("--contour", `url("data:image/svg+xml,${encodeURIComponent(svg)}")`);
   })();
   function onDepth(){
@@ -2428,7 +2438,6 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
     const max = document.documentElement.scrollHeight - innerHeight;
     const f = max>start ? Math.min(1, Math.max(0, (scrollY-start)/(max-start))) : 0;
     sea2.style.opacity = ss(.12,.5,f).toFixed(3); sea3.style.opacity = ss(.5,.9,f).toFixed(3);
-    document.documentElement.style.setProperty('--sy', (scrollY - start).toFixed(0));
     const d = f > .62; if(d !== deepOn){ deepOn = d; document.body.classList.toggle("deep-sea", d); }
     depthFill.style.height = (f*100)+"%";
     depthTxt.textContent = `-${Math.round(f*MAXM)}m`;
