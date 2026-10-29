@@ -1040,6 +1040,142 @@ body.v-rail .zone .lcard h3{color:#fff}
 .sea-bg .murk{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .75  0 0 0 0 .92  0 0 0 0 1  0 0 0 .5 -.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");background-size:100% 100%;background-repeat:no-repeat;opacity:.28}
 
 .zone .strack{padding-bottom:30px;margin-bottom:-18px;padding-top:8px;margin-top:-4px}
+
+/* ───── MOBILE TIDY-UP ───── */
+@media (max-width:640px){
+  .search-card{padding:12px 14px !important;border-radius:20px !important}
+  .sentence{font-size:14px !important;line-height:1.9 !important}
+  .sentence select{font-size:14px !important;padding:3px 26px 3px 9px !important;background-position:right 8px center !important}
+  .row.extras{display:flex;align-items:center;gap:8px;flex-wrap:nowrap !important;margin-top:8px}
+  .row.extras .scroller{flex:1;min-width:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-mask:linear-gradient(90deg,#000 85%,transparent)}
+  .row.extras .scroller::-webkit-scrollbar{display:none}
+  .row.extras .chip{flex:0 0 auto;font-size:12px !important;padding:5px 10px !important}
+  #sort{flex:0 0 auto;font-size:12px !important;padding:5px 8px !important;width:auto !important;max-width:118px}
+  .map-shell{margin:12px 0 6px;padding:5px;border-radius:20px}
+  #map{height:42vh !important;min-height:260px;border-radius:16px}
+  .leaflet-control-attribution{font-size:9px !important}
+  .leaflet-control-zoom a{width:28px !important;height:28px !important;line-height:28px !important;font-size:16px !important}
+  .legend{flex-wrap:nowrap;gap:10px;font-size:11px;margin:6px 2px 0;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+  .legend::-webkit-scrollbar{display:none}
+  .summary{margin:18px 0 8px;align-items:center;row-gap:4px}
+  .summary h2{font-size:20px}
+  .summary h2 .ico{width:18px;height:18px}
+  .summary small{font-size:12px;width:100%;order:3;margin-top:-2px}
+  .summary .quiz-mini{order:2;padding:7px 12px;font-size:12.5px}
+  .zone-h h3{font-size:19px !important}.zone-h p{font-size:13px !important}
+  .lo-ctl{font-size:15px}.lo-al button{width:34px;height:32px;font-size:14px}.lo-row select{font-size:13px;padding:5px 28px 5px 10px}
+  .lo-legend{font-size:11px;gap:10px}
+  .fyi-head h2{font-size:20px}
+  .depth{display:none}
+}
+
+@media (max-width:640px){
+  #sort{max-width:none !important;font-size:11.5px !important}
+  .row.extras .chip{font-size:11.5px !important;padding:4px 9px !important}
+  .mcard,.mcard.big{flex-basis:72% !important}
+  .mcard .art,.mcard.big .art{height:130px !important}
+  .mc-body{padding:10px 12px 12px !important}
+  .mc-body h3,.mcard.big h3{font-size:15px !important}
+  .mc-meta{font-size:11.5px !important}
+  .mc-now{font-size:12px !important;padding:4px 8px !important}
+  body.v-rail .ccard{flex-basis:86% !important;align-items:stretch}
+  body.v-rail .ccard .art{flex:0 0 92px !important;min-height:0 !important;height:auto !important}
+  .cc-body{padding:9px 11px !important;gap:2px !important}
+  .ccard h3{font-size:15px !important}
+  .cc-time,.cc-meta{font-size:11.5px !important}
+  .cc-st{font-size:10px !important}
+  body.v-rail .lcard{flex-basis:86% !important;height:220px !important}
+  .lcard h3{font-size:21px !important}
+  .lc-meta,.lc-see,.lc-price{font-size:11.5px !important}
+  .zone-h p{font-size:12.5px !important;line-height:1.4}
+  .zone{padding:16px 0 !important}
+  .art .status-tag{font-size:10.5px !important;padding:3px 8px !important}
+  .art .credit{font-size:9px !important}
+}
+
+@media (max-width:640px){
+  .row.extras{flex-wrap:wrap !important;row-gap:6px}
+  .row.extras .scroller{flex:1 1 100% !important;-webkit-mask:none}
+  #sort{padding:3px 6px !important;border-width:1px !important;color:var(--muted)}
+  #map{height:36vh !important}
+}
+
+/* ── classy background options (preview) ── */
+body[class*="bg-"] .sea-bg{display:none}
+body[class*="bg-"].deep-sea .summary h2,body[class*="bg-"].deep-sea .fyi-head h2,body[class*="bg-"].deep-sea .zone-h h3{color:inherit !important}
+body[class*="bg-"].deep-sea .summary small,body[class*="bg-"].deep-sea .zone-h p,body[class*="bg-"].deep-sea .legend,body[class*="bg-"].deep-sea footer{color:inherit !important}
+body[class*="bg-"] .controls{background:transparent !important}
+body[class*="bg-"] .mcard,body[class*="bg-"] .ccard,body[class*="bg-"] .wheels-box,body[class*="bg-"] .lo-box,body[class*="bg-"] .search-card,body[class*="bg-"] .fyi a{box-shadow:0 1px 2px rgba(16,24,40,.05),0 8px 24px rgba(16,24,40,.06) !important}
+/* A · Sand & Ink */
+body.bg-sand{background:#efe7da !important;color:#14263a}
+body.bg-sand .mcard,body.bg-sand .ccard,body.bg-sand .wheels-box,body.bg-sand .lo-box,body.bg-sand .search-card{border:1px solid #e6dfd2}
+body.bg-sand .summary h2,body.bg-sand .zone-h h3,body.bg-sand .fyi-head h2{color:#14263a !important}
+body.bg-sand .summary small,body.bg-sand .zone-h p,body.bg-sand .legend{color:#7a7062 !important}
+body.bg-sand .zone-n{background:#ebe4d7 !important}
+body.bg-sand .map-shell{background:#e9e2d5}
+body.bg-sand footer{color:#7a7062 !important}
+/* B · Midnight editorial */
+body.bg-night{background:#0c1b2b !important;color:#eef3f7}
+body.bg-night .summary h2,body.bg-night .zone-h h3,body.bg-night .fyi-head h2{color:#f4efe6 !important}
+body.bg-night .summary small,body.bg-night .zone-h p,body.bg-night .legend,body.bg-night footer{color:#9fb2c4 !important}
+body.bg-night .zone-tag,body.bg-night .zone-n{background:rgba(255,255,255,.08) !important;color:#d9c9a3 !important}
+body.bg-night .summary .ico,body.bg-night .fyi-head .ico{stroke:#d9c9a3}
+body.bg-night .map-shell{background:#16293d}
+body.bg-night .zone .srow-nav button{background:rgba(255,255,255,.1);color:#fff}
+body.bg-night .zone-in::before{opacity:.5}
+body.bg-night .zone:not(.z-spot) .zone-tag{box-shadow:0 0 0 5px #0c1b2b !important}
+/* C · Clean white */
+body.bg-white{background:#fbfcfd !important;color:#101828}
+body.bg-white .mcard,body.bg-white .ccard,body.bg-white .wheels-box,body.bg-white .lo-box,body.bg-white .search-card{border:1px solid #eaecf0}
+body.bg-white .summary h2,body.bg-white .zone-h h3,body.bg-white .fyi-head h2{color:#101828 !important}
+body.bg-white .summary small,body.bg-white .zone-h p,body.bg-white .legend,body.bg-white footer{color:#667085 !important}
+body.bg-white .zone-n{background:#f2f4f7 !important}
+body.bg-white .map-shell{background:#eef2f6}
+body.bg-white .zone + .zone .zone-in{border-top:1px solid #eaecf0;padding-top:22px}
+body.bg-white.v-rail .zone + .zone .zone-in{border-top:0}
+/* D · Soft slate ocean */
+body.bg-slate{background:#e4ecf1 !important;color:#18304a}
+body.bg-slate .summary h2,body.bg-slate .zone-h h3,body.bg-slate .fyi-head h2{color:#18304a !important}
+body.bg-slate .summary small,body.bg-slate .zone-h p,body.bg-slate .legend,body.bg-slate footer{color:#5f7487 !important}
+body.bg-slate .zone-n{background:#e3eaef !important}
+body.bg-slate .map-shell{background:#dbe5ec}
+
+/* ── TEXTURE + DEPTH options (preview) ── */
+.sea-bg .tex{opacity:0}
+body[class*="tx-"] .sea-bg .murk{display:none}
+body[class*="tx-"] .sea-bg .s1{background:linear-gradient(180deg,#eef4f6 0%,#dfeaef 100%)}
+body[class*="tx-"] .sea-bg .s2{background:linear-gradient(180deg,#a9c3d1 0%,#6f93ab 100%)}
+body[class*="tx-"] .sea-bg .s3{background:linear-gradient(180deg,#24435d 0%,#0d2235 100%)}
+body[class*="tx-"] .sea-bg .grain{opacity:.07}
+/* 1 · Caustic light: sunlight net on top, fading with depth; two layers drift at different speeds */
+body.tx-caustic .sea-bg .t1,body.tx-caustic .sea-bg .t2{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='700'%3E%3Cfilter id='c' x='0' y='0'%3E%3CfeTurbulence type='turbulence' baseFrequency='.009' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -7 0 0 0 1.05'/%3E%3CfeGaussianBlur stdDeviation='.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");will-change:transform}
+body.tx-caustic .sea-bg .t1{opacity:calc(.55 - var(--sy,0)/4000);background-size:700px 700px;transform:translateY(calc(var(--sy,0) * -.08px))}
+body.tx-caustic .sea-bg .t2{opacity:calc(.3 - var(--sy,0)/6000);background-size:1100px 1100px;transform:translateY(calc(var(--sy,0) * -.03px)) rotate(8deg) scale(1.2);mix-blend-mode:soft-light}
+/* 2 · Bathymetry: chart contour lines, two layers at different depths (parallax) */
+body.tx-contour .sea-bg .t1,body.tx-contour .sea-bg .t2{background-image:var(--contour);will-change:transform}
+body.tx-contour .sea-bg .t1{opacity:.55;background-size:1600px 1400px;transform:translateY(calc(var(--sy,0) * -.12px))}
+body.tx-contour .sea-bg .t2{opacity:.25;background-size:2400px 2100px;background-position:400px 200px;transform:translateY(calc(var(--sy,0) * -.04px))}
+body.tx-contour.deep-sea .sea-bg .t1{opacity:.18}body.tx-contour.deep-sea .sea-bg .t2{opacity:.1}
+/* 3 · Haze layers: soft light shafts + suspended particles in three depth planes */
+body.tx-haze .sea-bg .t1{opacity:1;background:radial-gradient(40% 70% at 22% -10%,rgba(255,255,255,.55),transparent 70%),radial-gradient(30% 60% at 70% -15%,rgba(255,255,255,.4),transparent 70%);transform:translateY(calc(var(--sy,0) * -.05px))}
+body.tx-haze .sea-bg .t2{opacity:.9;background-image:radial-gradient(1.6px 1.6px at 10% 20%,#fff,transparent),radial-gradient(1.2px 1.2px at 30% 60%,#fff,transparent),radial-gradient(2px 2px at 55% 35%,#fff,transparent),radial-gradient(1.3px 1.3px at 75% 75%,#fff,transparent),radial-gradient(1.8px 1.8px at 90% 15%,#fff,transparent);background-size:420px 420px;transform:translateY(calc(var(--sy,0) * -.18px));opacity:.5}
+body.tx-haze .sea-bg .t3{opacity:.35;background-image:radial-gradient(3px 3px at 15% 40%,rgba(255,255,255,.8),transparent),radial-gradient(4px 4px at 60% 80%,rgba(255,255,255,.6),transparent),radial-gradient(3px 3px at 85% 30%,rgba(255,255,255,.7),transparent);background-size:780px 780px;filter:blur(1.5px);transform:translateY(calc(var(--sy,0) * -.35px))}
+
+/* ───── BLURRED PHOTO BAND behind search + map ───── */
+.photo-band{position:absolute;left:0;right:0;top:0;height:0;z-index:-1;overflow:hidden;pointer-events:none;
+  -webkit-mask:linear-gradient(180deg,transparent 0,#000 70px,#000 calc(100% - 90px),transparent 100%);mask:linear-gradient(180deg,transparent 0,#000 70px,#000 calc(100% - 90px),transparent 100%)}
+.photo-band video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08)}
+.photo-band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,35,60,.25),rgba(8,35,60,.35))}
+.map-shell{background:rgba(255,255,255,.22) !important;backdrop-filter:none}
+.legend{color:#eaf6ff !important;text-shadow:0 1px 6px rgba(0,25,45,.5)}
+
+/* seamless hand-off: header fades into deep water, band rises out of the same water */
+.dv-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:8;pointer-events:none;background:linear-gradient(180deg,rgba(14,52,78,0) 0%,rgba(14,52,78,.55) 55%,#0e344e 100%);opacity:0;transition:opacity 1.2s ease}
+.dv.deep .dv-stage::after{opacity:1}
+.photo-band{-webkit-mask:linear-gradient(180deg,#000 0,#000 calc(100% - 120px),transparent 100%) !important;mask:linear-gradient(180deg,#000 0,#000 calc(100% - 120px),transparent 100%) !important}
+.photo-band::before{content:"";position:absolute;left:0;right:0;top:0;height:260px;z-index:1;background:linear-gradient(180deg,#0e344e 0%,rgba(14,52,78,.6) 45%,rgba(14,52,78,0) 100%)}
+.photo-band::after{background:linear-gradient(180deg,rgba(14,52,78,.35),rgba(10,40,64,.3)) !important}
+.dv ~ .controls{margin-top:0 !important;padding-top:22px}
 /* ───── FYI CAROUSEL ───── */
 .fyi-head{display:flex;justify-content:space-between;align-items:center;margin:26px 0 10px;gap:10px}
 .fyi-head h2{font-size:24px;margin:0}
@@ -1096,8 +1232,9 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
 }
 </style>
 </head>
-<body class="v-rail">
-<div class="sea-bg" aria-hidden="true"><i class="s1"></i><i class="s2" id="sea2"></i><i class="s3" id="sea3"></i><i class="murk"></i><i class="grain"></i></div>
+<body class="v-rail tx-contour">
+<div class="sea-bg" aria-hidden="true"><i class="s1"></i><i class="s2" id="sea2"></i><i class="s3" id="sea3"></i><i class="murk"></i><i class="tex t1" id="tex1"></i><i class="tex t2" id="tex2"></i><i class="tex t3" id="tex3"></i><i class="grain"></i></div>
+<div class="photo-band" id="photoBand" aria-hidden="true"><video id="bandVid" src="video/turtle-blur.mp4" muted loop playsinline preload="metadata"></video></div>
 
 <header class="dv" id="top">
   <div class="dv-stage">
@@ -2263,11 +2400,35 @@ footer .fish{font-size:26px;display:inline-block;animation:swimFooter 6s ease-in
   const MAXM = 30, sea2 = document.getElementById("sea2"), sea3 = document.getElementById("sea3"), heroEl = document.getElementById("top");
   const ss = (a,b,x) => { const t = Math.min(1, Math.max(0, (x-a)/(b-a))); return t*t*(3-2*t); };
   let deepOn = null;
+  (function(){
+    const band = document.getElementById("photoBand"), ctl = document.querySelector(".controls"), leg = document.querySelector(".legend");
+    const hero = document.getElementById("top");
+    const place = () => { const t = hero.offsetTop + hero.offsetHeight - 2, b = leg.getBoundingClientRect().bottom + scrollY + 50; band.style.top = t+"px"; band.style.height = (b-t)+"px"; };
+    place(); addEventListener("resize", place); addEventListener("load", place); setTimeout(place, 1500);
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(place);
+    const bv = document.getElementById("bandVid"), still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if("IntersectionObserver" in window) new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting && !still){ bv.preload = "auto"; const hv = document.querySelector(".dv-video"); if(hv && bv.paused && hv.readyState>=2 && bv.readyState>=1) try{ bv.currentTime = hv.currentTime % (bv.duration||999); }catch(_){} bv.play().catch(()=>{}); } else bv.pause(); }), {rootMargin:"200px 0px"}).observe(band);
+  })();
+  (function(){
+    let sd = 7; const rn = () => (sd = (sd*9301+49297)%233280)/233280;
+    let d = "";
+    [[260,240],[1180,520],[520,980],[1300,1180]].forEach(([cx,cy])=>{
+      const ph = rn()*6, k = 3+Math.floor(rn()*3);
+      for(let r=40; r<520; r+=34){
+        let path = "";
+        for(let a=0; a<=64; a++){ const t = a/64*Math.PI*2, rr = r*(1+.18*Math.sin(t*k+ph+r*.01)+.08*Math.sin(t*(k+2)-ph)); path += (a?"L":"M")+(cx+rr*Math.cos(t)).toFixed(0)+","+(cy+rr*.72*Math.sin(t)).toFixed(0); }
+        d += `<path d="${path}Z"/>`;
+      }
+    });
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='1400' viewBox='0 0 1600 1400'><g fill='none' stroke='white' stroke-width='1.2'>${d}</g></svg>`;
+    document.documentElement.style.setProperty("--contour", `url("data:image/svg+xml,${encodeURIComponent(svg)}")`);
+  })();
   function onDepth(){
     const start = heroEl ? heroEl.offsetTop + heroEl.offsetHeight - innerHeight : 0;
     const max = document.documentElement.scrollHeight - innerHeight;
     const f = max>start ? Math.min(1, Math.max(0, (scrollY-start)/(max-start))) : 0;
     sea2.style.opacity = ss(.12,.5,f).toFixed(3); sea3.style.opacity = ss(.5,.9,f).toFixed(3);
+    document.documentElement.style.setProperty('--sy', (scrollY - start).toFixed(0));
     const d = f > .62; if(d !== deepOn){ deepOn = d; document.body.classList.toggle("deep-sea", d); }
     depthFill.style.height = (f*100)+"%";
     depthTxt.textContent = `-${Math.round(f*MAXM)}m`;
